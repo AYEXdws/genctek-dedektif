@@ -504,7 +504,6 @@ input:focus {
 }
 
 .digital-badge {
-  aspect-ratio: 9 / 16;
   background:
     radial-gradient(circle at 80% 10%, rgba(87, 255, 154, 0.24), transparent 25%),
     radial-gradient(circle at 10% 42%, rgba(44, 233, 255, 0.24), transparent 24%),
@@ -518,6 +517,7 @@ input:focus {
   gap: 16px;
   margin: 0 auto;
   max-width: 420px;
+  min-height: 747px;
   overflow: hidden;
   padding: 22px;
   position: relative;

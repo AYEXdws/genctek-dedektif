@@ -23,10 +23,23 @@ export default function BadgeCreator({ savedName = "", badge, onCreateBadge }) {
   const downloadCard = async () => {
     if (!cardRef.current || !badge) return;
 
+    await document.fonts?.ready;
+    const card = cardRef.current;
+    const width = Math.ceil(card.scrollWidth || card.getBoundingClientRect().width);
+    const height = Math.ceil(card.scrollHeight || card.getBoundingClientRect().height);
+
     const dataUrl = await toPng(cardRef.current, {
       cacheBust: true,
+      height,
       pixelRatio: 2,
-      backgroundColor: "#06111f"
+      backgroundColor: "#06111f",
+      style: {
+        height: `${height}px`,
+        maxWidth: "420px",
+        transform: "none",
+        width: `${width}px`
+      },
+      width
     });
     const link = document.createElement("a");
     link.download = `genctek-dijital-dedektif-${badge.badgeId}.png`;
