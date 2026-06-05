@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { isCorrectAnswer } from "../utils/normalize";
 import { turkishAlphabet } from "../utils/crypto";
 import LogExplorer from "./LogExplorer";
@@ -8,6 +8,13 @@ export default function TaskCard({ task, onComplete }) {
   const [feedback, setFeedback] = useState("");
   const [hintOpen, setHintOpen] = useState(false);
   const [captured, setCaptured] = useState(false);
+
+  useEffect(() => {
+    setAnswer("");
+    setFeedback("");
+    setHintOpen(false);
+    setCaptured(false);
+  }, [task.id]);
 
   const submitAnswer = (event) => {
     event.preventDefault();
@@ -102,6 +109,7 @@ export default function TaskCard({ task, onComplete }) {
               <strong>{task.recoveredText}</strong>
               <span>{task.flag}</span>
               <em>FLAG CAPTURED</em>
+              <small>Sonraki göreve geçiliyor...</small>
             </>
           )}
         </div>
