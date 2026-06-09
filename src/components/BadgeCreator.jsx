@@ -41,7 +41,7 @@ export default function BadgeCreator({ savedName = "", badge, onCreateBadge }) {
         backgroundColor: "#071421",
         style: {
           height: `${height}px`,
-          maxWidth: "430px",
+          maxWidth: "none",
           transform: "none",
           width: `${width}px`
         },

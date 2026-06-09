@@ -111,7 +111,7 @@ export const tasks = [
       how: "Simülasyonu başlat, robotun baktığı yön okunu takip et ve yanlış yöne döndüğü adımı tespit et.",
       result: "Veri Parçası 4 kurtarılacak."
     },
-    placeholder: "Örn: 4",
+    placeholder: "Örn: 2",
     answerType: "algorithm",
     flag: "GençTek{Algoritma_Cozuldu}",
     recoveredText: "VERİ PARÇASI 4 KURTARILDI",
