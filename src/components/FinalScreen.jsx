@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { story } from "../data/story";
 import { taskAreas } from "../data/tasks";
 
 export default function FinalScreen({ children, onCreateIdentity }) {
@@ -11,7 +12,7 @@ export default function FinalScreen({ children, onCreateIdentity }) {
       window.setTimeout(() => {
         setProgress(value);
         if (value === 100) setReady(true);
-      }, index * 650)
+      }, index * 620)
     );
 
     return () => timers.forEach(window.clearTimeout);
@@ -20,8 +21,8 @@ export default function FinalScreen({ children, onCreateIdentity }) {
   return (
     <section className="final-screen">
       <div className="final-core">
-        <p>Dört veri parçası kurtarıldı.</p>
-        <h2>GençTek Arşivi yeniden oluşturuluyor...</h2>
+        <p>{story.final.loadingText}</p>
+        <h2>{story.final.loadingTitle}</h2>
         <div className="restore-meter">
           <span style={{ width: `${progress}%` }} />
         </div>
@@ -30,7 +31,8 @@ export default function FinalScreen({ children, onCreateIdentity }) {
 
       {ready && (
         <div className="final-ready">
-          <h2>GENÇTEK ARŞİVİ BAŞARIYLA TAMAMLANDI</h2>
+          <h2>{story.final.completeTitle}</h2>
+          <p>{story.final.completeText}</p>
           <ul>
             {taskAreas.map((area) => (
               <li key={area}>✓ {area}</li>
@@ -42,7 +44,7 @@ export default function FinalScreen({ children, onCreateIdentity }) {
               onClick={onCreateIdentity}
               type="button"
             >
-              DİJİTAL KİMLİĞİ OLUŞTUR
+              {story.final.action}
             </button>
           )}
         </div>

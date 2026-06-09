@@ -7,6 +7,7 @@ import ProgressPanel from "./components/ProgressPanel";
 import TaskCard from "./components/TaskCard";
 import FinalScreen from "./components/FinalScreen";
 import BadgeCreator from "./components/BadgeCreator";
+import CompletionScreen from "./components/CompletionScreen";
 
 const STORAGE_KEY = "genctek-dijital-dedektifler";
 
@@ -17,6 +18,7 @@ const initialState = {
   badgeId: "",
   userName: "",
   badge: null,
+  completionTaskId: "",
   identityRequested: false
 };
 
@@ -52,15 +54,23 @@ export default function App() {
 
   const startMission = () => updateState({ started: true });
 
-  const completeTask = (taskId) => {
+  const solveTask = (taskId) => {
     if (state.completedTasks.includes(taskId)) return;
 
     const completedTasks = [...state.completedTasks, taskId];
-    const isFinalTask = completedTasks.length === tasks.length;
 
     updateState({
       completedTasks,
-      activeStep: isFinalTask ? tasks.length : state.activeStep + 1
+      completionTaskId: taskId
+    });
+  };
+
+  const continueAfterCompletion = () => {
+    const isFinalTask = state.completedTasks.length === tasks.length;
+
+    updateState({
+      activeStep: isFinalTask ? tasks.length : state.activeStep + 1,
+      completionTaskId: ""
     });
   };
 
@@ -72,6 +82,7 @@ export default function App() {
 
   const currentTask = tasks[state.activeStep];
   const isArchiveComplete = state.completedTasks.length === tasks.length;
+  const completionTask = tasks.find((task) => task.id === state.completionTaskId);
 
   return (
     <main className="app-shell">
@@ -81,18 +92,35 @@ export default function App() {
 
       {!state.started && <IntroScreen onStart={startMission} />}
 
-      {state.started && !isArchiveComplete && currentTask && (
+      {state.started && completionTask && (
+        <section className="mission-view">
+          <ProgressPanel
+            activeArea={completionTask.area}
+            completedCount={state.completedTasks.length}
+            integrity={archiveIntegrity}
+          />
+          <CompletionScreen
+            completedCount={state.completedTasks.length}
+            integrity={archiveIntegrity}
+            isFinal={state.completedTasks.length === tasks.length}
+            onContinue={continueAfterCompletion}
+            task={completionTask}
+          />
+        </section>
+      )}
+
+      {state.started && !completionTask && !isArchiveComplete && currentTask && (
         <section className="mission-view">
           <ProgressPanel
             activeArea={currentTask.area}
             completedCount={state.completedTasks.length}
             integrity={archiveIntegrity}
           />
-          <TaskCard task={currentTask} onComplete={completeTask} />
+          <TaskCard task={currentTask} onSolved={solveTask} />
         </section>
       )}
 
-      {state.started && isArchiveComplete && !state.badge && (
+      {state.started && !completionTask && isArchiveComplete && !state.badge && (
         <FinalScreen onCreateIdentity={() => updateState({ identityRequested: true })}>
           {state.identityRequested && (
             <BadgeCreator
@@ -103,7 +131,7 @@ export default function App() {
         </FinalScreen>
       )}
 
-      {state.started && isArchiveComplete && state.badge && (
+      {state.started && !completionTask && isArchiveComplete && state.badge && (
         <section className="badge-view">
           <ProgressPanel
             activeArea="Sistem Doğrulama"

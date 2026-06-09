@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { isCorrectAnswer } from "../utils/normalize";
 import { turkishAlphabet } from "../utils/crypto";
+import AlgorithmSimulator from "./AlgorithmSimulator";
+import EvidenceBoard from "./EvidenceBoard";
 import LogExplorer from "./LogExplorer";
+import TaskShell from "./TaskShell";
 
-export default function TaskCard({ task, onComplete }) {
+export default function TaskCard({ task, onSolved }) {
   const [answer, setAnswer] = useState("");
   const [feedback, setFeedback] = useState("");
   const [hintOpen, setHintOpen] = useState(false);
@@ -26,56 +29,34 @@ export default function TaskCard({ task, onComplete }) {
 
     setCaptured(true);
     setFeedback("Kanıt doğrulandı. Veri parçası kurtarıldı.");
-    window.setTimeout(() => onComplete(task.id), 1100);
+    window.setTimeout(() => onSolved(task.id), 650);
   };
 
   return (
-    <article className="task-card">
-      <div className="task-header">
-        <p>{task.area}</p>
-        <h2>{task.title}</h2>
-      </div>
-      <p className="task-description">{task.description}</p>
-
+    <TaskShell task={task}>
       {task.encryptedText && (
-        <div className="evidence-box">
-          <small>{turkishAlphabet.join(" ")}</small>
-          <span>{task.encryptedLabel}</span>
-          <strong>{task.encryptedText}</strong>
+        <div className="crypto-panel">
+          <div>
+            <span>Türk alfabesi</span>
+            <strong>{turkishAlphabet.join(" ")}</strong>
+          </div>
+          <div>
+            <span>{task.encryptedLabel}</span>
+            <strong className="cipher-text">{task.encryptedText}</strong>
+          </div>
+          <div>
+            <span>Çözüm bilgisi</span>
+            <strong>{task.shiftText}</strong>
+          </div>
         </div>
       )}
 
       {task.answerType === "source" && <LogExplorer />}
 
-      {task.profile && (
-        <div className="profile-card">
-          {Object.entries(task.profile).map(([label, value]) => (
-            <div key={label}>
-              <span>{label}</span>
-              <strong>{value}</strong>
-            </div>
-          ))}
-          <p>Örnek format: Gezegen_42</p>
-        </div>
-      )}
+      {task.profile && <EvidenceBoard profile={task.profile} />}
 
       {task.commands && (
-        <div className="robot-panel">
-          <div className="grid-map" aria-label="Robot görev haritası">
-            <span className="robot">R</span>
-            <span className="path p1" />
-            <span className="path p2" />
-            <span className="core">Çekirdek</span>
-          </div>
-          <ol className="command-list">
-            {task.commands.map((command, index) => (
-              <li key={`${command}-${index}`}>
-                <span>{index + 1}</span>
-                {command}
-              </li>
-            ))}
-          </ol>
-        </div>
+        <AlgorithmSimulator commands={task.commands} onSelectStep={setAnswer} />
       )}
 
       <button
@@ -88,8 +69,9 @@ export default function TaskCard({ task, onComplete }) {
       {hintOpen && <p className="hint-text">{task.hint}</p>}
 
       <form className="answer-form" onSubmit={submitAnswer}>
-        <label htmlFor={`answer-${task.id}`}>Cevap</label>
+        <label htmlFor={`answer-${task.id}`}>Kanıt doğrulama alanı</label>
         <input
+          autoComplete="off"
           id={`answer-${task.id}`}
           onChange={(event) => setAnswer(event.target.value)}
           placeholder={task.placeholder}
@@ -103,17 +85,9 @@ export default function TaskCard({ task, onComplete }) {
       {feedback && (
         <div className={captured ? "feedback success" : "feedback"}>
           <p>{feedback}</p>
-          {captured && (
-            <>
-              <strong>KANIT DOĞRULANDI</strong>
-              <strong>{task.recoveredText}</strong>
-              <span>{task.flag}</span>
-              <em>FLAG CAPTURED</em>
-              <small>Sonraki göreve geçiliyor...</small>
-            </>
-          )}
+          {captured && <small>Başarı ekranı hazırlanıyor...</small>}
         </div>
       )}
-    </article>
+    </TaskShell>
   );
 }

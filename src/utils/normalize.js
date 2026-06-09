@@ -32,7 +32,7 @@ export function isCorrectAnswer(task, value) {
 
   if (task.answerType === "trace") {
     const compact = normalized.replace("gt-", "");
-    return compact === "saturn_42" || compact === "saturn-42";
+    return ["saturn_42", "saturn-42", "saturn42"].includes(compact);
   }
 
   if (task.answerType === "algorithm") {
