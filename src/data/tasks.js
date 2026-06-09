@@ -41,12 +41,12 @@ export const tasks = [
     guide: {
       purpose: "Şifreli veriyi çöz.",
       why: "İlk veri parçası kripto katmanında korunuyor.",
-      how: "Türk alfabesinde her harfi 3 adım geri taşı.",
+      how: "Sezar şifrelemesi yöntemini incele.",
       result: "Veri Parçası 1 kurtarılacak."
     },
     encryptedLabel: "Şifrelenmiş veri",
     encryptedText: caesarEncrypt("GENÇTEK", 3),
-    shiftText: "Kaydırma: 3 adım ileri şifrelenmiş",
+    shiftText: "Sezar şifrelemesi",
     placeholder: "Orijinal mesaj",
     answerType: "crypto",
     flag: "GençTek{Kripto_Iz}",
@@ -63,14 +63,14 @@ export const tasks = [
     guide: {
       purpose: "Sistem kayıtları arasında gizli veri parçasını bul.",
       why: "İkinci veri parçası görünür ekranda değil, kaynak katmanında saklı.",
-      how: "Kayıt dosyalarını aç, satırları incele ve bayrağı bul.",
+      how: "Kayıt dosyalarını aç, 'Bayrak:' satırındaki değeri cevap alanına aynen yaz. Örn: GençTek{Ornek_Bayrak}.",
       result: "Veri Parçası 2 kurtarılacak."
     },
-    placeholder: "Bayrağı yaz",
+    placeholder: "Örn: GençTek{Ornek_Bayrak}",
     answerType: "source",
     flag: "GençTek{Kaynak_Katmani}",
     recoveredText: "VERİ PARÇASI 2 KURTARILDI",
-    hint: "Her dosya aynı değerde değil. Kaynak katmanı ismi sana doğru paneli gösterir."
+    hint: "Doğru kayıtta 'Bayrak:' satırını bul. Cevap olarak sadece süslü parantezli bayrak değerini aynen yazmalısın."
   },
   {
     id: "digital-trace",
@@ -85,7 +85,8 @@ export const tasks = [
       how: "Favori gezegen ve proje numarası bilgisini birleştir.",
       result: "Veri Parçası 3 kurtarılacak."
     },
-    placeholder: "Gezegen_42",
+    placeholder: "Gezegen_87",
+    exampleFormat: "Gezegen_87",
     answerType: "trace",
     flag: "GençTek{Saturn_42}",
     recoveredText: "VERİ PARÇASI 3 KURTARILDI",
@@ -107,7 +108,7 @@ export const tasks = [
     guide: {
       purpose: "Algoritma akışındaki hatalı komutu bul.",
       why: "Son veri parçası bozuk komut akışı nedeniyle kilitli.",
-      how: "Komutları sırayla takip et, robotun yanlış yöne döndüğü adımı tespit et.",
+      how: "Simülasyonu başlat, robotun baktığı yön okunu takip et ve yanlış yöne döndüğü adımı tespit et.",
       result: "Veri Parçası 4 kurtarılacak."
     },
     placeholder: "Örn: 4",

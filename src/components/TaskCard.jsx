@@ -45,7 +45,7 @@ export default function TaskCard({ task, onSolved }) {
             <strong className="cipher-text">{task.encryptedText}</strong>
           </div>
           <div>
-            <span>Çözüm bilgisi</span>
+            <span>Yöntem</span>
             <strong>{task.shiftText}</strong>
           </div>
         </div>
@@ -53,7 +53,12 @@ export default function TaskCard({ task, onSolved }) {
 
       {task.answerType === "source" && <LogExplorer />}
 
-      {task.profile && <EvidenceBoard profile={task.profile} />}
+      {task.profile && (
+        <EvidenceBoard
+          exampleFormat={task.exampleFormat}
+          profile={task.profile}
+        />
+      )}
 
       {task.commands && (
         <AlgorithmSimulator commands={task.commands} onSelectStep={setAnswer} />

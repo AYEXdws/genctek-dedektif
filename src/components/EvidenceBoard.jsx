@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function EvidenceBoard({ profile }) {
+export default function EvidenceBoard({ exampleFormat = "Gezegen_87", profile }) {
   const important = new Set(["Favori Gezegen", "Proje ID"]);
 
   return (
@@ -11,7 +11,7 @@ export default function EvidenceBoard({ profile }) {
           <strong>{value}</strong>
         </div>
       ))}
-      <p>Örnek format: Gezegen_42</p>
+      <p>Örnek format: {exampleFormat}</p>
     </div>
   );
 }
