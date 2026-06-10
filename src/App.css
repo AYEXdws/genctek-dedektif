@@ -532,6 +532,12 @@ h1 {
   border-color: rgba(91, 220, 255, 0.2);
 }
 
+.route-cell.exit {
+  background: rgba(255, 224, 138, 0.075);
+  border-color: rgba(255, 224, 138, 0.22);
+  border-style: dashed;
+}
+
 .route-cell.start {
   border-color: rgba(99, 243, 164, 0.38);
 }

@@ -7,7 +7,7 @@ const steps = [
     direction: "Yukarı",
     label: "Başlangıç",
     note: "Robot başlangıç karesinde. Veri çekirdeği sağ üstte.",
-    row: 2
+    row: 3
   },
   {
     arrow: "↑",
@@ -15,7 +15,7 @@ const steps = [
     direction: "Yukarı",
     label: "1. adım: İLERİ",
     note: "Robot baktığı yöne doğru bir kare ilerledi.",
-    row: 1
+    row: 2
   },
   {
     arrow: "↑",
@@ -23,7 +23,7 @@ const steps = [
     direction: "Yukarı",
     label: "2. adım: İLERİ",
     note: "Robot üst sıraya ulaştı. Çekirdeğe ulaşmak için sağ tarafa bakması gerekiyor.",
-    row: 0
+    row: 1
   },
   {
     arrow: "→",
@@ -31,15 +31,15 @@ const steps = [
     direction: "Sağ",
     label: "3. adım: SAĞA DÖN",
     note: "Dönüş komutu konumu değiştirmez; robot sadece sağ tarafa bakar.",
-    row: 0
+    row: 1
   },
   {
     arrow: "↑",
     col: 0,
     direction: "Yukarı",
     label: "4. adım: SOLA DÖN",
-    note: "Dönüşten sonra robot artık çekirdeğe değil, yukarı tarafa bakıyor.",
-    row: 0,
+    note: "Sola dönüş konumu değiştirmez; sadece robotun bakışını yukarı çevirir.",
+    row: 1,
     routeState: "warning"
   },
   {
@@ -47,22 +47,23 @@ const steps = [
     col: 0,
     direction: "Yukarı",
     label: "5. adım: İLERİ",
-    note: "İleri komutu bu yönde çalışınca robot çekirdeğe ulaşamaz.",
+    note: "İleri komutu artık yukarı yönde çalışır ve robot izlenecek yolun dışına çıkar.",
     row: 0,
     routeState: "warning"
   }
 ];
 
-const cells = Array.from({ length: 9 }, (_, index) => {
+const cells = Array.from({ length: 12 }, (_, index) => {
   const row = Math.floor(index / 3);
   const col = index % 3;
   return { col, id: `${row}-${col}`, row };
 });
 
-const intendedPath = new Set(["2-0", "1-0", "0-0", "0-1", "0-2"]);
-const targetCell = "0-2";
-const nextCellAfterTurn = "0-1";
-const startCell = "2-0";
+const intendedPath = new Set(["3-0", "2-0", "1-0", "1-1", "1-2"]);
+const exitCell = "0-0";
+const targetCell = "1-2";
+const nextCellAfterTurn = "1-1";
+const startCell = "3-0";
 
 export default function AlgorithmSimulator({ commands, onSelectStep }) {
   const [activeStep, setActiveStep] = useState(0);
@@ -125,12 +126,14 @@ export default function AlgorithmSimulator({ commands, onSelectStep }) {
               const isStart = key === startCell;
               const isTarget = key === targetCell;
               const isNext = activeStep >= 3 && key === nextCellAfterTurn;
+              const isExit = key === exitCell;
 
               return (
                 <div
                   className={[
                     "route-cell",
                     intendedPath.has(key) ? "route" : "",
+                    isExit ? "exit" : "",
                     isStart ? "start" : "",
                     isTarget ? "target" : "",
                     isNext ? "next-target" : "",
@@ -139,6 +142,7 @@ export default function AlgorithmSimulator({ commands, onSelectStep }) {
                   key={cell.id}
                 >
                   {isStart && !isRobot && <small>Başlangıç</small>}
+                  {isExit && !isRobot && <small>Yol dışı</small>}
                   {isTarget && !isRobot && <small>Veri Çekirdeği</small>}
                   {isNext && !isRobot && <small>Sıradaki kare</small>}
                   {isRobot && (
@@ -181,9 +185,10 @@ export default function AlgorithmSimulator({ commands, onSelectStep }) {
           <p>{current.note}</p>
           {activeStep >= 3 && (
             <div className="route-reading">
-              <span>Çekirdek robotun sağ tarafında.</span>
+              <span>3. adımdan sonra robot sağ tarafa bakıyor.</span>
               <strong>
-                Robot sağa bakarsa ilerleyebilir; yukarı bakarsa çekirdeğe ulaşamaz.
+                İLERİ komutu, robot hangi yöne bakıyorsa o yöne hareket eder.
+                Bakış yukarıya dönerse sonraki ilerleme yolu terk eder.
               </strong>
             </div>
           )}
