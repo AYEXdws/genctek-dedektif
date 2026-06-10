@@ -1,56 +1,55 @@
 import React, { useEffect, useRef, useState } from "react";
 
-const stepStates = [
+const steps = [
   {
     arrow: "↑",
     col: 0,
-    direction: "Kuzey",
+    direction: "Yukarı",
     label: "Başlangıç",
-    note: "Robot başlangıç noktasında. Veri çekirdeği sağ üst köşede.",
+    note: "Robot başlangıç karesinde. Veri çekirdeği sağ üstte.",
     row: 2
   },
   {
     arrow: "↑",
     col: 0,
-    direction: "Kuzey",
+    direction: "Yukarı",
     label: "1. adım: İLERİ",
-    note: "Robot kuzeye bakıyor ve bir kare yukarı ilerliyor.",
+    note: "Robot baktığı yöne doğru bir kare ilerledi.",
     row: 1
   },
   {
     arrow: "↑",
     col: 0,
-    direction: "Kuzey",
+    direction: "Yukarı",
     label: "2. adım: İLERİ",
-    note: "Robot üst sıraya ulaştı. Çekirdeğe gitmek için artık doğuya dönmesi gerekiyor.",
+    note: "Robot üst sıraya ulaştı. Çekirdeğe ulaşmak için sağ tarafa bakması gerekiyor.",
     row: 0
   },
   {
     arrow: "→",
     col: 0,
-    direction: "Doğu",
+    direction: "Sağ",
     label: "3. adım: SAĞA DÖN",
-    note: "Robot konum değiştirmedi; sadece sağa döndü ve çekirdeğin yönüne baktı.",
+    note: "Dönüş komutu konumu değiştirmez; robot sadece sağ tarafa bakar.",
     row: 0
   },
   {
     arrow: "↑",
     col: 0,
-    direction: "Kuzey",
-    isError: true,
+    direction: "Yukarı",
     label: "4. adım: SOLA DÖN",
-    note: "Hata burada: çekirdek doğudayken robot sola dönüp tekrar kuzeye bakıyor.",
-    row: 0
+    note: "Dönüşten sonra robot artık çekirdeğe değil, yukarı tarafa bakıyor.",
+    row: 0,
+    routeState: "warning"
   },
   {
     arrow: "↑",
     col: 0,
-    direction: "Kuzey",
-    isError: true,
-    isOffRoute: true,
+    direction: "Yukarı",
     label: "5. adım: İLERİ",
-    note: "Son komut robotu doğru rotadan çıkarıyor; çekirdek sağda kalıyor.",
-    row: 0
+    note: "İleri komutu bu yönde çalışınca robot çekirdeğe ulaşamaz.",
+    row: 0,
+    routeState: "warning"
   }
 ];
 
@@ -60,14 +59,17 @@ const cells = Array.from({ length: 9 }, (_, index) => {
   return { col, id: `${row}-${col}`, row };
 });
 
-const correctRoute = new Set(["2-0", "1-0", "0-0", "0-1", "0-2"]);
+const intendedPath = new Set(["2-0", "1-0", "0-0", "0-1", "0-2"]);
+const targetCell = "0-2";
+const nextCellAfterTurn = "0-1";
+const startCell = "2-0";
 
 export default function AlgorithmSimulator({ commands, onSelectStep }) {
-  const [running, setRunning] = useState(false);
   const [activeStep, setActiveStep] = useState(0);
+  const [running, setRunning] = useState(false);
   const timersRef = useRef([]);
-  const currentStep = stepStates[activeStep] ?? stepStates[0];
-  const activeCell = `${currentStep.row}-${currentStep.col}`;
+  const current = steps[activeStep] ?? steps[0];
+  const activeCell = `${current.row}-${current.col}`;
 
   const clearTimers = () => {
     timersRef.current.forEach((timerId) => window.clearTimeout(timerId));
@@ -84,11 +86,13 @@ export default function AlgorithmSimulator({ commands, onSelectStep }) {
     commands.forEach((_, index) => {
       const timerId = window.setTimeout(() => {
         setActiveStep(index + 1);
+
         if (index === commands.length - 1) {
-          const finishTimerId = window.setTimeout(() => setRunning(false), 700);
+          const finishTimerId = window.setTimeout(() => setRunning(false), 650);
           timersRef.current.push(finishTimerId);
         }
       }, (index + 1) * 850);
+
       timersRef.current.push(timerId);
     });
   };
@@ -107,46 +111,45 @@ export default function AlgorithmSimulator({ commands, onSelectStep }) {
     <div className="algorithm-simulator">
       <div className="algorithm-layout">
         <div className="sim-map" aria-label="Robot algoritma simülasyonu">
-          <div className="sim-compass" aria-label="Yön göstergesi">
-            <span className="north">Kuzey ↑</span>
-            <span className="east">Doğu →</span>
-            <span className="south">Güney ↓</span>
-            <span className="west">Batı ←</span>
+          <div className="direction-strip" aria-label="Yön açıklaması">
+            <span>↑ Yukarı</span>
+            <span>→ Sağ</span>
+            <span>↓ Aşağı</span>
+            <span>← Sol</span>
           </div>
 
           <div className="route-grid">
             {cells.map((cell) => {
               const key = `${cell.row}-${cell.col}`;
-              const isCore = cell.row === 0 && cell.col === 2;
-              const isNextTarget = activeStep >= 3 && key === "0-1";
               const isRobot = key === activeCell;
-              const isStart = cell.row === 2 && cell.col === 0;
+              const isStart = key === startCell;
+              const isTarget = key === targetCell;
+              const isNext = activeStep >= 3 && key === nextCellAfterTurn;
 
               return (
                 <div
                   className={[
                     "route-cell",
-                    correctRoute.has(key) ? "route" : "",
+                    intendedPath.has(key) ? "route" : "",
                     isStart ? "start" : "",
-                    isCore ? "core" : "",
-                    isNextTarget ? "next-target" : "",
+                    isTarget ? "target" : "",
+                    isNext ? "next-target" : "",
                     isRobot ? "active" : ""
                   ].join(" ")}
                   key={cell.id}
                 >
                   {isStart && !isRobot && <small>Başlangıç</small>}
-                  {isCore && !isRobot && <small>Veri Çekirdeği</small>}
-                  {isNextTarget && !isRobot && <small>Doğru yön</small>}
+                  {isTarget && !isRobot && <small>Veri Çekirdeği</small>}
+                  {isNext && !isRobot && <small>Sıradaki kare</small>}
                   {isRobot && (
                     <span
                       className={[
                         "robot-token",
-                        currentStep.isError ? "error" : "",
-                        currentStep.isOffRoute ? "off-route" : ""
+                        current.routeState === "warning" ? "watch" : ""
                       ].join(" ")}
                     >
-                      <b>{currentStep.arrow}</b>
-                      <em>{currentStep.direction}</em>
+                      <b>{current.arrow}</b>
+                      <em>{current.direction}</em>
                     </span>
                   )}
                 </div>
@@ -154,43 +157,36 @@ export default function AlgorithmSimulator({ commands, onSelectStep }) {
             })}
           </div>
 
-          <div className={activeStep >= 4 ? "wrong-route active" : "wrong-route"}>
-            <span>Yanlış yön</span>
-            <strong>↑</strong>
-          </div>
-
           <div className="route-legend" aria-label="Harita açıklaması">
             <span>
               <i className="legend-start" /> Başlangıç
             </span>
             <span>
-              <i className="legend-route" /> Doğru rota
+              <i className="legend-route" /> İzlenecek yol
             </span>
             <span>
               <i className="legend-core" /> Veri çekirdeği
             </span>
             <span>
-              <i className="legend-error" /> Hatalı yön
+              <i className="legend-watch" /> Yön değişimi
             </span>
           </div>
         </div>
 
         <div className="sim-status">
-          <span>{currentStep.label}</span>
+          <span>{current.label}</span>
           <strong>
-            Robotun baktığı yön: {currentStep.direction} {currentStep.arrow}
+            Robotun baktığı yön: {current.arrow} {current.direction}
           </strong>
-          <p>{currentStep.note}</p>
-          <div className={activeStep >= 4 ? "turn-comparison active" : "turn-comparison"}>
-            <div>
-              <span>Beklenen işlem</span>
-              <strong>Çekirdeğe doğru doğuya ilerle →</strong>
+          <p>{current.note}</p>
+          {activeStep >= 3 && (
+            <div className="route-reading">
+              <span>Çekirdek robotun sağ tarafında.</span>
+              <strong>
+                Robot sağa bakarsa ilerleyebilir; yukarı bakarsa çekirdeğe ulaşamaz.
+              </strong>
             </div>
-            <div>
-              <span>Gerçek 4. komut</span>
-              <strong>Sola dönüp kuzeye bak ↑</strong>
-            </div>
-          </div>
+          )}
         </div>
       </div>
 
@@ -221,15 +217,13 @@ export default function AlgorithmSimulator({ commands, onSelectStep }) {
           <li
             className={[
               activeStep === index + 1 ? "active" : "",
-              activeStep > index + 1 ? "done" : "",
-              index === 3 && activeStep >= 4 ? "error" : ""
+              activeStep > index + 1 ? "done" : ""
             ].join(" ")}
             key={`${command}-${index}`}
           >
             <button onClick={() => onSelectStep(String(index + 1))} type="button">
               <span>{index + 1}</span>
               <strong>{command}</strong>
-              {index === 3 && <small>Dönüş kontrolü</small>}
             </button>
           </li>
         ))}

@@ -100,22 +100,22 @@ export const tasks = [
   },
   {
     id: "algorithm-path",
-    title: "Görev 4 — Hatalı Kodun Peşinde",
+    title: "Görev 4 — Komut Rotası",
     area: "Algoritma ve Yazılım",
     panelTitle: "Algoritma Simülasyonu",
     description:
-      "Son veri parçası bozuk bir algoritma nedeniyle kilitlenmiş. Komutları sırayla takip et, hatalı adımı bul ve cevap alanına sadece adım numarasını yaz.",
+      "Son veri parçası bir komut dizisiyle kilitlenmiş. Robotun yönünü takip et, veri çekirdeğine ulaşmasını bozan adımı bul ve cevap alanına sadece adım numarasını yaz.",
     guide: {
-      purpose: "Algoritma akışındaki hatalı komutu bul.",
-      why: "Son veri parçası bozuk komut akışı nedeniyle kilitli.",
-      how: "Simülasyonu başlat, robotun baktığı yön okunu takip et ve yanlış yöne döndüğü adımı tespit et.",
+      purpose: "Robotun veri çekirdeğine ulaşmasını sağlayan komut akışını incele.",
+      why: "Son veri parçası komut dizisinin içinde saklı.",
+      how: "Simülasyonu adım adım çalıştır ve robotun hangi yöne baktığını takip et.",
       result: "Veri Parçası 4 kurtarılacak."
     },
     placeholder: "Örn: 2",
     answerType: "algorithm",
     flag: "GençTek{Algoritma_Cozuldu}",
     recoveredText: "VERİ PARÇASI 4 KURTARILDI",
-    hint: "Robot 4. komutta yanlış yöne dönüyor.",
+    hint: "Dönüş komutlarından sonra robotun veri çekirdeğine bakıp bakmadığını kontrol et.",
     commands: ["İLERİ", "İLERİ", "SAĞA DÖN", "SOLA DÖN", "İLERİ"]
   }
 ];

@@ -487,36 +487,23 @@ h1 {
   position: relative;
 }
 
-.sim-compass {
+.direction-strip {
   background: rgba(6, 17, 31, 0.82);
   border: 1px solid rgba(127, 220, 244, 0.18);
   border-radius: 10px;
   color: #cdeff7;
   display: grid;
   font-size: 0.66rem;
-  gap: 4px;
-  grid-template-areas:
-    ". north ."
-    "west . east"
-    ". south .";
-  justify-items: center;
+  gap: 6px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   padding: 8px;
 }
 
-.sim-compass .north {
-  grid-area: north;
-}
-
-.sim-compass .east {
-  grid-area: east;
-}
-
-.sim-compass .south {
-  grid-area: south;
-}
-
-.sim-compass .west {
-  grid-area: west;
+.direction-strip span {
+  background: rgba(255, 255, 255, 0.045);
+  border-radius: 8px;
+  padding: 6px;
+  text-align: center;
 }
 
 .route-grid {
@@ -549,7 +536,7 @@ h1 {
   border-color: rgba(99, 243, 164, 0.38);
 }
 
-.route-cell.core {
+.route-cell.target {
   background: rgba(99, 243, 164, 0.16);
   border-color: rgba(99, 243, 164, 0.42);
   color: #e8fff0;
@@ -586,9 +573,9 @@ h1 {
   width: 58px;
 }
 
-.robot-token.error {
-  background: #ffc9c9;
-  box-shadow: 0 10px 28px rgba(255, 123, 123, 0.2);
+.robot-token.watch {
+  background: #ffe08a;
+  box-shadow: 0 10px 28px rgba(255, 224, 138, 0.2);
 }
 
 .robot-token b {
@@ -600,26 +587,6 @@ h1 {
   font-style: normal;
   font-weight: 950;
   text-transform: uppercase;
-}
-
-.wrong-route {
-  align-items: center;
-  background: rgba(255, 123, 123, 0.1);
-  border: 1px dashed rgba(255, 123, 123, 0.38);
-  border-radius: 10px;
-  color: #ffc9c9;
-  display: none;
-  gap: 8px;
-  justify-content: center;
-  padding: 8px;
-}
-
-.wrong-route.active {
-  display: flex;
-}
-
-.wrong-route strong {
-  font-size: 1.35rem;
 }
 
 .route-legend {
@@ -655,8 +622,8 @@ h1 {
   background: #e8fff0;
 }
 
-.legend-error {
-  background: #ff7b7b;
+.legend-watch {
+  background: #ffe08a;
 }
 
 .sim-status {
@@ -684,23 +651,19 @@ h1 {
   margin: 0;
 }
 
-.turn-comparison {
-  background: rgba(255, 123, 123, 0.1);
-  border: 1px solid rgba(255, 123, 123, 0.22);
+.route-reading {
+  background: rgba(255, 224, 138, 0.1);
+  border: 1px solid rgba(255, 224, 138, 0.24);
   border-radius: 10px;
-  display: none;
+  display: grid;
   gap: 4px;
   margin-top: 4px;
   padding: 9px;
 }
 
-.turn-comparison.active {
-  display: grid;
-}
-
-.turn-comparison span,
-.turn-comparison strong {
-  color: #ffd6d6;
+.route-reading span,
+.route-reading strong {
+  color: #fff2bf;
 }
 
 .sim-controls {
@@ -755,11 +718,6 @@ h1 {
   border-color: rgba(99, 243, 164, 0.22);
 }
 
-.command-list li.error button {
-  background: rgba(255, 123, 123, 0.1);
-  border-color: rgba(255, 123, 123, 0.38);
-}
-
 .command-list span {
   align-items: center;
   background: #10263a;
@@ -775,12 +733,6 @@ h1 {
 .command-list strong {
   color: #e8fbff;
   flex: 1;
-}
-
-.command-list small {
-  color: #ffc9c9;
-  font-size: 0.72rem;
-  font-weight: 900;
 }
 
 .hint-button {
