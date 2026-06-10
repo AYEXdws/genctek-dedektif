@@ -216,6 +216,14 @@ h1 {
   padding: 11px;
 }
 
+.task-guide {
+  gap: 8px;
+}
+
+.task-guide section {
+  padding: 8px 9px;
+}
+
 .intro-status span,
 .progress-copy span,
 .task-guide span,
@@ -231,6 +239,17 @@ h1 {
   font-size: 0.76rem;
 }
 
+.task-guide span {
+  font-size: 0.64rem;
+  margin-bottom: 3px;
+}
+
+.task-heading span {
+  display: block;
+  font-size: 0.88rem;
+  line-height: 1.42;
+}
+
 .intro-status strong,
 .progress-copy strong,
 .task-guide strong,
@@ -239,6 +258,12 @@ h1 {
 .evidence-board strong,
 .certificate-details strong {
   color: #effbff;
+}
+
+.task-guide strong {
+  display: block;
+  font-size: 0.82rem;
+  line-height: 1.28;
 }
 
 .primary-button,
@@ -1240,7 +1265,25 @@ input:focus {
   }
 
   .task-guide {
+    gap: 10px;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .task-guide section {
+    padding: 11px;
+  }
+
+  .task-guide span {
+    font-size: 0.72rem;
+  }
+
+  .task-guide strong {
+    font-size: 0.94rem;
+    line-height: 1.34;
+  }
+
+  .task-heading span {
+    font-size: 1rem;
   }
 
   .operation-panel,
