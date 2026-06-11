@@ -1,10 +1,10 @@
 :root {
-  --bg: #090b13;
-  --panel: rgba(20, 13, 22, 0.94);
-  --panel-2: rgba(35, 13, 24, 0.72);
-  --red: #c8172d;
-  --red-2: #ff3d52;
-  --white: #fff7f7;
+  --bg: #120509;
+  --panel: rgba(35, 8, 17, 0.96);
+  --panel-2: rgba(64, 9, 23, 0.78);
+  --red: #d1122a;
+  --red-2: #ff3048;
+  --white: #ffffff;
   --muted: #cbb9bf;
   --line: rgba(255, 255, 255, 0.12);
   --soft-red: rgba(200, 23, 45, 0.16);
@@ -12,9 +12,9 @@
 
 .app-shell {
   background:
-    radial-gradient(circle at 16% 10%, rgba(200, 23, 45, 0.22), transparent 30%),
-    radial-gradient(circle at 88% 8%, rgba(255, 255, 255, 0.08), transparent 24%),
-    linear-gradient(145deg, #160810 0%, #07101e 48%, #07080f 100%);
+    radial-gradient(circle at 16% 10%, rgba(255, 48, 72, 0.34), transparent 32%),
+    radial-gradient(circle at 88% 8%, rgba(255, 255, 255, 0.16), transparent 24%),
+    linear-gradient(145deg, #26040d 0%, #140811 46%, #06070d 100%);
   color: var(--white);
   min-height: 100vh;
   overflow-x: hidden;
@@ -25,8 +25,8 @@
 
 .app-shell::before {
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.052) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.052) 1px, transparent 1px);
   background-size: 32px 32px;
   content: "";
   inset: 0;
@@ -86,9 +86,9 @@ button {
 .final-ready,
 .identity-form {
   background:
-    linear-gradient(155deg, rgba(41, 13, 25, 0.96), rgba(8, 13, 25, 0.94)),
+    linear-gradient(155deg, rgba(67, 9, 22, 0.97), rgba(18, 7, 14, 0.95)),
     var(--panel);
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.24);
   border-radius: 16px;
   box-shadow: 0 24px 90px rgba(0, 0, 0, 0.38);
 }
@@ -305,7 +305,7 @@ h1 {
 }
 
 .primary-button {
-  background: linear-gradient(135deg, #ffffff, #ff4054);
+  background: linear-gradient(135deg, #ffffff 0%, #ffffff 28%, #ff3048 100%);
   color: #3b0610;
 }
 
@@ -369,18 +369,48 @@ h1 {
   margin-top: 12px;
 }
 
-.segment-track span {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 999px;
-  height: 8px;
+.task-nav {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 10px;
 }
 
-.segment-track span.complete {
+.task-nav button,
+.segment-track button {
+  border: 0;
+  color: #3b0610;
+  font-weight: 950;
+}
+
+.task-nav button {
+  background: #ffffff;
+  border-radius: 999px;
+  min-height: 42px;
+  padding: 8px 10px;
+}
+
+.task-nav button:disabled,
+.segment-track button:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+}
+
+.segment-track button {
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  height: 8px;
+  min-width: 0;
+  padding: 0;
+}
+
+.segment-track button.complete {
   background: linear-gradient(90deg, #ffffff, var(--red));
 }
 
-.segment-track span.current {
-  background: rgba(255, 61, 82, 0.5);
+.segment-track button.current {
+  background: #ffffff;
+  box-shadow: 0 0 0 2px rgba(255, 48, 72, 0.78);
 }
 
 .briefing-stamp {
@@ -510,14 +540,12 @@ h1 {
   text-align: left;
 }
 
-.layer-list button.active,
-.identity-tabs button.active {
+.layer-list button.active {
   background: rgba(200, 23, 45, 0.2);
   border-color: rgba(255, 255, 255, 0.36);
 }
 
-.layer-list span,
-.identity-tabs button {
+.layer-list span {
   display: block;
   font-weight: 900;
 }
@@ -554,38 +582,124 @@ h1 {
   white-space: pre-wrap;
 }
 
-.identity-tabs {
+.genctek-id-card {
+  background: #ffffff;
+  border: 2px solid #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.28);
+  color: #2b2b2b;
   display: grid;
-  gap: 8px;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  overflow: hidden;
+  padding: 12px;
 }
 
-.identity-tabs button {
-  background: rgba(255, 255, 255, 0.055);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 10px;
-  color: var(--white);
-  min-height: 56px;
-  padding: 9px;
+.genctek-id-card header {
+  align-items: center;
+  border-bottom: 3px solid var(--red);
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  padding-bottom: 10px;
 }
 
-.identity-card h3 {
-  margin: 4px 0 10px;
+.genctek-id-card header img {
+  display: block;
+  height: 38px;
+  max-width: 190px;
+  object-fit: contain;
 }
 
+.genctek-id-card header span {
+  color: var(--red);
+  font-size: 0.62rem;
+  font-weight: 950;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.id-card-body {
+  align-items: center;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 82px 1fr;
+}
+
+.id-photo {
+  align-items: center;
+  aspect-ratio: 1;
+  background: #f4f4f4;
+  border: 2px solid #e6e6e6;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  padding: 8px;
+}
+
+.id-photo img {
+  display: block;
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.id-person {
+  display: grid;
+  gap: 3px;
+}
+
+.id-person span,
+.id-person small {
+  color: #7a7a7a;
+  font-size: 0.66rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.id-person strong {
+  color: #222;
+  font-size: 1.08rem;
+  line-height: 1.05;
+}
+
+.genctek-id-card dl,
 .identity-card dl {
   display: grid;
   gap: 8px;
   margin: 0;
 }
 
+.genctek-id-card dl {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.genctek-id-card dl div,
 .identity-card div {
   display: grid;
   gap: 3px;
 }
 
+.genctek-id-card dt {
+  color: #a51223;
+  font-size: 0.62rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.genctek-id-card dd {
+  color: #222;
+  font-size: 0.78rem;
+  font-weight: 850;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
 .identity-card dd {
   margin: 0;
+}
+
+.warning-card {
+  border-color: rgba(255, 255, 255, 0.22);
 }
 
 .physical-task {

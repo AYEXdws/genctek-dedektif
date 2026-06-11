@@ -101,7 +101,7 @@ export default function TaskCard({
       <form className="answer-form" onSubmit={submitAnswer}>
         {task.type === "identity" ? (
           <>
-            <label htmlFor={`email-${task.id}`}>Görev E-postası</label>
+            <label htmlFor={`email-${task.id}`}>E-postası</label>
             <input
               autoComplete="off"
               id={`email-${task.id}`}
@@ -114,7 +114,7 @@ export default function TaskCard({
               placeholder="gorev@gorev.genctek"
               value={answers.email}
             />
-            <label htmlFor={`key-${task.id}`}>Görev Anahtarı</label>
+            <label htmlFor={`key-${task.id}`}>Görev Şifresi</label>
             <input
               autoComplete="off"
               id={`key-${task.id}`}
@@ -124,7 +124,7 @@ export default function TaskCard({
                   taskKey: event.target.value
                 }))
               }
-              placeholder="Görev anahtarı"
+              placeholder="Görev şifresi"
               value={answers.taskKey}
             />
           </>

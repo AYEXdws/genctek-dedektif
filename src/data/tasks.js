@@ -97,9 +97,9 @@ export const tasks = [
     briefSubtitle: "KİMLİK İZLERİ",
     briefText: [
       "Bazı kapılar kodla değil, izlerle açılır Dedektif.",
-      "Bir isim, bir tarih, sevilen bir gezegen, kullanılan bir görev kartı... Tek başına masum görünen bilgiler, yan yana geldiğinde bir anahtara dönüşebilir.",
-      "Üçüncü mühür parçası, GençTek siber güvenlik sorumlusuna ait simüle edilmiş bir görev kimliğinin içinde saklı.",
-      "Bu görevde sana doğrudan bir görev anahtarı verilmeyecek. Bilgileri okuyacak, gereksiz olanları eleyecek ve anlamlı izleri birleştirerek görev oturumunu doğrulayacaksın.",
+      "Bir isim, bir tarih, sevilen bir gezegen, kullanılan bir görev kartı... Tek başına masum görünen bilgiler, yan yana geldiğinde bir görev şifresine dönüşebilir.",
+      "Üçüncü mühür parçası, GençTek siber güvenlik biriminden bir kişiye ait simüle edilmiş bir görev kimliğinin içinde saklı.",
+      "Bu görevde sana doğrudan bir görev şifresi verilmeyecek. Bilgileri okuyacak, gereksiz olanları eleyecek ve anlamlı izleri birleştirerek görev oturumunu doğrulayacaksın.",
       "Her bilgi ipucu değildir. Bazıları sadece dikkatini dağıtmak için oradadır."
     ],
     lesson:
@@ -108,7 +108,7 @@ export const tasks = [
     flag: "GençTek{Kimlik_Izleri}",
     recoveredText: "MÜHÜR PARÇASI 3 KURTARILDI",
     hint:
-      "Anahtar, sahibinin izini taşır. Önce kim olduğunu düşün. Sonra zamanı bul. Son olarak gökyüzünde en çok merak ettiği yere bak. Ama dikkat et: Her görünen iz kapıyı açmaz.",
+      "Görev şifresi, sahibinin izini taşır. Önce kim olduğunu düşün. Sonra zamanı bul. Son olarak gökyüzünde en çok merak ettiği yere bak. Ama dikkat et: Her görünen iz kapıyı açmaz.",
     securityNote:
       "Bu görev tamamen simülasyon amaçlıdır. Gerçek hayatta isim, doğum tarihi ve sevilen şeylerden oluşan şifreler güvenli değildir.",
     identityCards: [
@@ -116,9 +116,10 @@ export const tasks = [
         title: "GENÇTEK GÖREV KARTI",
         lines: [
           ["Ad", "Ahmet Cemal Kurulay"],
-          ["Rol", "Siber Güvenlik Sorumlusu"],
-          ["Birim", "Dijital Güvenlik"],
-          ["Personel Kodu", "GT-42"]
+          ["Birim", "Siber Güvenlik Birimi"],
+          ["Görev", "Dijital Güvenlik Ekibi"],
+          ["Personel Kodu", "GT-42"],
+          ["E-posta Alanı", "gorev.genctek"]
         ]
       },
       {
@@ -131,14 +132,9 @@ export const tasks = [
         ]
       },
       {
-        title: "İÇ AĞ NOTU",
-        text:
-          "Görev oturumlarında kullanılan adresler genellikle kişinin adından ve soyadından türetilir. Alan adı: gorev.genctek"
-      },
-      {
         title: "GÜVENLİK UYARISI",
         text:
-          "Kişisel izlerden oluşturulan anahtarlar tahmin edilebilir. Bir isim. Bir zaman. Bir gökyüzü izi. Bunlar yan yana geldiğinde bir kapı aralanabilir."
+          "Kişisel izlerden oluşturulan şifreler tahmin edilebilir. Bir isim. Bir zaman. Bir gökyüzü izi. Bunlar yan yana geldiğinde bir kapı aralanabilir."
       }
     ]
   },

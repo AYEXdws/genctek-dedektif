@@ -6,10 +6,22 @@ export default function ProgressPanel({
   completedCount,
   currentTaskScore,
   hintUsed,
+  onGoToTask,
   totalScore
 }) {
+  const canGoBack = activeTaskIndex > 0;
+
   return (
     <header className="progress-panel">
+      <div className="task-nav">
+        <button disabled={!canGoBack} onClick={() => onGoToTask(activeTaskIndex - 1)} type="button">
+          Geri Git
+        </button>
+        <button disabled={activeTaskIndex === 0} onClick={() => onGoToTask(0)} type="button">
+          İlk Göreve Git
+        </button>
+      </div>
+
       <div className="progress-copy">
         <div>
           <span>Dijital Dedektif</span>
@@ -43,15 +55,19 @@ export default function ProgressPanel({
 
       <div className="segment-track" aria-label={`${completedCount}/4 mühür parçası`}>
         {[0, 1, 2, 3].map((index) => (
-          <span
+          <button
+            aria-label={`Görev ${index + 1} dosyasına git`}
             className={
-              index < completedCount
-                ? "complete"
-                : index === completedCount
-                  ? "current"
+              index === activeTaskIndex
+                ? "current"
+                : index < completedCount
+                  ? "complete"
                   : ""
             }
+            disabled={index > activeTaskIndex && index >= completedCount}
             key={index}
+            onClick={() => onGoToTask(index)}
+            type="button"
           />
         ))}
       </div>

@@ -112,6 +112,15 @@ export default function App() {
     });
   };
 
+  const goToTask = (taskIndex) => {
+    const nextIndex = Math.max(0, Math.min(taskIndex, tasks.length - 1));
+
+    updateState({
+      activeTaskIndex: nextIndex,
+      screen: "briefing"
+    });
+  };
+
   const createBadge = (name) => {
     const badgeId = state.badgeId || createBadgeId();
     const certificatePayload = createBadgePayload(name, badgeId, {
@@ -137,6 +146,7 @@ export default function App() {
       completedCount={completedCount}
       currentTaskScore={currentTaskScore}
       hintUsed={Boolean(state.hintUsage[currentTask.id])}
+      onGoToTask={goToTask}
       totalScore={totalScore}
     />
   );
