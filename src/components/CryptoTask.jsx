@@ -12,10 +12,6 @@ export default function CryptoTask({ task }) {
         <span>{task.encryptedLabel}</span>
         <strong className="cipher-text">{task.encryptedText}</strong>
       </div>
-      <div>
-        <span>Yöntem</span>
-        <strong>{task.shiftText}</strong>
-      </div>
     </div>
   );
 }

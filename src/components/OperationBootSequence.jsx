@@ -12,7 +12,7 @@ const stages = [
       "arşiv bağlantısı kontrol ediliyor",
       "kırmızı mühür durumu okunuyor"
     ],
-    duration: 1800
+    duration: 2200
   },
   {
     key: "seal",
@@ -25,7 +25,7 @@ const stages = [
       "Kimlik İzleri",
       "Fiziksel Veri"
     ],
-    duration: 2100
+    duration: 2500
   },
   {
     key: "detective",
@@ -38,7 +38,7 @@ const stages = [
       "Toplam Puan: 1000",
       "Dedektif Notu Bedeli: -90"
     ],
-    duration: 2100
+    duration: 2500
   },
   {
     key: "ready",
@@ -50,7 +50,7 @@ const stages = [
       "görev dosyaları hazır",
       "dedektif protokolü aktif"
     ],
-    duration: 1800
+    duration: 2200
   }
 ];
 

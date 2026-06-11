@@ -45,8 +45,8 @@ export const tasks = [
     briefText: [
       "Güvenli iletişim, bilginin en büyük kalkanıdır Dedektif.",
       "İlk mühür parçası açık şekilde gönderilmedi. Harflerin yeri değiştirilerek korunmuş bir mesajın içine saklandı.",
-      "Bu yöntem eski zamanlardan beri bilinir: Sezar Şifrelemesi.",
-      "Bir harf, alfabedeki gerçek yerinden birkaç adım öteye taşınır. Mesajı okuyabilmek için harflerin hangi yöne kaydığını anlaman gerekir.",
+      "Bu eski yöntem, harflerin alfabedeki konumunu değiştirerek mesajı korur.",
+      "Bir harf, gerçek yerinden birkaç adım öteye taşınır. Mesajı okuyabilmek için harflerin hangi yöne kaydığını anlaman gerekir.",
       "Şifre bazen karmaşık görünür ama doğru alfabe doğru kapıyı açar."
     ],
     lesson:
@@ -54,7 +54,6 @@ export const tasks = [
     objective: "Şifreli veriyi çöz ve ilk mühür parçasını kurtar.",
     encryptedLabel: "Şifreli veri",
     encryptedText: caesarEncrypt("GENÇTEK", 3),
-    shiftText: "Sezar şifrelemesi",
     placeholder: "Orijinal mesaj",
     flag: "GençTek{Antik_Sifre}",
     recoveredText: "MÜHÜR PARÇASI 1 KURTARILDI",
