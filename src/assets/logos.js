@@ -1,4 +1,4 @@
-import genctekLogoMark from "./genctek-logo-mark.jpg";
-import genctekLogoWide from "./genctek-logo-wide.jpg";
+import genctekLogoMark from "./genctek-seffa.png";
+import genctekLogoWide from "./genctek-seffas-flamer.png";
 
 export { genctekLogoMark, genctekLogoWide };
