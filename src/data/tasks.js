@@ -130,11 +130,6 @@ export const tasks = [
           ["Favori Şehir", "Amasya"],
           ["Görev Rengi", "Kırmızı"]
         ]
-      },
-      {
-        title: "GÜVENLİK UYARISI",
-        text:
-          "Kişisel izlerden oluşturulan şifreler tahmin edilebilir. Bir isim. Bir zaman. Bir gökyüzü izi. Bunlar yan yana geldiğinde bir kapı aralanabilir."
       }
     ]
   },

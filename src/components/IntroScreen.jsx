@@ -1,6 +1,6 @@
 import React from "react";
 import { story } from "../data/story";
-import heroImage from "../assets/hero.png";
+import { genctekLogoMark } from "../assets/logos";
 
 export default function IntroScreen({ onStart }) {
   return (
@@ -8,7 +8,7 @@ export default function IntroScreen({ onStart }) {
       <div className="intro-panel">
         <div className="system-visual" aria-hidden="true">
           <div className="data-ring">
-            <img src={heroImage} alt="" />
+            <img src={genctekLogoMark} alt="" />
             <span />
             <span />
             <span />

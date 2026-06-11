@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import QRCode from "qrcode";
-import genctekLogoMark from "../assets/genctek-logo-mark.jpg";
-import genctekLogoWide from "../assets/genctek-logo-wide.jpg";
+import { genctekLogoMark, genctekLogoWide } from "../assets/logos";
 import { story } from "../data/story";
 
 export default function DigitalCertificate({ badge, cardRef }) {

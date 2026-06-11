@@ -1,9 +1,8 @@
 import React from "react";
-import genctekLogoMark from "../assets/genctek-logo-mark.jpg";
-import genctekLogoWide from "../assets/genctek-logo-wide.jpg";
+import { genctekLogoMark, genctekLogoWide } from "../assets/logos";
 
 export default function IdentityTraceTask({ task }) {
-  const [identityCard, personalNotes, securityWarning] = task.identityCards;
+  const [identityCard, personalNotes] = task.identityCards;
 
   return (
     <div className="identity-task">
@@ -44,11 +43,6 @@ export default function IdentityTraceTask({ task }) {
             </div>
           ))}
         </dl>
-      </section>
-
-      <section className="identity-card warning-card">
-        <span>{securityWarning.title}</span>
-        <p>{securityWarning.text}</p>
       </section>
     </div>
   );
