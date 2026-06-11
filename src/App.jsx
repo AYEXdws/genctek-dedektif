@@ -13,6 +13,7 @@ import CompletionScreen from "./components/CompletionScreen";
 import FinalScreen from "./components/FinalScreen";
 import IntroScreen from "./components/IntroScreen";
 import MissionBriefing from "./components/MissionBriefing";
+import OperationBootSequence from "./components/OperationBootSequence";
 import ProgressPanel from "./components/ProgressPanel";
 import ScoreIntro from "./components/ScoreIntro";
 import TaskCard from "./components/TaskCard";
@@ -28,6 +29,7 @@ const initialState = {
   totalScore: 0,
   taskScores: {},
   hintUsage: {},
+  bootCompleted: false,
   badgeId: "",
   userName: "",
   detectiveRank: "Aday Dedektif",
@@ -70,6 +72,14 @@ export default function App() {
 
   const updateState = (patch) => {
     setState((current) => saveState({ ...current, ...patch }));
+  };
+
+  const startOperation = () => {
+    updateState({ screen: state.bootCompleted ? "score" : "boot" });
+  };
+
+  const completeBootSequence = () => {
+    updateState({ bootCompleted: true, screen: "score" });
   };
 
   const useHint = (taskId) => {
@@ -163,7 +173,11 @@ export default function App() {
       </button>
 
       {state.screen === "intro" && (
-        <IntroScreen onStart={() => updateState({ screen: "score" })} />
+        <IntroScreen onStart={startOperation} />
+      )}
+
+      {state.screen === "boot" && (
+        <OperationBootSequence onComplete={completeBootSequence} />
       )}
 
       {state.screen === "score" && (

@@ -59,6 +59,7 @@ button {
 }
 
 .intro-screen,
+.boot-screen,
 .score-intro,
 .mission-view,
 .final-screen,
@@ -70,6 +71,7 @@ button {
 }
 
 .intro-screen,
+.boot-screen,
 .score-intro {
   align-items: center;
   display: grid;
@@ -78,6 +80,7 @@ button {
 }
 
 .intro-panel,
+.boot-panel,
 .score-card,
 .briefing-card,
 .task-shell,
@@ -94,6 +97,7 @@ button {
 }
 
 .intro-panel,
+.boot-panel,
 .score-card,
 .briefing-card {
   display: grid;
@@ -101,6 +105,273 @@ button {
   overflow: hidden;
   padding: 20px;
   position: relative;
+}
+
+.boot-screen {
+  isolation: isolate;
+}
+
+.boot-skip {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  color: #fff;
+  font-size: 0.88rem;
+  font-weight: 900;
+  min-height: 42px;
+  padding: 8px 15px;
+  position: fixed;
+  right: 14px;
+  top: calc(66px + env(safe-area-inset-top));
+  z-index: 25;
+}
+
+.boot-panel {
+  min-height: min(720px, calc(100vh - 96px));
+}
+
+.boot-panel::before,
+.boot-panel::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+}
+
+.boot-panel::before {
+  background:
+    linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent),
+    repeating-linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.055) 0,
+      rgba(255, 255, 255, 0.055) 1px,
+      transparent 1px,
+      transparent 12px
+    );
+  inset: 0;
+  opacity: 0.44;
+}
+
+.boot-panel::after {
+  background: radial-gradient(circle, rgba(255, 48, 72, 0.28), transparent 64%);
+  height: 260px;
+  left: 50%;
+  top: 18px;
+  transform: translateX(-50%);
+  width: 260px;
+}
+
+.boot-visual,
+.boot-copy,
+.boot-lines,
+.boot-panel > .primary-button {
+  position: relative;
+  z-index: 1;
+}
+
+.boot-visual {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  min-height: 245px;
+}
+
+.boot-seal {
+  --lit-segments: 1;
+  align-items: center;
+  aspect-ratio: 1;
+  background:
+    conic-gradient(
+      from -45deg,
+      rgba(255, 48, 72, 0.96) 0 calc(var(--lit-segments) * 25%),
+      rgba(255, 255, 255, 0.12) calc(var(--lit-segments) * 25%) 100%
+    );
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.14),
+    0 0 50px rgba(209, 18, 42, 0.34);
+  display: flex;
+  justify-content: center;
+  max-width: 300px;
+  padding: 18px;
+  position: relative;
+  width: min(72vw, 300px);
+}
+
+.boot-seal::before {
+  background: linear-gradient(155deg, rgba(50, 8, 18, 0.98), rgba(7, 6, 12, 0.98));
+  border-radius: 50%;
+  content: "";
+  inset: 15px;
+  position: absolute;
+}
+
+.boot-seal::after {
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 50%;
+  content: "";
+  inset: 40px;
+  position: absolute;
+}
+
+.boot-seal img {
+  background: #fff;
+  border-radius: 24px;
+  display: block;
+  max-height: 58%;
+  max-width: 58%;
+  object-fit: contain;
+  padding: 10px;
+  position: relative;
+  z-index: 2;
+}
+
+.boot-seal span {
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+  height: 34px;
+  position: absolute;
+  width: 34px;
+  z-index: 3;
+}
+
+.boot-seal span.active {
+  animation: segmentPulse 1.4s ease-in-out infinite;
+  background: linear-gradient(135deg, #fff, var(--red-2));
+  box-shadow: 0 0 20px rgba(255, 48, 72, 0.58);
+}
+
+.boot-seal span:nth-child(2) {
+  left: 15%;
+  top: 16%;
+}
+
+.boot-seal span:nth-child(3) {
+  right: 14%;
+  top: 18%;
+}
+
+.boot-seal span:nth-child(4) {
+  bottom: 14%;
+  left: 17%;
+}
+
+.boot-seal span:nth-child(5) {
+  bottom: 16%;
+  right: 15%;
+}
+
+.boot-copy {
+  animation: bootFade 420ms ease both;
+  text-align: center;
+}
+
+.boot-copy h2 {
+  color: #fff;
+  font-size: clamp(1.85rem, 8vw, 3.55rem);
+  letter-spacing: 0;
+  line-height: 0.98;
+  margin: 0 auto 10px;
+  max-width: 11ch;
+}
+
+.boot-copy p {
+  color: #f2dfe3;
+  font-weight: 750;
+  line-height: 1.42;
+  margin: 0 auto;
+  max-width: 34rem;
+}
+
+.boot-lines {
+  display: grid;
+  gap: 8px;
+}
+
+.boot-lines div {
+  align-items: center;
+  animation: bootLine 520ms ease both;
+  animation-delay: calc(var(--line-index) * 160ms);
+  background: rgba(255, 255, 255, 0.065);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 12px;
+  display: flex;
+  gap: 10px;
+  min-height: 42px;
+  padding: 10px 12px;
+}
+
+.boot-lines span {
+  background: #fff;
+  border-radius: 999px;
+  box-shadow: 0 0 14px rgba(255, 48, 72, 0.6);
+  flex: 0 0 auto;
+  height: 8px;
+  width: 8px;
+}
+
+.boot-lines strong {
+  color: #fff;
+  font-size: 0.92rem;
+  line-height: 1.25;
+}
+
+.boot-stage-seal .boot-lines div {
+  border-color: rgba(255, 48, 72, 0.24);
+}
+
+.boot-stage-ready .boot-seal {
+  animation: readySeal 1.6s ease-in-out infinite;
+}
+
+@keyframes bootFade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bootLine {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes segmentPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+@keyframes readySeal {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.14),
+      0 0 44px rgba(209, 18, 42, 0.3);
+  }
+
+  50% {
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.2),
+      0 0 70px rgba(255, 48, 72, 0.54);
+  }
 }
 
 .system-visual {
@@ -1263,6 +1534,10 @@ input:focus {
     padding: 28px;
   }
 
+  .boot-panel {
+    padding: 30px;
+  }
+
   .system-visual {
     grid-row: span 3;
   }
@@ -1284,5 +1559,16 @@ input:focus {
   .score-card,
   .briefing-card {
     padding: 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 1ms !important;
   }
 }
