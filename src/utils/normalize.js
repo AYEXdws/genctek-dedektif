@@ -7,39 +7,52 @@ const turkishMap = {
   ü: "u"
 };
 
-export function normalizeInput(value) {
-  return value
+export function normalizeInput(value = "") {
+  return String(value)
     .trim()
     .toLocaleLowerCase("tr-TR")
     .replace(/[çğıöşü]/g, (char) => turkishMap[char] || char)
     .replace(/\s+/g, "");
 }
 
-export function normalizeFlag(value) {
-  return normalizeInput(value).replace(/[{}]/g, "").replace(/_/g, "-");
+export function normalizeLoose(value = "") {
+  return normalizeInput(value).replace(/[{}_.-]/g, "");
+}
+
+export function normalizeFlag(value = "") {
+  return normalizeInput(value)
+    .replace(/^genctek/, "")
+    .replace(/[{}]/g, "")
+    .replace(/[_-]/g, "");
+}
+
+function isCorrectCrypto(value) {
+  return normalizeInput(value) === "genctek";
+}
+
+function isCorrectSource(value) {
+  const normalized = normalizeFlag(value);
+  return normalized === "gorunmeyenkatman";
+}
+
+function isCorrectIdentity(value) {
+  const email = normalizeInput(value?.email || "");
+  const taskKey = normalizeInput(value?.taskKey || "");
+
+  return (
+    email === "ahmet.kurulay@gorev.genctek" &&
+    taskKey === "ahmet0406merkur"
+  );
+}
+
+function isCorrectPhysical(task, value) {
+  return normalizeLoose(value) === normalizeLoose(task.expectedCode);
 }
 
 export function isCorrectAnswer(task, value) {
-  const normalized = normalizeInput(value);
-
-  if (task.answerType === "crypto") {
-    return normalized === "genctek";
-  }
-
-  if (task.answerType === "source") {
-    return normalizeFlag(value) === normalizeFlag("GençTek{Kaynak_Katmani}");
-  }
-
-  if (task.answerType === "trace") {
-    const compact = normalized.replace("gt-", "");
-    return ["saturn_42", "saturn-42", "saturn42"].includes(compact);
-  }
-
-  if (task.answerType === "algorithm") {
-    return ["4", "4.", "dorduncu", "dort", "adim4", "4.adim"].includes(
-      normalized
-    );
-  }
-
+  if (task.type === "crypto") return isCorrectCrypto(value);
+  if (task.type === "source") return isCorrectSource(value);
+  if (task.type === "identity") return isCorrectIdentity(value);
+  if (task.type === "physical") return isCorrectPhysical(task, value);
   return false;
 }

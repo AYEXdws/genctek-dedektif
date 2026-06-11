@@ -11,13 +11,13 @@ export default function DigitalCertificate({ badge, cardRef }) {
     QRCode.toDataURL(badge.verificationUrl, {
       margin: 1,
       width: 210,
-      color: { dark: "#071421", light: "#ffffff" }
+      color: { dark: "#3f0710", light: "#ffffff" }
     }).then(setQrUrl);
   }, [badge.verificationUrl]);
 
   return (
     <article className="digital-certificate" ref={cardRef}>
-      <div className="certificate-watermark">GT</div>
+      <div className="certificate-watermark">KIRMIZI MÜHÜR</div>
       <div className="certificate-frame" />
 
       <header className="certificate-header">
@@ -25,9 +25,9 @@ export default function DigitalCertificate({ badge, cardRef }) {
           <img alt="GençTek logosu" src={genctekLogoWide} />
         </div>
         <div className="certificate-title-block">
-          <p>GENÇTEK DİJİTAL GÖREV SİSTEMİ</p>
+          <p>GENÇTEK</p>
           <h2>{story.certificate.title}</h2>
-          <span>AMASYA · 2026</span>
+          <span>KIRMIZI MÜHÜR OPERASYONU · AMASYA</span>
         </div>
       </header>
 
@@ -37,6 +37,12 @@ export default function DigitalCertificate({ badge, cardRef }) {
         <p>{story.certificate.explanation}</p>
       </section>
 
+      <section className="certificate-score">
+        <span>Dedektif Derecesi</span>
+        <strong>{badge.detectiveRank}</strong>
+        <b>{badge.totalScore} / 1000 PUAN</b>
+      </section>
+
       <div className="certificate-main-grid">
         <section className="certificate-details">
           <div>
@@ -44,16 +50,16 @@ export default function DigitalCertificate({ badge, cardRef }) {
             <strong>{badge.badgeId}</strong>
           </div>
           <div>
-            <span>Seviye</span>
-            <strong>Dijital Dedektif</strong>
-          </div>
-          <div>
             <span>Görev Durumu</span>
             <strong>4/4 Tamamlandı</strong>
           </div>
           <div>
-            <span>Arşiv Bütünlüğü</span>
-            <strong>%100</strong>
+            <span>İpucu Kullanımı</span>
+            <strong>{badge.hintCount} / 4</strong>
+          </div>
+          <div>
+            <span>Operasyon</span>
+            <strong>{badge.operation}</strong>
           </div>
           <div>
             <span>Etkinlik</span>
@@ -86,7 +92,7 @@ export default function DigitalCertificate({ badge, cardRef }) {
         <div className="digital-seal">
           <img alt="GençTek amblem" src={genctekLogoMark} />
           <span>GENÇTEK</span>
-          <strong>Dijital Mühür</strong>
+          <strong>Kırmızı Mühür</strong>
         </div>
         <div className="certificate-qr">
           {qrUrl && <img alt="QR doğrulama kodu" src={qrUrl} />}

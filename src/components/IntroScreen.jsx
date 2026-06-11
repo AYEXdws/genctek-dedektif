@@ -34,7 +34,7 @@ export default function IntroScreen({ onStart }) {
         </div>
 
         <button className="primary-button" onClick={onStart} type="button">
-          GÖREVİ BAŞLAT
+          OPERASYONU BAŞLAT
         </button>
       </div>
     </section>

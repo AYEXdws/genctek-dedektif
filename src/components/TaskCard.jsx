@@ -1,89 +1,152 @@
 import React, { useEffect, useState } from "react";
 import { isCorrectAnswer } from "../utils/normalize";
-import { turkishAlphabet } from "../utils/crypto";
-import AlgorithmSimulator from "./AlgorithmSimulator";
-import EvidenceBoard from "./EvidenceBoard";
-import LogExplorer from "./LogExplorer";
+import CryptoTask from "./CryptoTask";
+import IdentityTraceTask from "./IdentityTraceTask";
+import LayerScanner from "./LayerScanner";
+import PhysicalTask from "./PhysicalTask";
 import TaskShell from "./TaskShell";
 
-export default function TaskCard({ canGoBack = false, onBack, task, onSolved }) {
-  const [answer, setAnswer] = useState("");
+const emptyAnswers = {
+  email: "",
+  taskKey: "",
+  value: ""
+};
+
+export default function TaskCard({
+  hintUsed,
+  onBackToBriefing,
+  onSolved,
+  onUseHint,
+  task
+}) {
+  const [answers, setAnswers] = useState(emptyAnswers);
   const [feedback, setFeedback] = useState("");
-  const [hintOpen, setHintOpen] = useState(false);
+  const [confirmHint, setConfirmHint] = useState(false);
   const [captured, setCaptured] = useState(false);
 
   useEffect(() => {
-    setAnswer("");
+    setAnswers(emptyAnswers);
     setFeedback("");
-    setHintOpen(false);
+    setConfirmHint(false);
     setCaptured(false);
   }, [task.id]);
+
+  const answerValue =
+    task.type === "identity"
+      ? { email: answers.email, taskKey: answers.taskKey }
+      : answers.value;
 
   const submitAnswer = (event) => {
     event.preventDefault();
 
-    if (!isCorrectAnswer(task, answer)) {
+    if (!isCorrectAnswer(task, answerValue)) {
       setFeedback("Veri doğrulanamadı. İpucunu tekrar incele.");
       return;
     }
 
     setCaptured(true);
-    setFeedback("Veri doğrulandı. Veri parçası kurtarıldı.");
-    window.setTimeout(() => onSolved(task.id), 650);
+    setFeedback("VERİ DOĞRULANDI. Mühür parçası kurtarıldı.");
+    window.setTimeout(() => onSolved(task.id), 520);
+  };
+
+  const openHint = () => {
+    if (hintUsed) return;
+    setConfirmHint(true);
+  };
+
+  const confirmHintUse = () => {
+    onUseHint(task.id);
+    setConfirmHint(false);
   };
 
   return (
-    <TaskShell canGoBack={canGoBack} onBack={onBack} task={task}>
-      {task.encryptedText && (
-        <div className="crypto-panel">
-          <div>
-            <span>Türk alfabesi</span>
-            <strong>{turkishAlphabet.join(" ")}</strong>
+    <TaskShell onBackToBriefing={onBackToBriefing} task={task}>
+      {task.type === "crypto" && <CryptoTask task={task} />}
+      {task.type === "source" && <LayerScanner />}
+      {task.type === "identity" && <IdentityTraceTask task={task} />}
+      {task.type === "physical" && <PhysicalTask task={task} />}
+
+      <div className="hint-zone">
+        <button
+          className="hint-button"
+          disabled={hintUsed}
+          onClick={openHint}
+          type="button"
+        >
+          {hintUsed ? "Dedektif Notu Açıldı" : "Dedektif Notu Aç (-90 Puan)"}
+        </button>
+        {confirmHint && (
+          <div className="hint-confirm">
+            <p>
+              Bu dedektif notunu açarsan görev puanından 90 puan düşülür.
+              Devam etmek istiyor musun?
+            </p>
+            <div>
+              <button className="secondary-button" onClick={confirmHintUse} type="button">
+                NOTU AÇ
+              </button>
+              <button
+                className="ghost-button"
+                onClick={() => setConfirmHint(false)}
+                type="button"
+              >
+                VAZGEÇ
+              </button>
+            </div>
           </div>
-          <div>
-            <span>{task.encryptedLabel}</span>
-            <strong className="cipher-text">{task.encryptedText}</strong>
-          </div>
-          <div>
-            <span>Yöntem</span>
-            <strong>{task.shiftText}</strong>
-          </div>
-        </div>
-      )}
-
-      {task.answerType === "source" && <LogExplorer />}
-
-      {task.profile && (
-        <EvidenceBoard
-          exampleFormat={task.exampleFormat}
-          profile={task.profile}
-        />
-      )}
-
-      {task.commands && (
-        <AlgorithmSimulator commands={task.commands} onSelectStep={setAnswer} />
-      )}
-
-      <button
-        className="hint-button"
-        onClick={() => setHintOpen((current) => !current)}
-        type="button"
-      >
-        İpucu
-      </button>
-      {hintOpen && <p className="hint-text">{task.hint}</p>}
+        )}
+        {hintUsed && <p className="hint-text">{task.hint}</p>}
+      </div>
 
       <form className="answer-form" onSubmit={submitAnswer}>
-        <label htmlFor={`answer-${task.id}`}>Veri doğrulama alanı</label>
-        <input
-          autoComplete="off"
-          id={`answer-${task.id}`}
-          onChange={(event) => setAnswer(event.target.value)}
-          placeholder={task.placeholder}
-          value={answer}
-        />
+        {task.type === "identity" ? (
+          <>
+            <label htmlFor={`email-${task.id}`}>Görev E-postası</label>
+            <input
+              autoComplete="off"
+              id={`email-${task.id}`}
+              onChange={(event) =>
+                setAnswers((current) => ({
+                  ...current,
+                  email: event.target.value
+                }))
+              }
+              placeholder="gorev@gorev.genctek"
+              value={answers.email}
+            />
+            <label htmlFor={`key-${task.id}`}>Görev Anahtarı</label>
+            <input
+              autoComplete="off"
+              id={`key-${task.id}`}
+              onChange={(event) =>
+                setAnswers((current) => ({
+                  ...current,
+                  taskKey: event.target.value
+                }))
+              }
+              placeholder="Görev anahtarı"
+              value={answers.taskKey}
+            />
+          </>
+        ) : (
+          <>
+            <label htmlFor={`answer-${task.id}`}>Veri doğrulama alanı</label>
+            <input
+              autoComplete="off"
+              id={`answer-${task.id}`}
+              onChange={(event) =>
+                setAnswers((current) => ({
+                  ...current,
+                  value: event.target.value
+                }))
+              }
+              placeholder={task.placeholder}
+              value={answers.value}
+            />
+          </>
+        )}
         <button className="primary-button" disabled={captured} type="submit">
-          VERİYİ DOĞRULA
+          {task.type === "identity" ? "KİMLİĞİ DOĞRULA" : "VERİYİ DOĞRULA"}
         </button>
       </form>
 

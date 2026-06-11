@@ -1,35 +1,17 @@
 import React from "react";
 
-const guideItems = [
-  ["Görev Amacı", "purpose"],
-  ["Neden?", "why"],
-  ["Nasıl?", "how"],
-  ["Sonuç", "result"]
-];
-
-export default function TaskShell({ canGoBack = false, children, onBack, task }) {
+export default function TaskShell({ children, onBackToBriefing, task }) {
   return (
     <article className="task-shell">
       <div className="task-heading">
         <div className="task-topline">
           <p>{task.area}</p>
-          {canGoBack && (
-            <button className="back-button" onClick={onBack} type="button">
-              GERİ GİT
-            </button>
-          )}
+          <button className="back-button" onClick={onBackToBriefing} type="button">
+            GÖREV DOSYASINA DÖN
+          </button>
         </div>
         <h2>{task.title}</h2>
-        <span>{task.description}</span>
-      </div>
-
-      <div className="task-guide">
-        {guideItems.map(([label, key]) => (
-          <section key={key}>
-            <span>{label}</span>
-            <strong>{task.guide[key]}</strong>
-          </section>
-        ))}
+        <span>{task.objective}</span>
       </div>
 
       <div className="operation-panel">

@@ -1,18 +1,23 @@
 # GençTek Dijital Dedektifler
 
-Mobil öncelikli, tek sayfalık React + Vite deneyimi.
+Kırmızı Mühür Operasyonu, Amasya genelindeki GençTek standında QR kod ile açılmak üzere tasarlanmış mobil öncelikli bir dijital görev deneyimidir.
 
-Bu uygulama Amasya genelinde kurulacak GençTek standında QR kod ile kullanılmak üzere tasarlanmış hikayeli ve oyunlaştırılmış bir dijital görev sistemidir.
+## Deneyim
 
-## Özellikler
+- Açılış ve puan sistemi brifingi
+- Her görev öncesi görev dosyası
+- 4 parçalı Kırmızı Mühür akışı
+- Tek kullanımlık dedektif notu ve puan düşümü
+- Toplam puan ve dedektif derecesi
+- QR doğrulamalı dijital görev belgesi
+- PNG indirme ve görsel olarak aç/kaydet yedek yöntemi
 
-- 4 görevlik dijital dedektif akışı
-- Türk alfabesine göre gerçek Sezar şifreleme görevi
-- Mobil uyumlu kaynak katmanı / kayıt inceleme paneli
-- Dijital iz analizi ve algoritma görevi
-- localStorage ile ilerleme, rozet ID ve kullanıcı adı kaydı
-- QR doğrulamalı dijital kimlik kartı
-- PNG olarak kart indirme
+## Görevler
+
+1. Antik Şifre - Kriptografi
+2. Görünmeyen Katman - Kaynak Katmanı
+3. Kimlik İzleri - Simüle dijital kimlik çözümleme
+4. Dijitalin Cismi - Fiziksel veri / 3D baskı görevi
 
 ## Komutlar
 

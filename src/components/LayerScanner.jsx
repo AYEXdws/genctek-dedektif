@@ -8,7 +8,7 @@ const fileMeta = {
   "source.layer": "Gizli kaynak katmanı"
 };
 
-export default function LogExplorer() {
+export default function LayerScanner() {
   const fileNames = Object.keys(sourceFiles);
   const [activeFile, setActiveFile] = useState(fileNames[0]);
 
@@ -30,7 +30,7 @@ export default function LogExplorer() {
 
       <div className="log-output">
         <div className="log-title">
-          <span>Açık dosya</span>
+          <span>Açık kayıt</span>
           <strong>{activeFile}</strong>
         </div>
         <pre>

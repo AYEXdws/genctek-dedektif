@@ -2,30 +2,47 @@ import React, { useMemo, useState } from "react";
 import "./App.css";
 import { tasks } from "./data/tasks";
 import { createBadgeId, createBadgePayload } from "./utils/badge";
-import IntroScreen from "./components/IntroScreen";
-import ProgressPanel from "./components/ProgressPanel";
-import TaskCard from "./components/TaskCard";
-import FinalScreen from "./components/FinalScreen";
+import {
+  getDetectiveRank,
+  getHintCount,
+  getTaskScore,
+  getTotalScore
+} from "./utils/scoring";
 import BadgeCreator from "./components/BadgeCreator";
 import CompletionScreen from "./components/CompletionScreen";
+import FinalScreen from "./components/FinalScreen";
+import IntroScreen from "./components/IntroScreen";
+import MissionBriefing from "./components/MissionBriefing";
+import ProgressPanel from "./components/ProgressPanel";
+import ScoreIntro from "./components/ScoreIntro";
+import TaskCard from "./components/TaskCard";
 
 const STORAGE_KEY = "genctek-dijital-dedektifler";
+const STATE_VERSION = 2;
 
 const initialState = {
-  started: false,
-  activeStep: 0,
+  version: STATE_VERSION,
+  screen: "intro",
+  activeTaskIndex: 0,
   completedTasks: [],
+  totalScore: 0,
+  taskScores: {},
+  hintUsage: {},
   badgeId: "",
   userName: "",
-  badge: null,
-  completionTaskId: "",
-  identityRequested: false
+  detectiveRank: "Aday Dedektif",
+  certificatePayload: null
 };
 
 function loadState() {
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
-    return saved ? { ...initialState, ...JSON.parse(saved) } : initialState;
+    if (!saved) return initialState;
+
+    const parsed = JSON.parse(saved);
+    if (parsed.version !== STATE_VERSION) return initialState;
+
+    return { ...initialState, ...parsed };
   } catch {
     return initialState;
   }
@@ -39,9 +56,12 @@ function saveState(nextState) {
 export default function App() {
   const [state, setState] = useState(loadState);
 
-  const archiveIntegrity = useMemo(() => {
-    return [25, 50, 75, 90, 100][state.completedTasks.length] || 25;
-  }, [state.completedTasks.length]);
+  const currentTask = tasks[state.activeTaskIndex] || tasks[0];
+  const completedCount = state.completedTasks.length;
+  const hintCount = useMemo(() => getHintCount(state.hintUsage), [state.hintUsage]);
+  const currentTaskScore = getTaskScore(Boolean(state.hintUsage[currentTask.id]));
+  const totalScore = getTotalScore(state.taskScores);
+  const detectiveRank = getDetectiveRank(totalScore);
 
   const resetExperience = () => {
     localStorage.removeItem(STORAGE_KEY);
@@ -52,16 +72,32 @@ export default function App() {
     setState((current) => saveState({ ...current, ...patch }));
   };
 
-  const startMission = () => updateState({ started: true });
+  const useHint = (taskId) => {
+    setState((current) => {
+      if (current.hintUsage[taskId]) return current;
+      return saveState({
+        ...current,
+        hintUsage: { ...current.hintUsage, [taskId]: true }
+      });
+    });
+  };
 
   const solveTask = (taskId) => {
-    if (state.completedTasks.includes(taskId)) return;
+    setState((current) => {
+      if (current.completedTasks.includes(taskId)) return current;
 
-    const completedTasks = [...state.completedTasks, taskId];
+      const score = getTaskScore(Boolean(current.hintUsage[taskId]));
+      const taskScores = { ...current.taskScores, [taskId]: score };
+      const nextTotalScore = getTotalScore(taskScores);
 
-    updateState({
-      completedTasks,
-      completionTaskId: taskId
+      return saveState({
+        ...current,
+        completedTasks: [...current.completedTasks, taskId],
+        detectiveRank: getDetectiveRank(nextTotalScore),
+        screen: "completion",
+        taskScores,
+        totalScore: nextTotalScore
+      });
     });
   };
 
@@ -69,27 +105,41 @@ export default function App() {
     const isFinalTask = state.completedTasks.length === tasks.length;
 
     updateState({
-      activeStep: isFinalTask ? tasks.length : state.activeStep + 1,
-      completionTaskId: ""
-    });
-  };
-
-  const goToPreviousTask = () => {
-    updateState({
-      activeStep: Math.max(state.activeStep - 1, 0),
-      completionTaskId: ""
+      activeTaskIndex: isFinalTask
+        ? tasks.length - 1
+        : Math.min(state.activeTaskIndex + 1, tasks.length - 1),
+      screen: isFinalTask ? "final" : "briefing"
     });
   };
 
   const createBadge = (name) => {
     const badgeId = state.badgeId || createBadgeId();
-    const badge = createBadgePayload(name, badgeId);
-    updateState({ userName: name, badgeId, badge });
+    const certificatePayload = createBadgePayload(name, badgeId, {
+      detectiveRank,
+      hintCount,
+      totalScore
+    });
+
+    updateState({
+      badgeId,
+      certificatePayload,
+      detectiveRank,
+      screen: "identity",
+      totalScore,
+      userName: name
+    });
   };
 
-  const currentTask = tasks[state.activeStep];
-  const isArchiveComplete = state.completedTasks.length === tasks.length;
-  const completionTask = tasks.find((task) => task.id === state.completionTaskId);
+  const progressPanel = (
+    <ProgressPanel
+      activeArea={currentTask.area}
+      activeTaskIndex={state.activeTaskIndex}
+      completedCount={completedCount}
+      currentTaskScore={currentTaskScore}
+      hintUsed={Boolean(state.hintUsage[currentTask.id])}
+      totalScore={totalScore}
+    />
+  );
 
   return (
     <main className="app-shell">
@@ -97,63 +147,68 @@ export default function App() {
         Baştan Başla
       </button>
 
-      {!state.started && <IntroScreen onStart={startMission} />}
-
-      {state.started && completionTask && (
-        <section className="mission-view">
-          <ProgressPanel
-            activeArea={completionTask.area}
-            completedCount={state.completedTasks.length}
-            integrity={archiveIntegrity}
-          />
-          <CompletionScreen
-            completedCount={state.completedTasks.length}
-            integrity={archiveIntegrity}
-            isFinal={state.completedTasks.length === tasks.length}
-            onContinue={continueAfterCompletion}
-            task={completionTask}
-          />
-        </section>
+      {state.screen === "intro" && (
+        <IntroScreen onStart={() => updateState({ screen: "score" })} />
       )}
 
-      {state.started && !completionTask && !isArchiveComplete && currentTask && (
+      {state.screen === "score" && (
+        <ScoreIntro onContinue={() => updateState({ screen: "briefing" })} />
+      )}
+
+      {state.screen === "briefing" && (
         <section className="mission-view">
-          <ProgressPanel
-            activeArea={currentTask.area}
-            completedCount={state.completedTasks.length}
-            integrity={archiveIntegrity}
-          />
-          <TaskCard
-            canGoBack={state.activeStep > 0}
-            onBack={goToPreviousTask}
-            onSolved={solveTask}
+          {progressPanel}
+          <MissionBriefing
+            completedCount={completedCount}
+            onStartTask={() => updateState({ screen: "task" })}
             task={currentTask}
           />
         </section>
       )}
 
-      {state.started && !completionTask && isArchiveComplete && !state.badge && (
-        <FinalScreen onCreateIdentity={() => updateState({ identityRequested: true })}>
-          {state.identityRequested && (
-            <BadgeCreator
-              savedName={state.userName}
-              onCreateBadge={createBadge}
-            />
-          )}
-        </FinalScreen>
+      {state.screen === "task" && (
+        <section className="mission-view">
+          {progressPanel}
+          <TaskCard
+            hintUsed={Boolean(state.hintUsage[currentTask.id])}
+            onBackToBriefing={() => updateState({ screen: "briefing" })}
+            onSolved={solveTask}
+            onUseHint={useHint}
+            task={currentTask}
+          />
+        </section>
       )}
 
-      {state.started && !completionTask && isArchiveComplete && state.badge && (
-        <section className="badge-view">
-          <ProgressPanel
-            activeArea="Sistem Doğrulama"
-            completedCount={4}
-            integrity={100}
+      {state.screen === "completion" && (
+        <section className="mission-view">
+          {progressPanel}
+          <CompletionScreen
+            hintUsed={Boolean(state.hintUsage[currentTask.id])}
+            isFinal={completedCount === tasks.length}
+            onContinue={continueAfterCompletion}
+            task={currentTask}
+            taskScore={state.taskScores[currentTask.id] || currentTaskScore}
+            totalScore={totalScore}
           />
+        </section>
+      )}
+
+      {state.screen === "final" && (
+        <FinalScreen
+          detectiveRank={detectiveRank}
+          hintCount={hintCount}
+          onCreateIdentity={() => updateState({ screen: "identity" })}
+          totalScore={totalScore}
+        />
+      )}
+
+      {state.screen === "identity" && (
+        <section className="badge-view">
+          {progressPanel}
           <BadgeCreator
-            savedName={state.userName}
-            badge={state.badge}
+            badge={state.certificatePayload}
             onCreateBadge={createBadge}
+            savedName={state.userName}
           />
         </section>
       )}

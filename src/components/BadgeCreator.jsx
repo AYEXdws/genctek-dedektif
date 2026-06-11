@@ -239,7 +239,7 @@ export default function BadgeCreator({ savedName = "", badge, onCreateBadge }) {
     <div className="badge-creator">
       {!badge && (
         <form className="identity-form" onSubmit={handleCreate}>
-          <h2>Dijital Görev Belgesini Oluştur</h2>
+          <h2>Dijital Görev Belgemi Oluştur</h2>
           <label htmlFor="detective-name">Ad Soyad:</label>
           <input
             id="detective-name"
@@ -249,7 +249,7 @@ export default function BadgeCreator({ savedName = "", badge, onCreateBadge }) {
           />
           {error && <p className="form-error">{error}</p>}
           <button className="primary-button" type="submit">
-            BELGEYİ OLUŞTUR
+            DİJİTAL BELGEYİ OLUŞTUR
           </button>
         </form>
       )}
@@ -262,10 +262,10 @@ export default function BadgeCreator({ savedName = "", badge, onCreateBadge }) {
           {error && <p className="form-error">{error}</p>}
           <div className="certificate-actions">
             <button className="primary-button" onClick={downloadCard} type="button">
-              📥 Dijital Belgeyi İndir
+              Dijital Belgeyi İndir
             </button>
             <button className="secondary-button" onClick={openImage} type="button">
-              🖼 Görsel Olarak Aç / Kaydet
+              Görsel Olarak Aç / Kaydet
             </button>
           </div>
         </>

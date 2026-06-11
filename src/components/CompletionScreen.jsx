@@ -1,29 +1,45 @@
 import React from "react";
 
 export default function CompletionScreen({
-  completedCount,
-  integrity,
+  hintUsed,
   isFinal,
   onContinue,
-  task
+  task,
+  taskScore,
+  totalScore
 }) {
   return (
     <section className="completion-screen">
       <div className="completion-mark">✓</div>
-      <p>Veri doğrulandı</p>
+      <p>VERİ DOĞRULANDI</p>
       <h2>{task.recoveredText}</h2>
-      <div className="completion-stats">
-        <span>Arşiv bütünlüğü güncellendi</span>
-        <strong>%{integrity}</strong>
+      <div className="completion-grid">
+        <div className="completion-stats">
+          <span>Görev Puanı</span>
+          <strong>{taskScore}</strong>
+        </div>
+        <div className="completion-stats">
+          <span>İpucu Kullanımı</span>
+          <strong>{hintUsed ? "Kullanıldı" : "Kullanılmadı"}</strong>
+        </div>
+        <div className="completion-stats">
+          <span>Toplam Puan</span>
+          <strong>{totalScore}</strong>
+        </div>
       </div>
       <div className="completion-flag">
         <span>Doğrulanan veri</span>
         <strong>{task.flag}</strong>
       </div>
+      {task.securityNote && (
+        <div className="security-note">
+          <span>Güvenlik Notu</span>
+          <p>{task.securityNote}</p>
+        </div>
+      )}
       <button className="primary-button" onClick={onContinue} type="button">
-        {isFinal ? "FİNAL EKRANINA GEÇ" : "SONRAKİ GÖREVE GEÇ"}
+        {isFinal ? "FİNAL EKRANINA GEÇ" : "SONRAKİ GÖREV DOSYASI"}
       </button>
-      <small>{completedCount}/4 veri parçası kurtarıldı.</small>
     </section>
   );
 }
