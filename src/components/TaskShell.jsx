@@ -7,11 +7,18 @@ const guideItems = [
   ["Sonuç", "result"]
 ];
 
-export default function TaskShell({ task, children }) {
+export default function TaskShell({ canGoBack = false, children, onBack, task }) {
   return (
     <article className="task-shell">
       <div className="task-heading">
-        <p>{task.area}</p>
+        <div className="task-topline">
+          <p>{task.area}</p>
+          {canGoBack && (
+            <button className="back-button" onClick={onBack} type="button">
+              GERİ GİT
+            </button>
+          )}
+        </div>
         <h2>{task.title}</h2>
         <span>{task.description}</span>
       </div>
@@ -27,7 +34,7 @@ export default function TaskShell({ task, children }) {
 
       <div className="operation-panel">
         <div className="operation-title">
-          <span>Aktif İşlem</span>
+          <span>Yapılması Gereken İşlem</span>
           <strong>{task.panelTitle}</strong>
         </div>
         {children}

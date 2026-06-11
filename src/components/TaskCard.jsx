@@ -6,7 +6,7 @@ import EvidenceBoard from "./EvidenceBoard";
 import LogExplorer from "./LogExplorer";
 import TaskShell from "./TaskShell";
 
-export default function TaskCard({ task, onSolved }) {
+export default function TaskCard({ canGoBack = false, onBack, task, onSolved }) {
   const [answer, setAnswer] = useState("");
   const [feedback, setFeedback] = useState("");
   const [hintOpen, setHintOpen] = useState(false);
@@ -23,17 +23,17 @@ export default function TaskCard({ task, onSolved }) {
     event.preventDefault();
 
     if (!isCorrectAnswer(task, answer)) {
-      setFeedback("Kanıt doğrulanamadı. İpucunu tekrar incele.");
+      setFeedback("Veri doğrulanamadı. İpucunu tekrar incele.");
       return;
     }
 
     setCaptured(true);
-    setFeedback("Kanıt doğrulandı. Veri parçası kurtarıldı.");
+    setFeedback("Veri doğrulandı. Veri parçası kurtarıldı.");
     window.setTimeout(() => onSolved(task.id), 650);
   };
 
   return (
-    <TaskShell task={task}>
+    <TaskShell canGoBack={canGoBack} onBack={onBack} task={task}>
       {task.encryptedText && (
         <div className="crypto-panel">
           <div>
@@ -74,7 +74,7 @@ export default function TaskCard({ task, onSolved }) {
       {hintOpen && <p className="hint-text">{task.hint}</p>}
 
       <form className="answer-form" onSubmit={submitAnswer}>
-        <label htmlFor={`answer-${task.id}`}>Kanıt doğrulama alanı</label>
+        <label htmlFor={`answer-${task.id}`}>Veri doğrulama alanı</label>
         <input
           autoComplete="off"
           id={`answer-${task.id}`}
@@ -83,7 +83,7 @@ export default function TaskCard({ task, onSolved }) {
           value={answer}
         />
         <button className="primary-button" disabled={captured} type="submit">
-          KANITI DOĞRULA
+          VERİYİ DOĞRULA
         </button>
       </form>
 

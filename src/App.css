@@ -172,6 +172,29 @@ input {
   margin: 0 0 10px;
 }
 
+.task-topline {
+  align-items: center;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.task-topline p {
+  margin-bottom: 0;
+}
+
+.back-button {
+  background: rgba(255, 255, 255, 0.055);
+  border: 1px solid rgba(91, 220, 255, 0.2);
+  border-radius: 999px;
+  color: #d9f6ff;
+  flex: 0 0 auto;
+  font-size: 0.7rem;
+  font-weight: 900;
+  min-height: 36px;
+  padding: 8px 12px;
+}
+
 h1,
 h2,
 p {

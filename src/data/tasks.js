@@ -25,7 +25,7 @@ export const sourceFiles = {
   ],
   "source.layer": [
     "[12:40] Görünmeyen katman açıldı",
-    "[12:41] Kanıt doğrulandı",
+    "[12:41] Veri doğrulandı",
     "[12:42] Bayrak: GençTek{Kaynak_Katmani}"
   ]
 };
@@ -76,7 +76,7 @@ export const tasks = [
     id: "digital-trace",
     title: "Görev 3 — Dijital İz Analizi",
     area: "Dijital İz Analizi",
-    panelTitle: "Kanıt Panosu",
+    panelTitle: "Veri Panosu",
     description:
       "Üçüncü veri parçası küçük dijital izlerin birleşiminde saklı. Bilgileri dikkatle incele ve doğru sonuca ulaş.",
     guide: {

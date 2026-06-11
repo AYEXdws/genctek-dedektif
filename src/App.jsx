@@ -74,6 +74,13 @@ export default function App() {
     });
   };
 
+  const goToPreviousTask = () => {
+    updateState({
+      activeStep: Math.max(state.activeStep - 1, 0),
+      completionTaskId: ""
+    });
+  };
+
   const createBadge = (name) => {
     const badgeId = state.badgeId || createBadgeId();
     const badge = createBadgePayload(name, badgeId);
@@ -116,7 +123,12 @@ export default function App() {
             completedCount={state.completedTasks.length}
             integrity={archiveIntegrity}
           />
-          <TaskCard task={currentTask} onSolved={solveTask} />
+          <TaskCard
+            canGoBack={state.activeStep > 0}
+            onBack={goToPreviousTask}
+            onSolved={solveTask}
+            task={currentTask}
+          />
         </section>
       )}
 
