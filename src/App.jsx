@@ -84,7 +84,12 @@ export default function App() {
 
   const solveTask = (taskId) => {
     setState((current) => {
-      if (current.completedTasks.includes(taskId)) return current;
+      if (current.completedTasks.includes(taskId)) {
+        return saveState({
+          ...current,
+          screen: "completion"
+        });
+      }
 
       const score = getTaskScore(Boolean(current.hintUsage[taskId]));
       const taskScores = { ...current.taskScores, [taskId]: score };
