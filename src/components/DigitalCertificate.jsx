@@ -1,5 +1,9 @@
 import React from "react";
-import { genctekLogoMark, genctekLogoWide } from "../assets/logos";
+import {
+  digitalDetectivesLogo,
+  digitalDetectivesMark,
+  genctekLogoWide
+} from "../assets/logos";
 import { story } from "../data/story";
 
 export default function DigitalCertificate({ badge, cardRef }) {
@@ -12,10 +16,11 @@ export default function DigitalCertificate({ badge, cardRef }) {
       <header className="certificate-header">
         <div className="certificate-brand-row">
           <img alt="GençTek logosu" src={genctekLogoWide} />
-          <div className="certificate-program-logo" aria-label="GençTek Dijital Dedektifler">
-            <span>GT</span>
-            <strong>Dijital Dedektifler</strong>
-          </div>
+          <img
+            alt="GençTek Dijital Dedektifler logosu"
+            className="certificate-program-logo"
+            src={digitalDetectivesLogo}
+          />
         </div>
 
         <div className="certificate-title-block">
@@ -84,7 +89,7 @@ export default function DigitalCertificate({ badge, cardRef }) {
 
       <footer className="certificate-footer">
         <div className="certificate-stamp" aria-hidden="true">
-          <img alt="" src={genctekLogoMark} />
+          <img alt="" src={digitalDetectivesMark} />
           <span>KIRMIZI MÜHÜR</span>
           <strong>Tamamlandı</strong>
         </div>

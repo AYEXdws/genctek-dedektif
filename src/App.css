@@ -1396,33 +1396,11 @@ input:focus {
 }
 
 .certificate-program-logo {
-  align-items: center;
-  border: 1px solid rgba(200, 23, 45, 0.32);
-  border-radius: 999px;
-  display: inline-flex;
-  gap: 10px;
-  padding: 8px 12px 8px 8px;
-  white-space: nowrap;
-}
-
-.certificate-program-logo span {
-  background: #c8172d;
-  border-radius: 50%;
-  color: #ffffff;
-  display: grid;
-  font-size: 0.82rem;
-  font-weight: 950;
-  height: 34px;
-  place-items: center;
-  width: 34px;
-}
-
-.certificate-program-logo strong {
-  color: #4a1b20;
-  font-size: 0.78rem;
-  font-weight: 950;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
+  display: block;
+  height: 56px;
+  max-width: 244px;
+  object-fit: contain;
+  width: 42%;
 }
 
 .certificate-title-block {
@@ -1671,8 +1649,9 @@ input:focus {
   }
 
   .certificate-program-logo {
+    height: auto;
     max-width: 100%;
-    white-space: normal;
+    width: 260px;
   }
 
   .certificate-summary,

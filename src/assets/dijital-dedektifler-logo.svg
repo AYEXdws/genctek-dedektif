@@ -1,0 +1,54 @@
+<svg width="640" height="156" viewBox="0 0 640 156" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">GençTek Dijital Dedektifler</title>
+  <desc id="desc">GençTek marka kimliğinden türetilmiş Dijital Dedektifler ürün logosu.</desc>
+  <defs>
+    <linearGradient id="redGradient" x1="18" y1="18" x2="128" y2="134" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F04D5C"/>
+      <stop offset="0.52" stop-color="#C8172D"/>
+      <stop offset="1" stop-color="#7C101C"/>
+    </linearGradient>
+    <linearGradient id="darkGradient" x1="40" y1="132" x2="118" y2="24" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1F1F22"/>
+      <stop offset="1" stop-color="#4A4546"/>
+    </linearGradient>
+    <filter id="softShadow" x="-10" y="-8" width="176" height="178" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="10" stdDeviation="9" flood-color="#2D070D" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#softShadow)">
+    <rect x="8" y="8" width="140" height="140" rx="34" fill="#FFF8F8"/>
+    <rect x="14.5" y="14.5" width="127" height="127" rx="29.5" stroke="#C8172D" stroke-opacity="0.28"/>
+
+    <path d="M75 31C94.5 31 111.2 42.8 118.4 59.6" stroke="url(#darkGradient)" stroke-width="15" stroke-linecap="round"/>
+    <path d="M113 81.5C111.7 102.7 94.5 119 73 119C50.9 119 33 101.1 33 79C33 60.4 45.6 44.8 62.7 40.4" stroke="url(#darkGradient)" stroke-width="15" stroke-linecap="round"/>
+
+    <path d="M76 28C96.3 39.2 111.5 57.2 119 79" stroke="url(#redGradient)" stroke-width="16" stroke-linecap="round"/>
+    <path d="M73 29L73 111" stroke="#C8172D" stroke-width="12" stroke-linecap="round"/>
+    <path d="M73 63C84.4 58.1 97.8 58.9 108.9 65.3" stroke="#FFF8F8" stroke-width="9" stroke-linecap="round"/>
+    <path d="M73 90C85.8 86.2 99.4 88.7 110.1 96.7" stroke="#FFF8F8" stroke-width="9" stroke-linecap="round"/>
+
+    <circle cx="101" cy="102" r="22" fill="#FFF8F8" stroke="#C8172D" stroke-width="7"/>
+    <path d="M116.5 117.5L132.5 133.5" stroke="#C8172D" stroke-width="9" stroke-linecap="round"/>
+    <circle cx="101" cy="102" r="7" fill="#C8172D"/>
+
+    <circle cx="45" cy="47" r="3.5" fill="#C8172D"/>
+    <circle cx="48" cy="112" r="3.5" fill="#C8172D"/>
+    <path d="M46 47H61" stroke="#C8172D" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+    <path d="M49 112H63" stroke="#C8172D" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+  </g>
+
+  <g>
+    <text x="178" y="59" fill="#C8172D" font-family="Inter, Arial, sans-serif" font-size="27" font-weight="900" letter-spacing="2.6">
+      GENÇTEK
+    </text>
+    <text x="178" y="101" fill="#252326" font-family="Inter, Arial, sans-serif" font-size="38" font-weight="950" letter-spacing="-0.8">
+      Dijital Dedektifler
+    </text>
+    <rect x="178" y="116" width="215" height="4" rx="2" fill="#C8172D"/>
+    <rect x="402" y="116" width="52" height="4" rx="2" fill="#252326" opacity="0.85"/>
+    <text x="178" y="137" fill="#7E6B6E" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="800" letter-spacing="1.35">
+      DİJİTAL İZ • VERİ • GÖREV SİSTEMİ
+    </text>
+  </g>
+</svg>
