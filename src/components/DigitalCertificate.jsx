@@ -7,6 +7,15 @@ import {
 import { story } from "../data/story";
 
 export default function DigitalCertificate({ badge, cardRef }) {
+  const displayName = badge.name.trim().toLocaleUpperCase("tr-TR");
+  const nameLength = displayName.length;
+  const nameClassName =
+    nameLength > 34
+      ? "extra-long-name"
+      : nameLength > 22
+        ? "long-name"
+        : "";
+
   return (
     <article className="digital-certificate" ref={cardRef}>
       <div className="certificate-paper-grain" />
@@ -15,7 +24,11 @@ export default function DigitalCertificate({ badge, cardRef }) {
 
       <header className="certificate-header">
         <div className="certificate-brand-row">
-          <img alt="GençTek logosu" src={genctekLogoWide} />
+          <img
+            alt="GençTek logosu"
+            className="certificate-main-logo"
+            src={genctekLogoWide}
+          />
           <img
             alt="GençTek Dijital Dedektifler logosu"
             className="certificate-program-logo"
@@ -32,7 +45,7 @@ export default function DigitalCertificate({ badge, cardRef }) {
 
       <section className="certificate-recipient">
         <span>Katılımcı</span>
-        <strong>{badge.name}</strong>
+        <strong className={nameClassName}>{displayName}</strong>
         <p>{story.certificate.explanation}</p>
       </section>
 

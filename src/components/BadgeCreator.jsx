@@ -2,6 +2,10 @@ import React, { useRef, useState } from "react";
 import { toBlob, toPng } from "html-to-image";
 import DigitalCertificate from "./DigitalCertificate";
 
+const CERTIFICATE_WIDTH = 360;
+const CERTIFICATE_HEIGHT = 640;
+const CERTIFICATE_PIXEL_RATIO = 3;
+
 function dataUrlToBlob(dataUrl) {
   const [header, data] = dataUrl.split(",");
   const mimeType = header.match(/:(.*?);/)?.[1] || "image/png";
@@ -101,22 +105,21 @@ export default function BadgeCreator({ savedName = "", badge, onCreateBadge }) {
   };
 
   const getCaptureOptions = (card) => {
-    const rect = card.getBoundingClientRect();
-    const width = Math.ceil(card.scrollWidth || rect.width);
-    const height = Math.ceil(card.scrollHeight || rect.height);
-
     return {
       cacheBust: true,
-      height,
-      pixelRatio: 3,
-      backgroundColor: "#071421",
+      height: CERTIFICATE_HEIGHT,
+      pixelRatio: CERTIFICATE_PIXEL_RATIO,
+      backgroundColor: "#fffdfb",
       style: {
-        height: `${height}px`,
+        aspectRatio: "auto",
+        boxShadow: "none",
+        height: `${CERTIFICATE_HEIGHT}px`,
         maxWidth: "none",
+        minHeight: "0",
         transform: "none",
-        width: `${width}px`
+        width: `${CERTIFICATE_WIDTH}px`
       },
-      width
+      width: CERTIFICATE_WIDTH
     };
   };
 
@@ -223,9 +226,10 @@ export default function BadgeCreator({ savedName = "", badge, onCreateBadge }) {
     imageWindow.document.body.style.background = "#071421";
     imageWindow.document.body.style.margin = "0";
     imageWindow.document.body.style.minHeight = "100vh";
-    imageWindow.document.body.style.display = "grid";
-    imageWindow.document.body.style.placeItems = "center";
+    imageWindow.document.body.style.boxSizing = "border-box";
+    imageWindow.document.body.style.display = "block";
     imageWindow.document.body.style.padding = "16px";
+    imageWindow.document.body.style.textAlign = "center";
     imageWindow.document.body.textContent = "Belge hazırlanıyor...";
 
     const image = await getCertificateImage();
@@ -240,7 +244,9 @@ export default function BadgeCreator({ savedName = "", badge, onCreateBadge }) {
     img.style.background = "#071421";
     img.style.display = "block";
     img.style.height = "auto";
-    img.style.maxWidth = "100%";
+    img.style.margin = "0 auto";
+    img.style.maxWidth = "min(100%, 520px)";
+    img.style.width = "100%";
 
     imageWindow.document.body.textContent = "";
     imageWindow.document.body.appendChild(img);
