@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 import "./App.css";
 import { tasks } from "./data/tasks";
-import { createBadgeId, createBadgePayload } from "./utils/badge";
+import { createBadgePayload } from "./utils/badge";
 import {
   getDetectiveRank,
   getHintCount,
@@ -31,7 +31,6 @@ const initialState = {
   taskScores: {},
   hintUsage: {},
   bootCompleted: false,
-  badgeId: "",
   userName: "",
   detectiveRank: "Aday Dedektif",
   certificatePayload: null
@@ -138,15 +137,13 @@ export default function App() {
   };
 
   const createBadge = (name) => {
-    const badgeId = state.badgeId || createBadgeId();
-    const certificatePayload = createBadgePayload(name, badgeId, {
+    const certificatePayload = createBadgePayload(name, {
       detectiveRank,
       hintCount,
       totalScore
     });
 
     updateState({
-      badgeId,
       certificatePayload,
       detectiveRank,
       screen: "identity",

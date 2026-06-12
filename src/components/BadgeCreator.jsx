@@ -60,6 +60,19 @@ function supportsAnchorDownload() {
   );
 }
 
+function getSafeName(value = "") {
+  return String(value)
+    .trim()
+    .toLocaleLowerCase("tr-TR")
+    .replace(/[çğıöşü]/g, (char) => {
+      const map = { ç: "c", ğ: "g", ı: "i", ö: "o", ş: "s", ü: "u" };
+      return map[char] || char;
+    })
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 42);
+}
+
 export default function BadgeCreator({ savedName = "", badge, onCreateBadge }) {
   const [name, setName] = useState(savedName);
   const [error, setError] = useState("");
@@ -83,7 +96,8 @@ export default function BadgeCreator({ savedName = "", badge, onCreateBadge }) {
   };
 
   const getFileName = () => {
-    return `genctek-dijital-dedektif-belgesi-${badge.badgeId}.png`;
+    const safeName = getSafeName(badge.name) || "katilimci";
+    return `genctek-dijital-dedektifler-belgesi-${safeName}.png`;
   };
 
   const getCaptureOptions = (card) => {
@@ -205,7 +219,7 @@ export default function BadgeCreator({ savedName = "", badge, onCreateBadge }) {
       return;
     }
 
-    imageWindow.document.title = badge.badgeId;
+    imageWindow.document.title = "GençTek Dijital Dedektifler Belgesi";
     imageWindow.document.body.style.background = "#071421";
     imageWindow.document.body.style.margin = "0";
     imageWindow.document.body.style.minHeight = "100vh";
