@@ -14,6 +14,7 @@ import FinalScreen from "./components/FinalScreen";
 import IntroScreen from "./components/IntroScreen";
 import MissionBriefing from "./components/MissionBriefing";
 import OperationBootSequence from "./components/OperationBootSequence";
+import OperationCloseSequence from "./components/OperationCloseSequence";
 import ProgressPanel from "./components/ProgressPanel";
 import ScoreIntro from "./components/ScoreIntro";
 import TaskCard from "./components/TaskCard";
@@ -123,7 +124,7 @@ export default function App() {
       activeTaskIndex: isFinalTask
         ? tasks.length - 1
         : Math.min(state.activeTaskIndex + 1, tasks.length - 1),
-      screen: isFinalTask ? "final" : "briefing"
+      screen: isFinalTask ? "closing" : "briefing"
     });
   };
 
@@ -220,6 +221,10 @@ export default function App() {
             totalScore={totalScore}
           />
         </section>
+      )}
+
+      {state.screen === "closing" && (
+        <OperationCloseSequence onComplete={() => updateState({ screen: "final" })} />
       )}
 
       {state.screen === "final" && (

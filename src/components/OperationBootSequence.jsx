@@ -60,7 +60,7 @@ export default function OperationBootSequence({ onComplete }) {
   const isReady = stageIndex === stages.length - 1;
 
   const litSegments = useMemo(() => {
-    if (activeStage.key === "seal") return activeStage.lines.length;
+    if (activeStage.key === "seal") return 2;
     if (activeStage.key === "ready") return 4;
     return Math.min(stageIndex + 1, 4);
   }, [activeStage, stageIndex]);

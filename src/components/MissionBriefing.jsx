@@ -1,43 +1,23 @@
 import React from "react";
+import cryptoBriefing from "../assets/brief-crypto.png";
+import identityBriefing from "../assets/brief-identity.png";
+import physicalBriefing from "../assets/brief-physical.png";
+import sourceBriefing from "../assets/brief-source.png";
+
+const briefingImages = {
+  crypto: cryptoBriefing,
+  identity: identityBriefing,
+  physical: physicalBriefing,
+  source: sourceBriefing
+};
 
 export default function MissionBriefing({ completedCount, onStartTask, task }) {
   return (
     <section className="mission-briefing">
       <article className={`briefing-card briefing-card-${task.type}`}>
         <div className="briefing-visual" aria-hidden="true">
-          <div className="briefing-orbit">
-            <span />
-            <span />
-            <span />
-          </div>
-          {task.type === "crypto" && (
-            <div className="briefing-art crypto-art">
-              <b>A</b>
-              <b>Ç</b>
-              <b>Ğ</b>
-              <b>?</b>
-            </div>
-          )}
-          {task.type === "source" && (
-            <div className="briefing-art source-art">
-              <b>system.log</b>
-              <b>archive.cache</b>
-              <b>source.layer</b>
-            </div>
-          )}
-          {task.type === "identity" && (
-            <div className="briefing-art identity-art">
-              <b>GT</b>
-              <span />
-              <span />
-            </div>
-          )}
-          {task.type === "physical" && (
-            <div className="briefing-art physical-art">
-              <b />
-              <span />
-            </div>
-          )}
+          <img alt="" src={briefingImages[task.type]} />
+          <span className="briefing-image-shine" />
         </div>
         <div className="briefing-stamp">DOSYA {task.number}</div>
         <span className="screen-kicker">{task.briefTitle}</span>
