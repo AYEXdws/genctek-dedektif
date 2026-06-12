@@ -1289,6 +1289,9 @@ input:focus {
 .badge-creator {
   display: grid;
   gap: 16px;
+  justify-items: center;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 .digital-certificate {
@@ -1312,6 +1315,16 @@ input:focus {
   position: relative;
   width: min(100%, 360px);
   aspect-ratio: 9 / 16;
+}
+
+.digital-certificate.is-exporting {
+  aspect-ratio: auto !important;
+  box-shadow: none !important;
+  height: 640px !important;
+  margin: 0 !important;
+  max-width: none !important;
+  min-height: 0 !important;
+  width: 360px !important;
 }
 
 .certificate-paper-grain {

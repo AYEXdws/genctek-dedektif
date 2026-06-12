@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { toBlob, toPng } from "html-to-image";
+import { toPng } from "html-to-image";
 import DigitalCertificate from "./DigitalCertificate";
 
 const CERTIFICATE_WIDTH = 360;
@@ -17,15 +17,6 @@ function dataUrlToBlob(dataUrl) {
   }
 
   return new Blob([bytes], { type: mimeType });
-}
-
-function blobToDataUrl(blob) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onerror = reject;
-    reader.onload = () => resolve(reader.result);
-    reader.readAsDataURL(blob);
-  });
 }
 
 async function waitForCertificateAssets(node) {
@@ -104,11 +95,12 @@ export default function BadgeCreator({ savedName = "", badge, onCreateBadge }) {
     return `genctek-dijital-dedektifler-belgesi-${safeName}.png`;
   };
 
-  const getCaptureOptions = (card) => {
+  const getCaptureOptions = () => {
     return {
       cacheBust: true,
       height: CERTIFICATE_HEIGHT,
       pixelRatio: CERTIFICATE_PIXEL_RATIO,
+      skipAutoScale: true,
       backgroundColor: "#fffdfb",
       style: {
         aspectRatio: "auto",
@@ -134,16 +126,12 @@ export default function BadgeCreator({ savedName = "", badge, onCreateBadge }) {
       const card = cardRef.current;
       await waitForCertificateAssets(card);
 
-      const options = getCaptureOptions(card);
-      let blob = await toBlob(card, options);
-      let dataUrl = "";
+      card.classList.add("is-exporting");
+      await new Promise((resolve) => window.requestAnimationFrame(resolve));
 
-      if (!blob) {
-        dataUrl = await toPng(card, options);
-        blob = dataUrlToBlob(dataUrl);
-      } else {
-        dataUrl = await blobToDataUrl(blob);
-      }
+      const options = getCaptureOptions(card);
+      const dataUrl = await toPng(card, options);
+      const blob = dataUrlToBlob(dataUrl);
 
       setImageBlob(blob);
       setImageUrl(dataUrl);
@@ -154,6 +142,7 @@ export default function BadgeCreator({ savedName = "", badge, onCreateBadge }) {
       );
       return null;
     } finally {
+      cardRef.current?.classList.remove("is-exporting");
       setIsPreparing(false);
     }
   };
@@ -223,14 +212,35 @@ export default function BadgeCreator({ savedName = "", badge, onCreateBadge }) {
     }
 
     imageWindow.document.title = "GençTek Dijital Dedektifler Belgesi";
-    imageWindow.document.body.style.background = "#071421";
+    imageWindow.document.body.innerHTML =
+      '<main id="certificate-preview-root">Belge hazırlanıyor...</main>';
     imageWindow.document.body.style.margin = "0";
-    imageWindow.document.body.style.minHeight = "100vh";
-    imageWindow.document.body.style.boxSizing = "border-box";
-    imageWindow.document.body.style.display = "block";
-    imageWindow.document.body.style.padding = "16px";
-    imageWindow.document.body.style.textAlign = "center";
-    imageWindow.document.body.textContent = "Belge hazırlanıyor...";
+    imageWindow.document.body.style.background = "#071421";
+
+    const style = imageWindow.document.createElement("style");
+    style.textContent = `
+      * { box-sizing: border-box; }
+      body { margin: 0; background: #071421; }
+      #certificate-preview-root {
+        align-items: center;
+        color: #ffffff;
+        display: flex;
+        justify-content: center;
+        min-height: 100vh;
+        overflow: auto;
+        padding: 14px;
+        width: 100vw;
+      }
+      #certificate-preview-root img {
+        display: block;
+        height: auto;
+        max-height: calc(100vh - 28px);
+        max-width: calc(100vw - 28px);
+        object-fit: contain;
+        width: auto;
+      }
+    `;
+    imageWindow.document.head.appendChild(style);
 
     const image = await getCertificateImage();
     if (!image) {
@@ -241,15 +251,10 @@ export default function BadgeCreator({ savedName = "", badge, onCreateBadge }) {
     const img = imageWindow.document.createElement("img");
     img.alt = "GençTek Dijital Dedektif Görev Belgesi";
     img.src = image.dataUrl;
-    img.style.background = "#071421";
-    img.style.display = "block";
-    img.style.height = "auto";
-    img.style.margin = "0 auto";
-    img.style.maxWidth = "min(100%, 520px)";
-    img.style.width = "100%";
 
-    imageWindow.document.body.textContent = "";
-    imageWindow.document.body.appendChild(img);
+    const previewRoot = imageWindow.document.getElementById("certificate-preview-root");
+    previewRoot.textContent = "";
+    previewRoot.appendChild(img);
     setDownloadMessage(
       "Görsel yeni sekmede açıldı. Mobilde görsele basılı tutarak kaydedebilirsin."
     );
