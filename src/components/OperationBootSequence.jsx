@@ -21,7 +21,7 @@ const stages = [
     subtitle: "Bütünlük kaybı tespit edildi.",
     lines: [
       "Kripto Katmanı",
-      "Görünmeyen Katman",
+      "Görünmeyen Yüz",
       "Kimlik İzleri",
       "Fiziksel Veri"
     ],

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { isCorrectAnswer } from "../utils/normalize";
 import CryptoTask from "./CryptoTask";
 import IdentityTraceTask from "./IdentityTraceTask";
-import LayerScanner from "./LayerScanner";
 import PhysicalTask from "./PhysicalTask";
+import SourceCodeTask from "./SourceCodeTask";
 import TaskShell from "./TaskShell";
 
 const emptyAnswers = {
@@ -62,7 +62,7 @@ export default function TaskCard({
   return (
     <TaskShell onBackToBriefing={onBackToBriefing} task={task}>
       {task.type === "crypto" && <CryptoTask task={task} />}
-      {task.type === "source" && <LayerScanner />}
+      {task.type === "source" && <SourceCodeTask task={task} />}
       {task.type === "identity" && <IdentityTraceTask task={task} />}
       {task.type === "physical" && <PhysicalTask task={task} />}
 
@@ -130,7 +130,9 @@ export default function TaskCard({
           </>
         ) : (
           <>
-            <label htmlFor={`answer-${task.id}`}>Veri doğrulama alanı</label>
+            <label htmlFor={`answer-${task.id}`}>
+              {task.answerLabel || "Veri doğrulama alanı"}
+            </label>
             <input
               autoComplete="off"
               id={`answer-${task.id}`}

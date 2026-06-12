@@ -4,33 +4,10 @@ export const PHYSICAL_TASK_CODE = "GT-MUHUR-04";
 
 export const taskAreas = [
   "Kriptografi",
-  "Kaynak Katmanı",
+  "Kaynak Kod Analizi",
   "Kimlik İzleri",
   "Fiziksel Veri"
 ];
-
-export const sourceFiles = {
-  "system.log": [
-    "[09:14] Sistem başlatıldı",
-    "[09:16] Arşiv bağlantısı kontrol edildi",
-    "[09:18] Mühür parçası bulunamadı"
-  ],
-  "archive.cache": [
-    "[10:02] Önbellek tarandı",
-    "[10:04] Eski kayıtlar temizlendi",
-    "[10:05] Mühür parçası bulunamadı"
-  ],
-  "users.tmp": [
-    "[11:20] Geçici kullanıcı oturumu",
-    "[11:23] Yetki seviyesi: ziyaretçi",
-    "[11:24] Mühür parçası bulunamadı"
-  ],
-  "source.layer": [
-    "[12:40] Görünmeyen katman açıldı",
-    "[12:41] Veri doğrulandı",
-    "[12:42] Bayrak: GençTek{Gorunmeyen_Katman}"
-  ]
-};
 
 export const tasks = [
   {
@@ -61,29 +38,33 @@ export const tasks = [
       "Harfler kaybolmadı Dedektif. Sadece sandığından üç adım daha geride duruyorlar."
   },
   {
-    id: "gorunmeyen-katman",
+    id: "gorunmeyen-yuz",
     number: "02",
     type: "source",
-    title: "GÖRÜNMEYEN KATMAN",
-    area: "Kaynak Katmanı",
-    panelTitle: "Kaynak Katmanı Tarayıcısı",
+    title: "GÖRÜNMEYEN YÜZ",
+    area: "Web Bilişimi / Kaynak Kod Analizi",
+    panelTitle: "Kaynak Kodu Deneyimi",
     briefTitle: "GÖREV DOSYASI 02",
-    briefSubtitle: "GÖRÜNMEYEN KATMAN",
+    briefSubtitle: "GÖRÜNMEYEN YÜZ",
     briefText: [
-      "Bir sistemin görünen yüzü her zaman hikayenin tamamı değildir.",
-      "Ekranda gördüğün şey yalnızca vitrindir. Gerçek izler bazen kayıtların, dosya adlarının ve satır aralarının içinde saklanır.",
-      "İkinci mühür parçası görünür alanda bulunamadı.",
-      "Bu görevde kaynak katmanlarını incelemen, hangi kayıtların sıradan olduğunu ve hangi kaydın bir iz taşıdığını ayırt etmen gerekecek.",
-      "Dedektiflik bazen hızlı bakmak değil, doğru yere bakmaktır."
+      "Bir web sayfasının görünen yüzü, hikayenin yalnızca başlangıcıdır Dedektif.",
+      "Ekranda gördüğün tasarım, yazı ve butonlar vitrindir.",
+      "Ama her vitrinin arkasında onu ayakta tutan satırlar vardır.",
+      "İkinci mühür parçası bu uygulamanın içinde değil; bizim sitemizin görünmeyen katmanında saklı.",
+      "Bu görevde farklı bir sayfaya gidecek, kaynak kodunu inceleyecek ve kodların arasına bırakılmış gizli notu bulacaksın.",
+      "Bir dedektif sadece görüneni okumaz. Görüneni oluşturan yapıya da bakar."
     ],
     lesson:
-      "Web dünyasında sadece görünen ekran yoktur. Arka planda kayıtlar, kaynaklar ve izler bulunur.",
-    objective: "Kaynak katmanlarını incele ve ikinci mühür parçasını bul.",
-    placeholder: "Örn: GençTek{Ornek_Bayrak}",
-    flag: "GençTek{Gorunmeyen_Katman}",
+      "Web dünyasında gördüğün ekranın arkasında HTML, kaynak kodu ve görünmeyen yorum satırları bulunur.",
+    objective:
+      "Kaynak katmanı sayfasını aç, sayfa kaynağını incele ve gizli mühür parçasını bul.",
+    answerLabel: "Bulduğun mühür parçasını yaz:",
+    placeholder: "GençTek{...}",
+    sourceUrl: "/kaynak-katmani.html",
+    flag: "GençTek{Gorunmeyen_Yuz}",
     recoveredText: "MÜHÜR PARÇASI 2 KURTARILDI",
     hint:
-      "Her kayıt aynı şeyi anlatmaz Dedektif. Sistemin sesi yüzeyde duyulur, ama izler çoğu zaman en derin katmanda kalır."
+      "Her sayfa iki yüz taşır Dedektif. Biri herkesin gördüğü yüzdür. Diğeri ise onu var eden satırların arasında bekler. Cevabı ekranda değil, ekranı oluşturan izlerde ara."
   },
   {
     id: "kimlik-izleri",

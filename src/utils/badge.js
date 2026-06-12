@@ -17,7 +17,7 @@ export function createBadgePayload(name, badgeId, summary = {}) {
     verificationUrl: `https://genctek.org/dedektif/${badgeId}`,
     completedAreas: [
       "Kriptografi",
-      "Kaynak Katmanı",
+      "Kaynak Kod Analizi",
       "Kimlik İzleri",
       "Fiziksel Veri / Üretim ve Tasarım"
     ]

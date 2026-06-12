@@ -32,7 +32,7 @@ function isCorrectCrypto(value) {
 
 function isCorrectSource(value) {
   const normalized = normalizeFlag(value);
-  return normalized === "gorunmeyenkatman";
+  return normalized === "gorunmeyenyuz";
 }
 
 function isCorrectIdentity(value) {

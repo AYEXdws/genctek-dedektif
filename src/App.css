@@ -825,14 +825,17 @@ h1 {
 
 .crypto-panel,
 .identity-task,
-.physical-task {
+.physical-task,
+.source-code-task {
   display: grid;
   gap: 10px;
 }
 
 .crypto-panel div,
 .identity-card,
-.physical-task {
+.physical-task,
+.source-brief,
+.source-method {
   background: rgba(255, 255, 255, 0.055);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
@@ -847,62 +850,71 @@ h1 {
   margin-top: 6px;
 }
 
-.layer-list {
+.source-brief {
+  background:
+    linear-gradient(135deg, rgba(200, 23, 45, 0.2), rgba(255, 255, 255, 0.055)),
+    rgba(255, 255, 255, 0.055);
+}
+
+.source-brief span,
+.source-method span {
+  color: #ffe0e4;
+  display: block;
+  font-weight: 950;
+  margin-bottom: 8px;
+}
+
+.source-open-button {
+  align-items: center;
+  background: linear-gradient(135deg, #fff3f4, #ef5d67 58%, #c8172d);
+  border-radius: 12px;
+  color: #26050b;
+  display: flex;
+  font-size: 0.9rem;
+  font-weight: 950;
+  justify-content: center;
+  margin-top: 14px;
+  min-height: 50px;
+  padding: 12px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.source-method {
+  display: grid;
+  gap: 10px;
+}
+
+.method-grid {
   display: grid;
   gap: 8px;
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.layer-list button {
-  background: rgba(255, 255, 255, 0.055);
+.method-grid div {
+  align-items: center;
+  background: rgba(0, 0, 0, 0.22);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 10px;
-  color: var(--white);
-  min-height: 72px;
-  padding: 10px;
-  text-align: left;
-}
-
-.layer-list button.active {
-  background: rgba(200, 23, 45, 0.2);
-  border-color: rgba(255, 255, 255, 0.36);
-}
-
-.layer-list span {
-  display: block;
-  font-weight: 900;
-}
-
-.layer-list small {
-  color: var(--muted);
-  display: block;
-  margin-top: 4px;
-}
-
-.log-output {
-  background: #08070d;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-.log-title {
-  align-items: center;
-  background: rgba(255, 255, 255, 0.055);
   display: flex;
-  justify-content: space-between;
-  padding: 10px 12px;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 10px;
 }
 
-.log-output pre {
-  color: #ffe7ea;
-  display: grid;
-  font-size: 0.88rem;
-  gap: 8px;
-  margin: 0;
-  overflow-x: auto;
-  padding: 14px;
-  white-space: pre-wrap;
+.method-grid strong {
+  flex-basis: 100%;
+}
+
+kbd {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 7px;
+  color: #ffffff;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 900;
+  padding: 4px 7px;
 }
 
 .genctek-id-card {
