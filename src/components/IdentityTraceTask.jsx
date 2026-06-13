@@ -7,6 +7,7 @@ export default function IdentityTraceTask({ task }) {
   return (
     <div className="identity-task">
       <section className="genctek-id-card" aria-label="GençTek kimlik kartı">
+        <div className="id-card-strip" aria-hidden="true" />
         <header>
           <img alt="GençTek logosu" src={genctekLogoWide} />
           <span>Kırmızı Mühür Operasyonu</span>
@@ -31,6 +32,11 @@ export default function IdentityTraceTask({ task }) {
             </div>
           ))}
         </dl>
+
+        <footer>
+          <span>GENÇTEK GÖREV KARTI</span>
+          <strong>GT-SEC / 2026</strong>
+        </footer>
       </section>
 
       <section className="identity-card">

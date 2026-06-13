@@ -27,10 +27,6 @@ export default function MissionBriefing({ completedCount, onStartTask, task }) {
             <p key={paragraph}>{paragraph}</p>
           ))}
         </div>
-        <div className="briefing-lesson">
-          <span>Bu görev sana şunu gösterir</span>
-          <strong>{task.lesson}</strong>
-        </div>
         <button className="primary-button" onClick={onStartTask} type="button">
           GÖREVİ AÇ
         </button>

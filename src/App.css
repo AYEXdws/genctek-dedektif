@@ -910,15 +910,31 @@ kbd {
 }
 
 .genctek-id-card {
-  background: #ffffff;
-  border: 2px solid #ffffff;
+  background:
+    linear-gradient(90deg, rgba(200, 23, 45, 0.045) 0 1px, transparent 1px),
+    linear-gradient(180deg, rgba(200, 23, 45, 0.035) 0 1px, transparent 1px),
+    linear-gradient(145deg, #ffffff 0%, #fff7f7 100%);
+  background-size: 28px 28px, 28px 28px, auto;
+  border: 1px solid rgba(255, 255, 255, 0.9);
   border-radius: 18px;
-  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.28);
+  box-shadow:
+    0 18px 42px rgba(0, 0, 0, 0.28),
+    inset 0 0 0 1px rgba(200, 23, 45, 0.12);
   color: #2b2b2b;
   display: grid;
   gap: 12px;
   overflow: hidden;
-  padding: 12px;
+  padding: 18px;
+  position: relative;
+}
+
+.id-card-strip {
+  background: var(--red);
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 9px;
 }
 
 .genctek-id-card header {
@@ -928,6 +944,8 @@ kbd {
   gap: 10px;
   justify-content: space-between;
   padding-bottom: 10px;
+  position: relative;
+  z-index: 1;
 }
 
 .genctek-id-card header img {
@@ -948,14 +966,16 @@ kbd {
 .id-card-body {
   align-items: center;
   display: grid;
-  gap: 12px;
-  grid-template-columns: 82px 1fr;
+  gap: 16px;
+  grid-template-columns: 96px 1fr;
+  position: relative;
+  z-index: 1;
 }
 
 .id-photo {
   align-items: center;
   aspect-ratio: 1;
-  background: #f4f4f4;
+  background: #f8f8f8;
   border: 2px solid #e6e6e6;
   border-radius: 16px;
   display: flex;
@@ -985,7 +1005,7 @@ kbd {
 
 .id-person strong {
   color: #222;
-  font-size: 1.08rem;
+  font-size: 1.24rem;
   line-height: 1.05;
 }
 
@@ -997,7 +1017,9 @@ kbd {
 }
 
 .genctek-id-card dl {
+  position: relative;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  z-index: 1;
 }
 
 .genctek-id-card dl div,
@@ -1021,7 +1043,30 @@ kbd {
   overflow-wrap: anywhere;
 }
 
+.genctek-id-card footer {
+  align-items: center;
+  background: rgba(200, 23, 45, 0.08);
+  border-top: 1px solid rgba(200, 23, 45, 0.18);
+  display: flex;
+  justify-content: space-between;
+  margin: 4px -18px -18px;
+  padding: 10px 18px 10px 26px;
+  position: relative;
+  z-index: 1;
+}
+
+.genctek-id-card footer span,
+.genctek-id-card footer strong {
+  color: #a51223;
+  font-size: 0.62rem;
+  font-weight: 950;
+  letter-spacing: 0.08em;
+}
+
 .identity-card dd {
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 850;
   margin: 0;
 }
 
@@ -1800,11 +1845,24 @@ input:focus {
 
   .identity-task {
     align-items: stretch;
-    grid-template-columns: minmax(360px, 1fr) minmax(250px, 0.72fr);
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .genctek-id-card {
-    min-height: 410px;
+    justify-self: center;
+    max-width: 620px;
+    min-height: 0;
+    width: 100%;
+  }
+
+  .identity-card {
+    justify-self: center;
+    max-width: 620px;
+    width: 100%;
+  }
+
+  .identity-card dl {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .physical-task {
