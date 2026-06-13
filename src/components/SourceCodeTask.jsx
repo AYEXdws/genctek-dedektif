@@ -4,11 +4,12 @@ export default function SourceCodeTask({ task }) {
   return (
     <div className="source-code-task">
       <section className="source-brief">
-        <span>Bu görev bilgisayar üzerinden yapılmalıdır.</span>
+        <span>Kaynak katmanını incele</span>
         <p>
-          Aşağıdaki bağlantı seni GençTek'in görünen yüzüne götürecek.
-          Sayfa ilk bakışta sıradan görünebilir. Asıl iz, ekranda değil;
-          kaynak kodunun içinde saklı.
+          Aşağıdaki bağlantı GençTek'in görünen yüzünü açar. Asıl iz bu
+          yüzeyde değil, sayfayı oluşturan kaynak satırlarının arasında
+          saklıdır. Bu işlem PC ekranında daha rahat yapılır; stant cihazını
+          kullanarak kaynak katmanını daha net inceleyebilirsin.
         </p>
         <a
           className="source-open-button"
@@ -21,7 +22,7 @@ export default function SourceCodeTask({ task }) {
       </section>
 
       <section className="source-method" aria-label="Kaynak kodunu görüntüleme yöntemi">
-        <span>Nasıl bakılır?</span>
+        <span>Kaynak katmanı nasıl açılır?</span>
         <div className="method-grid">
           <div>
             <strong>Windows / Linux</strong>
@@ -39,8 +40,9 @@ export default function SourceCodeTask({ task }) {
           </div>
         </div>
         <p>
-          Alternatif: Sağ tık yap, <strong>Sayfa Kaynağını Görüntüle</strong>
-          seçeneğini aç. Ardından kaynak kodda gizli bırakılmış dedektif notunu ara.
+          Alternatif: Tarayıcı menüsünden veya sağ tık menüsünden{" "}
+          <strong>Sayfa Kaynağını Görüntüle</strong> seçeneğini aç. Ardından
+          kaynak kodda gizli bırakılmış veri izini ara.
         </p>
       </section>
     </div>

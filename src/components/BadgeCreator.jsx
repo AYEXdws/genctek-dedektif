@@ -5,6 +5,7 @@ import DigitalCertificate from "./DigitalCertificate";
 const CERTIFICATE_WIDTH = 360;
 const CERTIFICATE_HEIGHT = 640;
 const CERTIFICATE_PIXEL_RATIO = 3;
+const MAX_NAME_LENGTH = 48;
 
 function dataUrlToBlob(dataUrl) {
   const [header, data] = dataUrl.split(",");
@@ -87,7 +88,7 @@ export default function BadgeCreator({ savedName = "", badge, onCreateBadge }) {
     }
 
     setError("");
-    onCreateBadge(cleanName);
+    onCreateBadge(cleanName.replace(/\s+/g, " "));
   };
 
   const getFileName = () => {
@@ -268,6 +269,7 @@ export default function BadgeCreator({ savedName = "", badge, onCreateBadge }) {
           <label htmlFor="detective-name">Ad Soyad:</label>
           <input
             id="detective-name"
+            maxLength={MAX_NAME_LENGTH}
             onChange={(event) => setName(event.target.value)}
             placeholder="Ad Soyad"
             value={name}

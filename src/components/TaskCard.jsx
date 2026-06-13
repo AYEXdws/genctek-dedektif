@@ -12,6 +12,10 @@ const emptyAnswers = {
   value: ""
 };
 
+const MAX_ANSWER_LENGTH = 80;
+const WRONG_ATTEMPTS_BEFORE_COOLDOWN = 5;
+const COOLDOWN_MS = 2500;
+
 export default function TaskCard({
   hintUsed,
   onBackToBriefing,
@@ -23,12 +27,16 @@ export default function TaskCard({
   const [feedback, setFeedback] = useState("");
   const [confirmHint, setConfirmHint] = useState(false);
   const [captured, setCaptured] = useState(false);
+  const [wrongAttempts, setWrongAttempts] = useState(0);
+  const [cooldownUntil, setCooldownUntil] = useState(0);
 
   useEffect(() => {
     setAnswers(emptyAnswers);
     setFeedback("");
     setConfirmHint(false);
     setCaptured(false);
+    setWrongAttempts(0);
+    setCooldownUntil(0);
   }, [task.id]);
 
   const answerValue =
@@ -39,7 +47,21 @@ export default function TaskCard({
   const submitAnswer = (event) => {
     event.preventDefault();
 
+    if (captured || Date.now() < cooldownUntil) {
+      return;
+    }
+
     if (!isCorrectAnswer(task, answerValue)) {
+      const nextWrongAttempts = wrongAttempts + 1;
+      setWrongAttempts(nextWrongAttempts);
+
+      if (nextWrongAttempts % WRONG_ATTEMPTS_BEFORE_COOLDOWN === 0) {
+        setCooldownUntil(Date.now() + COOLDOWN_MS);
+        setFeedback("Veri doğrulanamadı. Kısa bir gözlem molasından sonra tekrar dene.");
+        window.setTimeout(() => setCooldownUntil(0), COOLDOWN_MS);
+        return;
+      }
+
       setFeedback("Veri doğrulanamadı. İpucunu tekrar incele.");
       return;
     }
@@ -105,6 +127,7 @@ export default function TaskCard({
             <input
               autoComplete="off"
               id={`email-${task.id}`}
+              maxLength={MAX_ANSWER_LENGTH}
               onChange={(event) =>
                 setAnswers((current) => ({
                   ...current,
@@ -118,6 +141,7 @@ export default function TaskCard({
             <input
               autoComplete="off"
               id={`key-${task.id}`}
+              maxLength={MAX_ANSWER_LENGTH}
               onChange={(event) =>
                 setAnswers((current) => ({
                   ...current,
@@ -136,6 +160,7 @@ export default function TaskCard({
             <input
               autoComplete="off"
               id={`answer-${task.id}`}
+              maxLength={MAX_ANSWER_LENGTH}
               onChange={(event) =>
                 setAnswers((current) => ({
                   ...current,
@@ -147,7 +172,11 @@ export default function TaskCard({
             />
           </>
         )}
-        <button className="primary-button" disabled={captured} type="submit">
+        <button
+          className="primary-button"
+          disabled={captured || Date.now() < cooldownUntil}
+          type="submit"
+        >
           {task.type === "identity" ? "KİMLİĞİ DOĞRULA" : "VERİYİ DOĞRULA"}
         </button>
       </form>

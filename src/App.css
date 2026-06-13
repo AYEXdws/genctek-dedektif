@@ -1296,13 +1296,12 @@ input:focus {
 
 .digital-certificate {
   background:
-    linear-gradient(90deg, rgba(200, 23, 45, 0.08) 0 1px, transparent 1px),
-    linear-gradient(180deg, rgba(200, 23, 45, 0.06) 0 1px, transparent 1px),
-    radial-gradient(circle at 16% 10%, rgba(200, 23, 45, 0.11), transparent 30%),
-    radial-gradient(circle at 86% 86%, rgba(40, 40, 40, 0.08), transparent 34%),
-    linear-gradient(145deg, #fffdfb, #f4eeee 56%, #ffffff);
-  background-size: 34px 34px, 34px 34px, auto, auto, auto;
-  border: 1px solid rgba(91, 18, 28, 0.2);
+    linear-gradient(90deg, rgba(200, 23, 45, 0.045) 0 1px, transparent 1px),
+    linear-gradient(180deg, rgba(200, 23, 45, 0.04) 0 1px, transparent 1px),
+    radial-gradient(circle at 18% 8%, rgba(200, 23, 45, 0.1), transparent 28%),
+    linear-gradient(145deg, #fffdfb, #fff7f7 54%, #ffffff);
+  background-size: 34px 34px, 34px 34px, auto, auto;
+  border: 1px solid rgba(91, 18, 28, 0.24);
   border-radius: 4px;
   box-shadow: 0 26px 80px rgba(0, 0, 0, 0.32);
   color: #23191b;
@@ -1333,7 +1332,7 @@ input:focus {
     radial-gradient(circle at 74% 64%, rgba(150, 20, 32, 0.055), transparent 18%);
   inset: 0;
   mix-blend-mode: multiply;
-  opacity: 0.7;
+  opacity: 0.42;
   pointer-events: none;
   position: absolute;
 }
@@ -1363,8 +1362,8 @@ input:focus {
 }
 
 .certificate-side-mark {
-  color: rgba(200, 23, 45, 0.1);
-  display: none;
+  color: rgba(200, 23, 45, 0.075);
+  display: block;
   font-size: 0.72rem;
   font-weight: 950;
   left: 18px;
@@ -1388,7 +1387,7 @@ input:focus {
 }
 
 .certificate-header {
-  border-bottom: 2px solid rgba(200, 23, 45, 0.75);
+  border-bottom: 2px solid rgba(200, 23, 45, 0.72);
   display: grid;
   gap: 9px;
   padding-bottom: 8px;
@@ -1481,20 +1480,25 @@ input:focus {
 .certificate-recipient strong {
   color: #141111;
   display: block;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 2.14rem;
-  font-weight: 700;
+  border-bottom: 2px solid rgba(200, 23, 45, 0.28);
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  font-size: 1.92rem;
+  font-weight: 950;
+  letter-spacing: 0;
   line-height: 1.05;
   overflow-wrap: anywhere;
+  padding-bottom: 4px;
   text-transform: uppercase;
 }
 
 .certificate-recipient strong.long-name {
-  font-size: 1.56rem;
+  font-size: 1.36rem;
 }
 
 .certificate-recipient strong.extra-long-name {
-  font-size: 1.16rem;
+  font-size: 1rem;
   line-height: 1.12;
 }
 
@@ -1531,8 +1535,9 @@ input:focus {
 }
 
 .certificate-mission-strip {
-  background: rgba(200, 23, 45, 0.065);
-  border: 1px solid rgba(200, 23, 45, 0.18);
+  background: rgba(255, 255, 255, 0.42);
+  border: 1px solid rgba(200, 23, 45, 0.2);
+  border-left: 4px solid rgba(200, 23, 45, 0.9);
   border-radius: 2px;
   display: grid;
   gap: 7px;
@@ -1547,13 +1552,16 @@ input:focus {
 
 .mission-ribbon-item {
   align-items: center;
-  background: rgba(255, 255, 255, 0.76);
-  border: 1px solid rgba(91, 18, 28, 0.14);
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.72)),
+    rgba(255, 255, 255, 0.82);
+  border: 0;
+  border-bottom: 1px solid rgba(91, 18, 28, 0.12);
   display: grid;
   gap: 2px 7px;
   grid-template-columns: 28px 1fr;
-  min-height: 46px;
-  padding: 7px;
+  min-height: 42px;
+  padding: 6px 7px;
 }
 
 .mission-ribbon-item b {
@@ -1595,7 +1603,8 @@ input:focus {
 .certificate-stamp {
   align-items: center;
   aspect-ratio: 1;
-  border: 2px solid rgba(200, 23, 45, 0.8);
+  background: rgba(255, 255, 255, 0.38);
+  border: 2px solid rgba(200, 23, 45, 0.78);
   border-radius: 50%;
   color: #c8172d;
   display: grid;
@@ -1701,6 +1710,113 @@ input:focus {
   .score-card,
   .briefing-card {
     padding: 22px;
+  }
+}
+
+@media (min-width: 900px) {
+  .intro-screen,
+  .boot-screen,
+  .score-intro,
+  .mission-view,
+  .final-screen,
+  .badge-view {
+    max-width: 1120px;
+  }
+
+  .progress-panel {
+    margin-top: 78px;
+    padding: 14px;
+  }
+
+  .task-nav {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .task-nav button {
+    flex: 0 0 auto;
+    min-width: 148px;
+  }
+
+  .progress-copy {
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+  }
+
+  .briefing-card {
+    align-items: center;
+    column-gap: 28px;
+    grid-template-columns: minmax(340px, 0.85fr) minmax(0, 1fr);
+    padding: 30px;
+  }
+
+  .briefing-visual {
+    align-self: stretch;
+    grid-row: 1 / span 7;
+    min-height: 520px;
+  }
+
+  .briefing-stamp {
+    justify-self: start;
+    width: 92px;
+  }
+
+  .briefing-copy p {
+    font-size: 0.98rem;
+  }
+
+  .task-shell {
+    align-items: start;
+    gap: 24px;
+    grid-template-columns: minmax(300px, 0.82fr) minmax(0, 1.18fr);
+    padding: 28px;
+  }
+
+  .task-heading {
+    background:
+      linear-gradient(155deg, rgba(255, 255, 255, 0.07), rgba(200, 23, 45, 0.08)),
+      rgba(255, 255, 255, 0.035);
+    border: 1px solid rgba(255, 255, 255, 0.11);
+    border-radius: 14px;
+    padding: 18px;
+  }
+
+  .task-heading h2 {
+    font-size: 2.3rem;
+  }
+
+  .task-heading span {
+    font-size: 1rem;
+  }
+
+  .operation-panel {
+    gap: 16px;
+    min-height: 100%;
+    padding: 18px;
+  }
+
+  .source-code-task {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  }
+
+  .identity-task {
+    align-items: stretch;
+    grid-template-columns: minmax(360px, 1fr) minmax(250px, 0.72fr);
+  }
+
+  .genctek-id-card {
+    min-height: 410px;
+  }
+
+  .physical-task {
+    grid-template-columns: 132px 1fr;
+  }
+
+  .physical-object {
+    min-height: 132px;
+  }
+
+  .certificate-actions {
+    max-width: 420px;
   }
 }
 

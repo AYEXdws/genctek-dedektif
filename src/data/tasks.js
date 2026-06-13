@@ -21,10 +21,10 @@ export const tasks = [
     briefSubtitle: "ANTİK ŞİFRE",
     briefText: [
       "Güvenli iletişim, bilginin en büyük kalkanıdır Dedektif.",
-      "İlk mühür parçası açık şekilde gönderilmedi. Harflerin yeri değiştirilerek korunmuş bir mesajın içine saklandı.",
-      "Bu eski yöntem, harflerin alfabedeki konumunu değiştirerek mesajı korur.",
-      "Bir harf, gerçek yerinden birkaç adım öteye taşınır. Mesajı okuyabilmek için harflerin hangi yöne kaydığını anlaman gerekir.",
-      "Şifre bazen karmaşık görünür ama doğru alfabe doğru kapıyı açar."
+      "Elimize ilk bakışta anlamsız görünen kısa bir veri ulaştı. Bu veri açık gönderilmedi; harflerin düzeni değiştirilerek korunmuş bir mesajın içine saklandı.",
+      "İlk mühür parçasına ulaşmak için metne bir kelime gibi değil, iz bırakan bir alfabe düzeni gibi bakman gerekecek.",
+      "Yanındaki çözümleme panelinde verilen alfabeyi incele. Harflerin nerede durduğunu, nereden gelmiş olabileceğini ve hangi düzenin mesajı okunur hale getirdiğini düşün.",
+      "Bu görev sana şunu gösterir: Bilgi herkesin önünde olabilir, ama doğru anahtar olmadan anlam kazanmaz."
     ],
     lesson:
       "Bilgi herkesin önünde olabilir. Ama doğru anahtar olmadan okunamaz.",
@@ -47,12 +47,11 @@ export const tasks = [
     briefTitle: "GÖREV DOSYASI 02",
     briefSubtitle: "GÖRÜNMEYEN YÜZ",
     briefText: [
-      "Bir web sayfasının görünen yüzü, hikayenin yalnızca başlangıcıdır Dedektif.",
-      "Ekranda gördüğün tasarım, yazı ve butonlar vitrindir.",
-      "Ama her vitrinin arkasında onu ayakta tutan satırlar vardır.",
-      "İkinci mühür parçası bu uygulamanın içinde değil; bizim sitemizin görünmeyen katmanında saklı.",
-      "Bu görevde farklı bir sayfaya gidecek, kaynak kodunu inceleyecek ve kodların arasına bırakılmış gizli notu bulacaksın.",
-      "Bir dedektif sadece görüneni okumaz. Görüneni oluşturan yapıya da bakar."
+      "Bir web sayfasının asıl hikayesi, bazen ekranda değil onu oluşturan satırlarda saklıdır Dedektif.",
+      "Karşına çıkacak sayfa ilk bakışta sıradan bir tanıtım yüzü gibi görünecek. Fakat görünen katman, bu görevin yalnızca başlangıcı.",
+      "İkinci mühür parçası tasarımın üstünde değil, sayfayı oluşturan kaynak katmanında bırakılmış bir notun içinde bekliyor.",
+      "Görevin, kaynak kodunu açıp satırların arasındaki veri izini bulmak ve doğrulama alanına taşımak.",
+      "Bu görev sana şunu gösterir: Web dünyasında görünen ekran kadar, ekranı oluşturan yapı da bilgi taşır."
     ],
     lesson:
       "Web dünyasında gördüğün ekranın arkasında HTML, kaynak kodu ve görünmeyen yorum satırları bulunur.",
@@ -76,11 +75,11 @@ export const tasks = [
     briefTitle: "GÖREV DOSYASI 03",
     briefSubtitle: "KİMLİK İZLERİ",
     briefText: [
-      "Bazı kapılar kodla değil, izlerle açılır Dedektif.",
-      "Bir isim, bir tarih, sevilen bir gezegen, kullanılan bir görev kartı... Tek başına masum görünen bilgiler, yan yana geldiğinde bir görev şifresine dönüşebilir.",
-      "Üçüncü mühür parçası, GençTek siber güvenlik biriminden bir kişiye ait simüle edilmiş bir görev kimliğinin içinde saklı.",
-      "Bu görevde sana doğrudan bir görev şifresi verilmeyecek. Bilgileri okuyacak, gereksiz olanları eleyecek ve anlamlı izleri birleştirerek görev oturumunu doğrulayacaksın.",
-      "Her bilgi ipucu değildir. Bazıları sadece dikkatini dağıtmak için oradadır."
+      "Bazı kapılar güçlü yazılımlarla değil, insanların geride bıraktığı küçük izlerle aralanır Dedektif.",
+      "Önünde GençTek siber güvenlik biriminden bir kişiye ait simüle edilmiş görev kimliği bulunuyor. Bir isim, bir tarih, bir alan adı ve kişisel notlar tek başına masum görünebilir.",
+      "Fakat bu bilgiler yan yana geldiğinde bir görev oturumunu doğrulayacak şifreye dönüşebilir. Burada önemli olan her bilgiyi kullanmak değil, işe yarayan izleri ayırt etmek.",
+      "Görevin, kimlik kartını ve kişisel notları inceleyerek doğru e-posta bilgisini ve görev şifresini oluşturmak.",
+      "Bu görev sana şunu gösterir: Masum görünen kişisel bilgiler birleştiğinde gerçek hayatta güvenlik riski oluşturabilir."
     ],
     lesson:
       "Masum görünen kişisel bilgiler birleştiğinde güvenlik riski oluşturabilir. Gerçek hayatta isim, doğum günü veya sevilen şeylerden oluşan şifreler güvenli değildir.",
@@ -123,12 +122,11 @@ export const tasks = [
     briefTitle: "GÖREV DOSYASI 04",
     briefSubtitle: "DİJİTALİN CİSMİ",
     briefText: [
-      "Her veri ekranda kalmaz Dedektif.",
-      "Bazı bilgiler, doğru teknolojiyle fiziksel dünyaya taşınır.",
-      "Son mühür parçası artık yalnızca bu cihazda değil. Dijital ortamdan çıkarıldı ve gerçek bir objenin içine saklandı.",
-      "Bu görevde ekrandan uzaklaşman gerekecek.",
-      "3D üretim masasına git. Amasya temalı objeyi eline al. Yüzeyini, kenarlarını ve detaylarını incele.",
-      "Bazen bir sır, ışığın doğru düştüğü yerde görünür."
+      "Her veri ekranda kalmaz Dedektif; bazı bilgiler doğru teknolojiyle fiziksel dünyada iz bırakır.",
+      "Son mühür parçası artık yalnızca bu cihazın içinde değil. Dijital ortamdan çıkarıldı ve stanttaki gerçek bir objenin detaylarına taşındı.",
+      "Bu görevde ekrana bakmayı bırakıp üretim masasındaki Amasya temalı 3D objeyi incelemen gerekecek.",
+      "Yüzeyi, kenarları, açıları ve ışığın objeyle kurduğu ilişki sana son kodun nerede saklandığını düşündürebilir.",
+      "Bu görev sana şunu gösterir: Dijital tasarım, üretim teknolojileriyle fiziksel dünyada okunabilir bir veriye dönüşebilir."
     ],
     lesson: "Dijital veri, üretim teknolojileriyle fiziksel dünyada iz bırakabilir.",
     objective: "3D üretim masasındaki Amasya temalı objeyi incele ve son kodu gir.",

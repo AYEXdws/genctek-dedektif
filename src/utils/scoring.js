@@ -4,8 +4,16 @@ export function getTaskScore(hintUsed) {
   return SCORE_CONFIG.perTask - (hintUsed ? SCORE_CONFIG.hintPenalty : 0);
 }
 
-export function getTotalScore(taskScores = {}) {
-  return Object.values(taskScores).reduce((total, score) => total + score, 0);
+export function getTotalScore(taskScores = {}, validTaskIds = []) {
+  const ids = validTaskIds.length ? validTaskIds : Object.keys(taskScores);
+
+  return ids.reduce((total, taskId) => {
+    const score = Number(taskScores[taskId]);
+    if (!Number.isFinite(score)) return total;
+
+    const safeScore = Math.max(0, Math.min(score, SCORE_CONFIG.perTask));
+    return total + safeScore;
+  }, 0);
 }
 
 export function getDetectiveRank(score) {

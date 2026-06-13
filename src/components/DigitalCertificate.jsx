@@ -39,7 +39,7 @@ export default function DigitalCertificate({ badge, cardRef }) {
         <div className="certificate-title-block">
           <span>GençTek Kırmızı Mühür Operasyonu</span>
           <h2>{story.certificate.title}</h2>
-          <p>Etkinlik kapsamında düzenlenen dijital görev tamamlama belgesi</p>
+          <p>Etkinlik kapsamında düzenlenen dijital görev belgesi</p>
         </div>
       </header>
 
@@ -75,7 +75,7 @@ export default function DigitalCertificate({ badge, cardRef }) {
             <div className="mission-ribbon-item" key={area}>
               <b>{String(index + 1).padStart(2, "0")}</b>
               <strong>{area}</strong>
-              <small>Alan doğrulandı</small>
+              <small>Mühür parçası tamamlandı</small>
             </div>
           ))}
         </div>

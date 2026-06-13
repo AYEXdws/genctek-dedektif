@@ -35,8 +35,8 @@ export const story = {
   certificate: {
     title: "DİJİTAL DEDEKTİF GÖREV BELGESİ",
     explanation:
-      "Bu belge, adı bulunan katılımcının GençTek Dijital Dedektifler deneyiminde dört güvenlik görevini başarıyla tamamladığını gösterir.",
+      "Bu belge, adı bulunan katılımcının GençTek Dijital Dedektifler deneyiminde dört görev alanını başarıyla tamamladığını gösterir.",
     footer:
-      "Bu belge GençTek Dijital Dedektifler etkinliği kapsamında oluşturulmuş dijital görev belgesidir."
+      "GençTek Dijital Dedektifler etkinliği kapsamında oluşturulmuş dijital görev belgesidir."
   }
 };

@@ -91,17 +91,21 @@
       }
 
       .mark {
-        background:
-          radial-gradient(circle, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.1)),
-          linear-gradient(135deg, var(--red), #5a0712);
+        background: #ffffff;
         border: 1px solid rgba(255, 255, 255, 0.28);
         border-radius: 18px;
         display: grid;
-        font-size: 1.5rem;
-        font-weight: 950;
         height: 56px;
         place-items: center;
-        width: 56px;
+        padding: 7px;
+        width: 96px;
+      }
+
+      .mark img {
+        display: block;
+        max-height: 100%;
+        max-width: 100%;
+        object-fit: contain;
       }
 
       .brand span {
@@ -218,7 +222,9 @@
   <body>
     <main>
       <div class="brand" aria-label="GençTek Dijital Dedektifler">
-        <div class="mark">GT</div>
+        <div class="mark">
+          <img src="/genctek-logo-wide.png" alt="" />
+        </div>
         <div>
           <span>GençTek Dijital Dedektifler</span>
           <strong>Kırmızı Mühür Operasyonu</strong>
