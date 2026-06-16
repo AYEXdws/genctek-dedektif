@@ -1,4 +1,5 @@
 import React from "react";
+import AppHeader from "./AppHeader";
 import BadgeCreator from "./BadgeCreator";
 
 export default function MasterDetectivePage({
@@ -9,9 +10,7 @@ export default function MasterDetectivePage({
 }) {
   return (
     <main className="app-shell chain-shell">
-      <button className="reset-button" onClick={onReset} type="button">
-        Baştan Başla
-      </button>
+      <AppHeader onReset={onReset} />
 
       <section className="chain-page master-page">
         <div className="chain-card final-arrival">

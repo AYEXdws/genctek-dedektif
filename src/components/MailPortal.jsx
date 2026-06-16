@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
+import AppHeader from "./AppHeader";
 import { inboxMessages, mailboxMessage } from "../data/chain";
-import { digitalDetectivesLogo, genctekLogoWide } from "../assets/logos";
 import { isCorrectMailCredentials } from "../utils/normalize";
 
 const verificationLines = [
@@ -64,17 +64,10 @@ export default function MailPortal({
 
   return (
     <main className="app-shell mail-shell">
-      <button className="reset-button" onClick={onReset} type="button">
-        Baştan Başla
-      </button>
+      <AppHeader onReset={onReset} />
 
       {!authenticated && !isVerifying && (
         <section className="mail-login-page">
-          <div className="mail-login-brand">
-            <img alt="GençTek logosu" src={genctekLogoWide} />
-            <img alt="GençTek Dijital Dedektifler logosu" src={digitalDetectivesLogo} />
-          </div>
-
           <div className="mail-login-copy">
             <span>GENÇTEK İÇ İLETİŞİM</span>
             <h1>Görev Postası</h1>

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
+import AppHeader from "./components/AppHeader";
 import CryptoGate from "./components/CryptoGate";
 import MailPortal from "./components/MailPortal";
 import MasterDetectivePage from "./components/MasterDetectivePage";
-import { digitalDetectivesLogo, genctekLogoWide } from "./assets/logos";
 import {
   CHAIN_STATE_VERSION,
   CHAIN_STORAGE_KEY,
@@ -135,18 +135,11 @@ export default function App() {
 
   return (
     <main className="app-shell chain-shell">
-      <button className="reset-button" onClick={resetExperience} type="button">
-        Baştan Başla
-      </button>
+      <AppHeader onReset={resetExperience} />
 
       {state.screen === "intro" && (
         <section className="chain-home intro-only">
           <div className="chain-hero">
-            <div className="brand-lockup">
-              <img alt="GençTek logosu" src={genctekLogoWide} />
-              <img alt="GençTek Dijital Dedektifler logosu" src={digitalDetectivesLogo} />
-            </div>
-
             <div className="hero-copy">
               <span>GENÇTEK DİJİTAL DEDEKTİFLER</span>
               <h1>KIRMIZI MÜHÜR OPERASYONU</h1>
