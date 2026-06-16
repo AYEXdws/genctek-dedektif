@@ -1,11 +1,11 @@
 import React, { useRef, useState } from "react";
 import { toPng } from "html-to-image";
-import DigitalCertificate from "./DigitalCertificate";
+import MasterCertificate from "./MasterCertificate";
 
 const CERTIFICATE_WIDTH = 360;
 const CERTIFICATE_HEIGHT = 640;
 const CERTIFICATE_PIXEL_RATIO = 3;
-const MAX_NAME_LENGTH = 48;
+const MAX_NAME_LENGTH = 32;
 
 function dataUrlToBlob(dataUrl) {
   const [header, data] = dataUrl.split(",");
@@ -87,13 +87,18 @@ export default function BadgeCreator({ savedName = "", badge, onCreateBadge }) {
       return;
     }
 
+    if (cleanName.length > MAX_NAME_LENGTH) {
+      setError("Ad soyad en fazla 32 karakter olabilir.");
+      return;
+    }
+
     setError("");
     onCreateBadge(cleanName.replace(/\s+/g, " "));
   };
 
   const getFileName = () => {
-    const safeName = getSafeName(badge.name) || "katilimci";
-    return `genctek-dijital-dedektifler-belgesi-${safeName}.png`;
+    const safeId = getSafeName(badge.id) || "gt-2026";
+    return `genctek-usta-dijital-dedektif-belgesi-${safeId}.png`;
   };
 
   const getCaptureOptions = () => {
@@ -171,8 +176,8 @@ export default function BadgeCreator({ savedName = "", badge, onCreateBadge }) {
       try {
         await navigator.share({
           files: [file],
-          text: "GençTek Dijital Dedektif Görev Belgesi",
-          title: "GençTek Dijital Belge"
+          text: "GençTek Usta Dijital Dedektif Belgesi",
+          title: "GençTek Usta Dedektif Belgesi"
         });
         setDownloadMessage("Belge paylaşım/kaydetme ekranına gönderildi.");
         return;
@@ -212,7 +217,7 @@ export default function BadgeCreator({ savedName = "", badge, onCreateBadge }) {
       return;
     }
 
-    imageWindow.document.title = "GençTek Dijital Dedektifler Belgesi";
+    imageWindow.document.title = "GençTek Usta Dijital Dedektif Belgesi";
     imageWindow.document.body.innerHTML =
       '<main id="certificate-preview-root">Belge hazırlanıyor...</main>';
     imageWindow.document.body.style.margin = "0";
@@ -250,7 +255,7 @@ export default function BadgeCreator({ savedName = "", badge, onCreateBadge }) {
     }
 
     const img = imageWindow.document.createElement("img");
-    img.alt = "GençTek Dijital Dedektif Görev Belgesi";
+    img.alt = "GençTek Usta Dijital Dedektif Belgesi";
     img.src = image.dataUrl;
 
     const previewRoot = imageWindow.document.getElementById("certificate-preview-root");
@@ -265,7 +270,7 @@ export default function BadgeCreator({ savedName = "", badge, onCreateBadge }) {
     <div className="badge-creator">
       {!badge && (
         <form className="identity-form" onSubmit={handleCreate}>
-          <h2>Dijital Görev Belgemi Oluştur</h2>
+          <h2>Usta Dedektif Belgemi Oluştur</h2>
           <label htmlFor="detective-name">Ad Soyad:</label>
           <input
             id="detective-name"
@@ -276,14 +281,14 @@ export default function BadgeCreator({ savedName = "", badge, onCreateBadge }) {
           />
           {error && <p className="form-error">{error}</p>}
           <button className="primary-button" type="submit">
-            DİJİTAL BELGEYİ OLUŞTUR
+            USTA DEDEKTİF BELGEMİ OLUŞTUR
           </button>
         </form>
       )}
 
       {badge && (
         <>
-          <DigitalCertificate badge={badge} cardRef={cardRef} />
+          <MasterCertificate badge={badge} cardRef={cardRef} />
           {isPreparing && <p className="download-status">Belge hazırlanıyor...</p>}
           {downloadMessage && <p className="download-status">{downloadMessage}</p>}
           {error && <p className="form-error">{error}</p>}

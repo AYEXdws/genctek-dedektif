@@ -15,6 +15,13 @@ export function normalizeInput(value = "") {
     .replace(/\s+/g, "");
 }
 
+export function normalizeEmail(value = "") {
+  return String(value)
+    .trim()
+    .toLocaleLowerCase("tr-TR")
+    .replace(/[çğıöşü]/g, (char) => turkishMap[char] || char);
+}
+
 export function normalizeLoose(value = "") {
   return normalizeInput(value).replace(/[{}_.-]/g, "");
 }
@@ -55,4 +62,15 @@ export function isCorrectAnswer(task, value) {
   if (task.type === "identity") return isCorrectIdentity(value);
   if (task.type === "physical") return isCorrectPhysical(task, value);
   return false;
+}
+
+export function isCorrectGateWord(value) {
+  return normalizeInput(value) === "gorunmeyenyuz";
+}
+
+export function isCorrectMailCredentials({ email = "", key = "" }) {
+  return (
+    normalizeEmail(email) === "ahmet.kurulay@gorev.genctek" &&
+    normalizeInput(key) === "ahmet0406merkur"
+  );
 }

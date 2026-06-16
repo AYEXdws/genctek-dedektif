@@ -1,18 +1,22 @@
-export function createBadgePayload(name, summary = {}) {
+import { certificateDetails } from "../data/chain";
+
+export function createBadgeId() {
+  const existingId = localStorage.getItem("genctek-usta-belge-id");
+  if (existingId) return existingId;
+
+  const id = `GT-2026-${Math.floor(1000 + Math.random() * 9000)}`;
+  localStorage.setItem("genctek-usta-belge-id", id);
+  return id;
+}
+
+export function createBadgePayload(name, badgeId = createBadgeId()) {
   return {
+    id: badgeId,
     name,
-    event: "GençTek Dijital Dedektifler",
-    operation: "Kırmızı Mühür Operasyonu",
-    location: "Amasya",
-    date: "19 Haziran 2026",
-    totalScore: summary.totalScore ?? 0,
-    detectiveRank: summary.detectiveRank ?? "Aday Dedektif",
-    hintCount: summary.hintCount ?? 0,
-    completedAreas: [
-      "Kriptografi",
-      "Kaynak Kod Analizi",
-      "Kimlik İzleri",
-      "Fiziksel Veri / Üretim ve Tasarım"
-    ]
+    event: certificateDetails.event,
+    operation: certificateDetails.operation,
+    location: certificateDetails.location,
+    date: certificateDetails.date,
+    completedAreas: certificateDetails.completedTracks
   };
 }

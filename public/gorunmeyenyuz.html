@@ -4,22 +4,25 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
-    <title>GençTek Görünen Yüz</title>
+    <title>GençTek Görünmeyen Yüz</title>
     <!--
     DEDEKTİF NOTU:
-    Görünen yüz tamamlandı.
-    Kırmızı Mühür Parçası:
-    GençTek{Gorunmeyen_Yuz}
+    Görünen yüz seni buraya kadar getirdi.
+    Şimdi satır aralarından çıkıp gerçek dünyaya bak.
+    Aradığın iz ekranda değil.
+    Boynumda asılı olan kırmızı ip, üçüncü kapının anahtarını taşır.
+    Kırmızı ipli yaka kartlarını incele.
+    Doğru kartın arkasında görev oturumuna açılan izler saklı.
     -->
     <style>
       :root {
         color-scheme: dark;
-        --red: #c8172d;
-        --red-light: #f05d68;
+        --red: #d1122a;
+        --red-light: #ff5668;
         --deep: #08070d;
-        --panel: rgba(255, 255, 255, 0.075);
-        --white: #fff7f7;
-        --muted: rgba(255, 247, 247, 0.72);
+        --panel: rgba(255, 255, 255, 0.08);
+        --white: #fff8f8;
+        --muted: rgba(255, 248, 248, 0.74);
       }
 
       * {
@@ -29,15 +32,14 @@
       body {
         align-items: center;
         background:
-          radial-gradient(circle at 20% 20%, rgba(200, 23, 45, 0.32), transparent 34%),
-          radial-gradient(circle at 80% 0%, rgba(255, 255, 255, 0.12), transparent 26%),
-          linear-gradient(135deg, #2a0610 0%, #0c0912 54%, #050914 100%);
+          radial-gradient(circle at 18% 14%, rgba(209, 18, 42, 0.36), transparent 34%),
+          radial-gradient(circle at 80% 2%, rgba(255, 255, 255, 0.12), transparent 25%),
+          linear-gradient(135deg, #2a0610 0%, #0c0912 52%, #050914 100%);
         color: var(--white);
         display: grid;
         font-family:
           Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
           "Segoe UI", sans-serif;
-        justify-items: center;
         margin: 0;
         min-height: 100vh;
         overflow-x: hidden;
@@ -46,12 +48,12 @@
 
       body::before {
         background-image:
-          linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+          linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
         background-size: 34px 34px;
         content: "";
         inset: 0;
-        mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.92), transparent);
+        mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.95), transparent);
         pointer-events: none;
         position: fixed;
       }
@@ -59,17 +61,17 @@
       main {
         background:
           linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.035)),
-          rgba(8, 7, 13, 0.78);
+          rgba(8, 7, 13, 0.8);
         border: 1px solid rgba(255, 255, 255, 0.2);
         border-radius: 28px;
         box-shadow: 0 28px 80px rgba(0, 0, 0, 0.44);
         display: grid;
         gap: 26px;
+        justify-self: center;
         max-width: 860px;
         overflow: hidden;
         padding: clamp(22px, 5vw, 42px);
         position: relative;
-        justify-self: center;
         width: min(100%, 860px);
       }
 
@@ -92,13 +94,12 @@
 
       .mark {
         background: #ffffff;
-        border: 1px solid rgba(255, 255, 255, 0.28);
         border-radius: 18px;
         display: grid;
-        height: 56px;
+        min-height: 58px;
+        padding: 8px;
         place-items: center;
-        padding: 7px;
-        width: 96px;
+        width: 106px;
       }
 
       .mark img {
@@ -119,34 +120,34 @@
 
       .brand strong {
         display: block;
-        font-size: 1.2rem;
+        font-size: clamp(1rem, 2.8vw, 1.25rem);
       }
 
       .hero {
         display: grid;
-        gap: 14px;
+        gap: 16px;
         max-width: 720px;
         position: relative;
         z-index: 1;
       }
 
       h1 {
-        font-size: clamp(2.4rem, 10vw, 5.5rem);
+        font-size: clamp(2.4rem, 9vw, 5.2rem);
         line-height: 0.92;
         margin: 0;
         text-transform: uppercase;
       }
 
       h2 {
-        font-size: clamp(1.25rem, 4vw, 2rem);
+        font-size: clamp(1.2rem, 3.4vw, 1.9rem);
         line-height: 1.15;
         margin: 0;
       }
 
       p {
         color: var(--muted);
-        font-size: clamp(1rem, 2.5vw, 1.15rem);
-        line-height: 1.6;
+        font-size: clamp(1rem, 2.4vw, 1.12rem);
+        line-height: 1.62;
         margin: 0;
       }
 
@@ -162,7 +163,7 @@
         background: var(--panel);
         border: 1px solid rgba(255, 255, 255, 0.18);
         border-radius: 18px;
-        min-height: 130px;
+        min-height: 120px;
         padding: 18px;
       }
 
@@ -178,7 +179,7 @@
 
       .signal {
         align-items: center;
-        background: rgba(200, 23, 45, 0.16);
+        background: rgba(209, 18, 42, 0.17);
         border: 1px solid rgba(255, 255, 255, 0.18);
         border-radius: 999px;
         color: #ffe8eb;
@@ -213,6 +214,11 @@
           padding: 22px;
         }
 
+        .brand {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
         .info-grid {
           grid-template-columns: 1fr;
         }
@@ -232,32 +238,26 @@
       </div>
 
       <section class="hero">
-        <h1>GENÇTEK GÖRÜNEN YÜZ</h1>
-        <h2>
-          Bir web sayfasında gördüklerin, hikayenin yalnızca görünen kısmıdır.
-        </h2>
+        <h1>GENÇTEK GÖRÜNMEYEN YÜZ</h1>
+        <h2>Görünen şey, her zaman aradığın şey değildir.</h2>
         <p>
-          Bu sayfa, GençTek Dijital Dedektifler: Kırmızı Mühür Operasyonu için
-          hazırlanmış örnek bir web katmanıdır.
-        </p>
-        <p>
-          Gerçek iz her zaman ekranda görünmez. Bazen cevap, sayfanın
-          tasarımında değil; onu oluşturan satırların arasında saklıdır.
+          Bir web sayfasının ekranda gördüğün yüzü yalnızca başlangıçtır.
+          Gerçek iz bazen tasarımda değil, onu oluşturan satırların arasında saklanır.
         </p>
       </section>
 
       <section class="info-grid" aria-label="Görev bilgileri">
         <div class="info-card">
           <span>Görev</span>
-          <p>Sayfanın kaynak kodunu incele ve gizli mühür parçasını bul.</p>
+          <p>Bu sayfanın kaynak kodunu incele.</p>
         </div>
         <div class="info-card">
-          <span>Not</span>
-          <p>Bu sayfada gördüğün metinler sadece görünen yüzdür.</p>
+          <span>İz</span>
+          <p>Kaynak kodda bir sonraki izin nerede olduğunu bul.</p>
         </div>
       </section>
 
-      <div class="signal">Görünen katman aktif</div>
+      <div class="signal">Görünmeyen yüz aktif</div>
     </main>
   </body>
 </html>

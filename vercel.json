@@ -1,0 +1,16 @@
+{
+  "rewrites": [
+    {
+      "source": "/mail",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/gorev-postasi",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/usta-dedektif",
+      "destination": "/index.html"
+    }
+  ]
+}
