@@ -11,27 +11,212 @@ export const FINAL_ROUTE = "/usta-dedektif";
 export const PRODUCTION_FINAL_URL =
   "https://genctek-dedektif.vercel.app/usta-dedektif";
 
-export const hiddenPagePath = "/gorunmeyenyuz.html";
-
 export const identityClues = {
   email: "ahmet.kurulay@gorev.genctek",
   key: "ahmet0406merkur"
 };
 
 export const mailboxMessage = {
+  id: "muhur-final-aktarim",
   from: "kirmizi.muhur@gorev.genctek",
   subject: "Son Veri Aktarıldı",
   status: "Okunmamış",
   body: [
-    "Bütün dijital izleri sildim.",
-    "Ekranda aradığın hiçbir şey kalmadı.",
-    "Son veri artık burada değil.",
-    "Her şey üç boyutluya dönüştü.",
-    "Son parçayı bulmak istiyorsan üretim masasına git.",
-    "Dijital olanın cisme dönüştüğü yerde ara."
+    "Ekrandaki izleri susturdum.",
+    "Kırmızı Mühür'ün son parçası artık satırların arasında değil.",
+    "Veri, kendi gölgesinden çıkıp üç boyutlu bir cisme dönüştü.",
+    "Son izi arıyorsan üretim masasındaki Amasya parçasına yaklaş.",
+    "Dijital olanın cisme dönüştüğü yerde, ışığın dokunduğu ayrıntıyı ara."
   ],
   note: "Görev oturumu kapandı. Son iz artık fiziksel dünyada."
 };
+
+export const inboxMessages = [
+  {
+    id: "vardiya-notu",
+    from: "operasyon.masasi@gorev.genctek",
+    subject: "Stand Açılış Kontrol Listesi",
+    time: "08:42",
+    tag: "Operasyon",
+    status: "Okundu",
+    preview: "Kırmızı ipli kartlar, üretim masası ve görev ekranları kontrol edildi.",
+    body: [
+      "Sabah kontrolü tamamlandı.",
+      "Kart askıları, yönlendirme panosu ve üretim masası hazır görünüyor.",
+      "Bu mesajda aktif mühür izi yok."
+    ],
+    note: "Operasyon notu."
+  },
+  {
+    id: "logo-paketi",
+    from: "tasarim@gorev.genctek",
+    subject: "GençTek Görsel Kimlik Dosyaları",
+    time: "09:03",
+    tag: "Tasarım",
+    status: "Okundu",
+    preview: "Kırmızı-beyaz kullanım ve logo yerleşimleri güncellendi.",
+    body: [
+      "Logo alanları onaylandı.",
+      "Dijital Dedektifler işareti belge ve görev ekranlarında kullanılabilir."
+    ],
+    note: "Görsel kimlik kaydı."
+  },
+  {
+    id: "muhur-arsiv",
+    from: "arsiv@gorev.genctek",
+    subject: "Kırmızı Mühür Arşiv Kaydı",
+    time: "09:27",
+    tag: "Arşiv",
+    status: "Okundu",
+    preview: "Mühür kayıtları dört iz halinde ayrılmış görünüyor.",
+    body: [
+      "Arşiv bütünlüğü kaydı incelendi.",
+      "İlk iki iz dijital yüzeylerde, diğer izler fiziksel alanla bağlantılı olabilir."
+    ],
+    note: "Arşiv kaydı."
+  },
+  {
+    id: "kart-dizilimi",
+    from: "stand.ekibi@gorev.genctek",
+    subject: "Yaka Kartı Dizilimi",
+    time: "09:58",
+    tag: "Stand",
+    status: "Okundu",
+    preview: "Kırmızı ipli görev kartları standa yerleştirildi.",
+    body: [
+      "Görev kartları aynı panoda duracak.",
+      "Doğru kartın arka yüzü, iç iletişim paneli için gerekli izleri taşır."
+    ],
+    note: "Kart düzeni notu."
+  },
+  {
+    id: "ziyaretci-akisi",
+    from: "koordinasyon@gorev.genctek",
+    subject: "Ziyaretçi Akışı",
+    time: "10:14",
+    tag: "Koordinasyon",
+    status: "Okundu",
+    preview: "Katılımcılar sırayla dijitalden fiziksel alana yönlendirilecek.",
+    body: [
+      "Akış kısa tutulmalı.",
+      "Katılımcı her ekranda yalnızca o anki izi görmeli."
+    ],
+    note: "Deneyim notu."
+  },
+  {
+    id: "eski-kayit",
+    from: "sistem@gorev.genctek",
+    subject: "Eski Oturum Kaydı",
+    time: "10:31",
+    tag: "Sistem",
+    status: "Okundu",
+    preview: "Önceki test oturumu kapatıldı.",
+    body: [
+      "Test oturumu temizlendi.",
+      "Bu kayıt yalnızca sistem günlüğüdür."
+    ],
+    note: "Sistem kaydı."
+  },
+  mailboxMessage,
+  {
+    id: "uretim-masasi",
+    from: "uretim@gorev.genctek",
+    subject: "3D Baskı Masası Hazırlığı",
+    time: "11:08",
+    tag: "Üretim",
+    status: "Okundu",
+    preview: "Amasya temalı parçalar kontrol edildi.",
+    body: [
+      "Üretim masası hazır.",
+      "Bazı detaylar yalnızca doğru açıdan bakıldığında seçilebilir."
+    ],
+    note: "Üretim kaydı."
+  },
+  {
+    id: "gorev-notlari",
+    from: "dedektif.notlari@gorev.genctek",
+    subject: "Dedektif Notları",
+    time: "11:26",
+    tag: "Not",
+    status: "Okundu",
+    preview: "İzler her zaman en parlak yerde durmaz.",
+    body: [
+      "Hızlı bakan göz, sessiz kalan izi kaçırabilir.",
+      "Bu mesaj bir yön değil, yalnızca hatırlatmadır."
+    ],
+    note: "Dedektif notu."
+  },
+  {
+    id: "qr-test",
+    from: "test@gorev.genctek",
+    subject: "QR Okuma Testi",
+    time: "11:47",
+    tag: "Test",
+    status: "Okundu",
+    preview: "Final yönlendirmesi fiziksel nesne üzerinden denenmelidir.",
+    body: [
+      "QR testleri tamamlandı.",
+      "Final adresi uygulama içinde açıkça gösterilmeyecek."
+    ],
+    note: "Test kaydı."
+  },
+  {
+    id: "guvenlik-dili",
+    from: "egitim@gorev.genctek",
+    subject: "Dil ve Anlatım Notu",
+    time: "12:05",
+    tag: "Eğitim",
+    status: "Okundu",
+    preview: "Deneyim dili güvenli, merak uyandıran ve dedektifvari kalmalı.",
+    body: [
+      "Katılımcı suçlayıcı ya da korkutucu bir dille karşılaşmamalı.",
+      "Merak, doğru yönlendirme kadar değerlidir."
+    ],
+    note: "Eğitim notu."
+  },
+  {
+    id: "saha-notu",
+    from: "amasya.saha@gorev.genctek",
+    subject: "Amasya Saha Notu",
+    time: "12:22",
+    tag: "Saha",
+    status: "Okundu",
+    preview: "Stand çevresindeki fiziksel işaretler kontrol edildi.",
+    body: [
+      "Fiziksel işaretler masaların üzerinde belirgin ama doğrudan açıklayıcı değil.",
+      "Katılımcı son izi ararken çevreyi incelemeli."
+    ],
+    note: "Saha kaydı."
+  },
+  {
+    id: "muhur-golge",
+    from: "muhur.kaydi@gorev.genctek",
+    subject: "Gölge Katmanı",
+    time: "12:38",
+    tag: "Arşiv",
+    status: "Okundu",
+    preview: "Gölge katmanı incelendi; aktif iz bulunamadı.",
+    body: [
+      "Gölge katmanı eski bir kayıt taşıyor.",
+      "Aktif son iz bu mesajda değildir."
+    ],
+    note: "Arşiv notu."
+  },
+  {
+    id: "kapanis-hazirligi",
+    from: "protokol@gorev.genctek",
+    subject: "Belge Hazırlığı",
+    time: "13:10",
+    tag: "Protokol",
+    status: "Okundu",
+    preview: "Usta Dedektif belgesi final QR sonrası oluşturulacak.",
+    body: [
+      "Belge yalnızca final sayfasında oluşturulmalıdır.",
+      "Finale ulaşım fiziksel iz üzerinden gerçekleşir."
+    ],
+    note: "Protokol kaydı."
+  }
+];
 
 export const certificateDetails = {
   title: "USTA DİJİTAL DEDEKTİF BELGESİ",

@@ -151,12 +151,12 @@ export default function App() {
               <span>GENÇTEK DİJİTAL DEDEKTİFLER</span>
               <h1>KIRMIZI MÜHÜR OPERASYONU</h1>
               <p>
-                Kırmızı Mühür izler halinde saklandı. Her iz, bir sonraki
-                kapının yolunu gösterecek.
+                Kırmızı Mühür sessiz izlere ayrıldı. Her iz, bir sonrakinin
+                kapısını yalnızca dikkatli bakanlara gösterecek.
               </p>
               <p>
-                Gördüğünle yetinme; satır aralarını oku, doğru kartı bul ve
-                son izi fiziksel dünyada keşfet.
+                Gördüğünle yetinme; harflerin yerini, satırların gölgesini ve
+                fiziksel dünyaya taşınan son işareti takip et.
               </p>
             </div>
 

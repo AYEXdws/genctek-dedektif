@@ -12,8 +12,8 @@ export default function MasterCertificate({ badge, cardRef }) {
   return (
     <article className="master-certificate template-certificate" ref={cardRef}>
       <img
-        alt=""
-        className="template-background-probe"
+        alt="GençTek Usta Dedektif Belgesi şablonu"
+        className="certificate-template-image"
         src="/assets/usta-dedektif-belgesi-template.png"
       />
       <strong className={`template-recipient-name ${nameClass}`}>

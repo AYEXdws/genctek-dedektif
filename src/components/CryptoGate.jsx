@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { hiddenPagePath, GATE_WORD } from "../data/chain";
-import { caesarEncrypt } from "../utils/crypto";
+import { GATE_WORD } from "../data/chain";
+import { caesarEncrypt, turkishAlphabet } from "../utils/crypto";
 import { isCorrectGateWord } from "../utils/normalize";
 
 const encryptedGateWord = caesarEncrypt(GATE_WORD, 3);
@@ -32,12 +32,14 @@ export default function CryptoGate({ onSolved, solved }) {
       <div className="chain-copy">
         <p>Güvenli iletişim, bilginin en büyük kalkanıdır Dedektif.</p>
         <p>
-          Elimize anlamsız harflerden oluşan şifreli bir kelime ulaştı. Bu kelime
-          eski ama etkili bir yöntemle, Sezar Şifrelemesi ile gizlendi.
+          Kırmızı Mühür dosyasından kopan ilk iz, harfleri yer değiştirilmiş
+          sessiz bir kelime olarak önümüze düştü. Kelime anlamsız görünür; ama
+          her harf hâlâ kendi alfabesinin içinde nefes alır.
         </p>
         <p>
-          Harfler alfabede yer değiştirdi. Bu kilidi açtığında bir bayrak değil,
-          ikinci kapının adını bulacaksın.
+          Bu kilidi açtığında bir bayrak değil, sonraki kapının adını bulacaksın.
+          Kapı ekranda belirmez; doğru kelimeyi bulan dedektif, onu adresin
+          sonundaki boşluğa nasıl taşıyacağını da fark eder.
         </p>
       </div>
 
@@ -45,6 +47,12 @@ export default function CryptoGate({ onSolved, solved }) {
         <span>Şifreli kelime</span>
         <strong>{encryptedGateWord}</strong>
         <small>Türk alfabesi düzeni kullanıldı.</small>
+      </div>
+
+      <div className="alphabet-panel" aria-label="Türk alfabesi">
+        {turkishAlphabet.map((letter) => (
+          <span key={letter}>{letter}</span>
+        ))}
       </div>
 
       {!solved && (
@@ -86,21 +94,16 @@ export default function CryptoGate({ onSolved, solved }) {
       {solved && (
         <div className="success-panel">
           <span>İZ DOĞRULANDI</span>
-          <h2>İkinci kapının adı bulundu: {GATE_WORD}</h2>
-          <p>Bulduğun kelimeyi sitenin adresinde kullan.</p>
-          <code>{hiddenPagePath}</code>
+          <h2>İlk kilit açıldı. Kapının adı artık sende.</h2>
           <p>
-            Bu görev bilgisayar üzerinden daha rahat yapılır. Sayfa kaynağını
-            incelemen gerekecek.
+            Bulduğun kelime, bu sitenin görünen yoluna eklenmeyi bekleyen sessiz
+            bir oda adı gibi davranır. Dedektif, bazen yeni kapıyı butonda değil,
+            adres satırının sonunda arar.
           </p>
-          <a
-            className="primary-button link-button"
-            href={hiddenPagePath}
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            GÖRÜNMEYEN YÜZ SAYFASINI AÇ
-          </a>
+          <p className="subtle-clue">
+            Bu iz bilgisayarda daha rahat okunur; çünkü sıradaki yüz, ekranda
+            görünenden fazlasını saklar.
+          </p>
         </div>
       )}
     </section>

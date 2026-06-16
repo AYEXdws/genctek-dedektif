@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { mailboxMessage } from "../data/chain";
+import React, { useEffect, useMemo, useState } from "react";
+import { inboxMessages, mailboxMessage } from "../data/chain";
+import { digitalDetectivesLogo, genctekLogoWide } from "../assets/logos";
 import { isCorrectMailCredentials } from "../utils/normalize";
 
 const verificationLines = [
   "Kimlik izleri doğrulanıyor...",
-  "Görev anahtarı kontrol ediliyor...",
+  "Görev şifresi kontrol ediliyor...",
   "İç iletişim paneli açılıyor..."
 ];
 
@@ -19,6 +20,16 @@ export default function MailPortal({
   const [key, setKey] = useState("");
   const [error, setError] = useState("");
   const [isVerifying, setIsVerifying] = useState(false);
+  const [selectedMessageId, setSelectedMessageId] = useState(
+    mailOpened ? mailboxMessage.id : inboxMessages[0]?.id
+  );
+
+  const selectedMessage = useMemo(
+    () =>
+      inboxMessages.find((message) => message.id === selectedMessageId) ||
+      inboxMessages[0],
+    [selectedMessageId]
+  );
 
   useEffect(() => {
     if (!isVerifying) return undefined;
@@ -43,98 +54,152 @@ export default function MailPortal({
     setIsVerifying(true);
   };
 
+  const selectMessage = (message) => {
+    setSelectedMessageId(message.id);
+
+    if (message.id === mailboxMessage.id) {
+      onMailOpened();
+    }
+  };
+
   return (
-    <main className="app-shell chain-shell">
+    <main className="app-shell mail-shell">
       <button className="reset-button" onClick={onReset} type="button">
         Baştan Başla
       </button>
 
-      <section className="chain-page mail-page">
-        <div className="chain-card mail-brief">
-          <span>GÖREV 3 / Yaka Kartı ve Kimlik İzleri</span>
-          <h1>GENÇTEK İÇ İLETİŞİM PANELİ</h1>
-          <p>Görev oturumunu doğrula.</p>
-          <div className="chain-copy">
-            <p>Bazı kapılar kodla değil, izlerle açılır Dedektif.</p>
-            <p>
-              Bir isim, bir tarih ve gökyüzüne ait bir merak... Tek başına masum
-              görünen bilgiler, yan yana geldiğinde bir görev anahtarına
-              dönüşebilir.
-            </p>
-            <p>Her bilgi iz değildir. Bazıları sadece dikkatini dağıtmak için oradadır.</p>
+      {!authenticated && !isVerifying && (
+        <section className="mail-login-page">
+          <div className="mail-login-brand">
+            <img alt="GençTek logosu" src={genctekLogoWide} />
+            <img alt="GençTek Dijital Dedektifler logosu" src={digitalDetectivesLogo} />
           </div>
-        </div>
 
-        {!authenticated && !isVerifying && (
-          <form className="chain-card mail-login" onSubmit={submitCredentials}>
-            <label htmlFor="mail-email">Görev E-postası:</label>
+          <div className="mail-login-copy">
+            <span>GENÇTEK İÇ İLETİŞİM</span>
+            <h1>Görev Postası</h1>
+            <p>
+              Bazı kapılar kodla değil, izlerle açılır Dedektif. Kırmızı ipli
+              karttan topladığın bilgileri burada dene; doğru izler birleşirse
+              iç posta odası sessizce açılır.
+            </p>
+            <p>
+              Her bilgi anahtar değildir. Bazıları yalnızca seni yavaşlatmak için
+              kartın üzerinde durur.
+            </p>
+          </div>
+
+          <form className="mail-auth-card" onSubmit={submitCredentials}>
+            <div>
+              <span>Oturum Doğrulama</span>
+              <strong>gorev.genctek</strong>
+            </div>
+
+            <label htmlFor="mail-email">E-postası</label>
             <input
               autoComplete="off"
               id="mail-email"
               maxLength={80}
               onChange={(event) => setEmail(event.target.value)}
-              placeholder="gorev@gorev.genctek"
+              placeholder="ad.soyad@gorev.genctek"
               value={email}
             />
 
-            <label htmlFor="mail-key">Görev Anahtarı:</label>
+            <label htmlFor="mail-key">Görev Şifresi</label>
             <input
               autoComplete="off"
               id="mail-key"
               maxLength={80}
               onChange={(event) => setKey(event.target.value)}
-              placeholder="Görev anahtarı"
+              placeholder="Karttan çıkardığın görev şifresi"
+              type="password"
               value={key}
             />
 
             {error && <p className="form-error">{error}</p>}
 
             <button className="primary-button" type="submit">
-              OTURUMU DOĞRULA
+              İÇ POSTAYA GİR
             </button>
           </form>
-        )}
+        </section>
+      )}
 
-        {isVerifying && (
-          <section className="chain-card verification-panel" aria-live="polite">
-            {verificationLines.map((line) => (
-              <p key={line}>{line}</p>
-            ))}
-          </section>
-        )}
+      {isVerifying && (
+        <section className="mail-verification" aria-live="polite">
+          <img alt="" src={digitalDetectivesLogo} />
+          {verificationLines.map((line) => (
+            <p key={line}>{line}</p>
+          ))}
+        </section>
+      )}
 
-        {authenticated && (
-          <section className="chain-card inbox-panel">
-            <div className="inbox-header">
+      {authenticated && (
+        <section className="mail-client" aria-label="GençTek iç iletişim paneli">
+          <aside className="mail-sidebar">
+            <img alt="GençTek logosu" src={genctekLogoWide} />
+            <strong>İç İletişim</strong>
+            <nav aria-label="Posta klasörleri">
+              <button className="active" type="button">
+                Gelen Kutusu <span>{inboxMessages.length}</span>
+              </button>
+              <button type="button">Arşiv <span>4</span></button>
+              <button type="button">Sistem Notları <span>7</span></button>
+              <button type="button">Taslaklar <span>0</span></button>
+            </nav>
+          </aside>
+
+          <section className="mail-list-panel">
+            <header className="mail-client-header">
               <div>
-                <span>GELEN KUTUSU</span>
-                <h2>1 yeni görev mesajı</h2>
+                <span>gorev.genctek</span>
+                <h1>Gelen Kutusu</h1>
               </div>
-              <strong>gorev.genctek</strong>
+              <strong>{mailboxMessage.status === "Okunmamış" && !mailOpened ? "1 okunmamış" : "Tüm mesajlar okundu"}</strong>
+            </header>
+
+            <div className="mail-search">Kırmızı Mühür Operasyonu kayıtları</div>
+
+            <div className="mail-message-list">
+              {inboxMessages.map((message) => {
+                const isSelected = message.id === selectedMessage?.id;
+                const isTargetUnread = message.id === mailboxMessage.id && !mailOpened;
+
+                return (
+                  <button
+                    className={`mail-list-row ${isSelected ? "selected" : ""} ${
+                      isTargetUnread ? "unread" : ""
+                    }`}
+                    key={message.id}
+                    onClick={() => selectMessage(message)}
+                    type="button"
+                  >
+                    <span>{message.from}</span>
+                    <strong>{message.subject}</strong>
+                    <small>{message.preview}</small>
+                    <b>{message.time}</b>
+                  </button>
+                );
+              })}
             </div>
-
-            <button
-              className={`message-row ${mailOpened ? "read" : ""}`}
-              onClick={onMailOpened}
-              type="button"
-            >
-              <span>{mailboxMessage.from}</span>
-              <strong>{mailboxMessage.subject}</strong>
-              <small>{mailOpened ? "Okundu" : mailboxMessage.status}</small>
-            </button>
-
-            {mailOpened && (
-              <article className="mail-message">
-                <span>Konu: {mailboxMessage.subject}</span>
-                {mailboxMessage.body.map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
-                ))}
-                <small>{mailboxMessage.note}</small>
-              </article>
-            )}
           </section>
-        )}
-      </section>
+
+          <article className="mail-reading-pane">
+            <header>
+              <span>{selectedMessage.tag}</span>
+              <h2>{selectedMessage.subject}</h2>
+              <p>{selectedMessage.from}</p>
+            </header>
+
+            <div className="mail-body">
+              {selectedMessage.body.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+              <small>{selectedMessage.note}</small>
+            </div>
+          </article>
+        </section>
+      )}
     </main>
   );
 }
