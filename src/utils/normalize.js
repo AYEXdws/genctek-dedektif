@@ -44,11 +44,11 @@ function isCorrectSource(value) {
 
 function isCorrectIdentity(value) {
   const email = normalizeInput(value?.email || "");
-  const taskKey = normalizeInput(value?.taskKey || "");
+  const taskKey = normalizeLoose(value?.taskKey || "");
 
   return (
-    email === "ahmet.kurulay@gorev.genctek" &&
-    taskKey === "ahmet0406merkur"
+    email === "ahmet.kurulay@genctek.gov.tr" &&
+    taskKey === "gct202417ahk"
   );
 }
 
@@ -70,7 +70,7 @@ export function isCorrectGateWord(value) {
 
 export function isCorrectMailCredentials({ email = "", key = "" }) {
   return (
-    normalizeEmail(email) === "ahmet.kurulay@gorev.genctek" &&
-    normalizeInput(key) === "ahmet0406merkur"
+    normalizeEmail(email) === "ahmet.kurulay@genctek.gov.tr" &&
+    normalizeLoose(key) === "gct202417ahk"
   );
 }

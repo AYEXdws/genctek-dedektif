@@ -1,6 +1,6 @@
 export const CHAIN_STORAGE_KEY = "genctek-zincirleme-ctf";
 
-export const CHAIN_STATE_VERSION = 3;
+export const CHAIN_STATE_VERSION = 4;
 
 export const GATE_WORD = "gorunmeyenyuz";
 
@@ -12,13 +12,13 @@ export const PRODUCTION_FINAL_URL =
   "https://genctek-dedektif.vercel.app/usta-dedektif";
 
 export const identityClues = {
-  email: "ahmet.kurulay@gorev.genctek",
-  key: "ahmet0406merkur"
+  email: "ahmet.kurulay@genctek.gov.tr",
+  key: "GCT202417AHK"
 };
 
 export const mailboxMessage = {
   id: "muhur-final-aktarim",
-  from: "kirmizi.muhur@gorev.genctek",
+  from: "kirmizi.muhur@genctek.gov.tr",
   subject: "Son Veri Aktarıldı",
   status: "Okunmamış",
   body: [
@@ -34,7 +34,7 @@ export const mailboxMessage = {
 export const inboxMessages = [
   {
     id: "vardiya-notu",
-    from: "operasyon.masasi@gorev.genctek",
+    from: "operasyon.masasi@genctek.gov.tr",
     subject: "Stand Açılış Kontrol Listesi",
     time: "08:42",
     tag: "Operasyon",
@@ -49,7 +49,7 @@ export const inboxMessages = [
   },
   {
     id: "logo-paketi",
-    from: "tasarim@gorev.genctek",
+    from: "tasarim@genctek.gov.tr",
     subject: "GençTek Görsel Kimlik Dosyaları",
     time: "09:03",
     tag: "Tasarım",
@@ -63,7 +63,7 @@ export const inboxMessages = [
   },
   {
     id: "muhur-arsiv",
-    from: "arsiv@gorev.genctek",
+    from: "arsiv@genctek.gov.tr",
     subject: "Kırmızı Mühür Arşiv Kaydı",
     time: "09:27",
     tag: "Arşiv",
@@ -77,7 +77,7 @@ export const inboxMessages = [
   },
   {
     id: "kart-dizilimi",
-    from: "stand.ekibi@gorev.genctek",
+    from: "stand.ekibi@genctek.gov.tr",
     subject: "Yaka Kartı Dizilimi",
     time: "09:58",
     tag: "Stand",
@@ -91,7 +91,7 @@ export const inboxMessages = [
   },
   {
     id: "ziyaretci-akisi",
-    from: "koordinasyon@gorev.genctek",
+    from: "koordinasyon@genctek.gov.tr",
     subject: "Ziyaretçi Akışı",
     time: "10:14",
     tag: "Koordinasyon",
@@ -105,7 +105,7 @@ export const inboxMessages = [
   },
   {
     id: "eski-kayit",
-    from: "sistem@gorev.genctek",
+    from: "sistem@genctek.gov.tr",
     subject: "Eski Oturum Kaydı",
     time: "10:31",
     tag: "Sistem",
@@ -120,7 +120,7 @@ export const inboxMessages = [
   mailboxMessage,
   {
     id: "uretim-masasi",
-    from: "uretim@gorev.genctek",
+    from: "uretim@genctek.gov.tr",
     subject: "3D Baskı Masası Hazırlığı",
     time: "11:08",
     tag: "Üretim",
@@ -134,7 +134,7 @@ export const inboxMessages = [
   },
   {
     id: "gorev-notlari",
-    from: "dedektif.notlari@gorev.genctek",
+    from: "dedektif.notlari@genctek.gov.tr",
     subject: "Dedektif Notları",
     time: "11:26",
     tag: "Not",
@@ -148,7 +148,7 @@ export const inboxMessages = [
   },
   {
     id: "qr-test",
-    from: "test@gorev.genctek",
+    from: "test@genctek.gov.tr",
     subject: "QR Okuma Testi",
     time: "11:47",
     tag: "Test",
@@ -162,7 +162,7 @@ export const inboxMessages = [
   },
   {
     id: "guvenlik-dili",
-    from: "egitim@gorev.genctek",
+    from: "egitim@genctek.gov.tr",
     subject: "Dil ve Anlatım Notu",
     time: "12:05",
     tag: "Eğitim",
@@ -176,7 +176,7 @@ export const inboxMessages = [
   },
   {
     id: "saha-notu",
-    from: "amasya.saha@gorev.genctek",
+    from: "amasya.saha@genctek.gov.tr",
     subject: "Amasya Saha Notu",
     time: "12:22",
     tag: "Saha",
@@ -190,7 +190,7 @@ export const inboxMessages = [
   },
   {
     id: "muhur-golge",
-    from: "muhur.kaydi@gorev.genctek",
+    from: "muhur.kaydi@genctek.gov.tr",
     subject: "Gölge Katmanı",
     time: "12:38",
     tag: "Arşiv",
@@ -204,7 +204,7 @@ export const inboxMessages = [
   },
   {
     id: "kapanis-hazirligi",
-    from: "protokol@gorev.genctek",
+    from: "protokol@genctek.gov.tr",
     subject: "Belge Hazırlığı",
     time: "13:10",
     tag: "Protokol",

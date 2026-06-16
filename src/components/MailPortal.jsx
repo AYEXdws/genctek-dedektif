@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import AppHeader from "./AppHeader";
 import { inboxMessages, mailboxMessage } from "../data/chain";
+import { digitalDetectivesLogo, genctekLogoWide } from "../assets/logos";
 import { isCorrectMailCredentials } from "../utils/normalize";
 
 const verificationLines = [
@@ -69,6 +70,10 @@ export default function MailPortal({
       {!authenticated && !isVerifying && (
         <section className="mail-login-page">
           <div className="mail-login-copy">
+            <div className="mail-product-bar">
+              <img alt="GençTek logosu" src={genctekLogoWide} />
+              <span>İÇ POSTA SİSTEMİ</span>
+            </div>
             <span>GENÇTEK İÇ İLETİŞİM</span>
             <h1>Görev Postası</h1>
             <p>
@@ -85,8 +90,12 @@ export default function MailPortal({
           <form className="mail-auth-card" onSubmit={submitCredentials}>
             <div>
               <span>Oturum Doğrulama</span>
-              <strong>gorev.genctek</strong>
+              <strong>genctek.gov.tr</strong>
             </div>
+            <p className="mail-auth-note">
+              Fiziksel karttaki kurumsal e-posta ve kartın taşıdığı görev
+              şifresi bu oturumu açar.
+            </p>
 
             <label htmlFor="mail-email">E-postası</label>
             <input
@@ -94,7 +103,7 @@ export default function MailPortal({
               id="mail-email"
               maxLength={80}
               onChange={(event) => setEmail(event.target.value)}
-              placeholder="ad.soyad@gorev.genctek"
+              placeholder="karttaki e-posta"
               value={email}
             />
 
@@ -129,6 +138,18 @@ export default function MailPortal({
 
       {authenticated && (
         <section className="mail-client" aria-label="GençTek iç iletişim paneli">
+          <header className="mail-client-topbar">
+            <div>
+              <img alt="GençTek logosu" src={genctekLogoWide} />
+              <img
+                alt="GençTek Dijital Dedektifler logosu"
+                src={digitalDetectivesLogo}
+              />
+            </div>
+            <strong>GençTek İç Posta</strong>
+            <span>ahmet.kurulay@genctek.gov.tr</span>
+          </header>
+
           <aside className="mail-sidebar">
             <img alt="GençTek logosu" src={genctekLogoWide} />
             <strong>İç İletişim</strong>
@@ -145,7 +166,7 @@ export default function MailPortal({
           <section className="mail-list-panel">
             <header className="mail-client-header">
               <div>
-                <span>gorev.genctek</span>
+                <span>genctek.gov.tr</span>
                 <h1>Gelen Kutusu</h1>
               </div>
               <strong>{mailboxMessage.status === "Okunmamış" && !mailOpened ? "1 okunmamış" : "Tüm mesajlar okundu"}</strong>

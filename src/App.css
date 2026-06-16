@@ -2237,6 +2237,7 @@ input:focus {
 .mail-login-copy,
 .mail-auth-card,
 .mail-verification,
+.mail-client-topbar,
 .mail-sidebar,
 .mail-list-panel,
 .mail-reading-pane {
@@ -2253,6 +2254,31 @@ input:focus {
   display: grid;
   gap: 16px;
   padding: clamp(22px, 4vw, 38px);
+}
+
+.mail-product-bar {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.mail-product-bar img {
+  background: #ffffff;
+  border-radius: 14px;
+  display: block;
+  height: 46px;
+  object-fit: contain;
+  padding: 7px;
+  width: 150px;
+}
+
+.mail-product-bar span {
+  background: rgba(209, 18, 42, 0.24);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  color: #ffffff;
+  padding: 8px 12px;
 }
 
 .mail-login-copy span,
@@ -2308,6 +2334,12 @@ input:focus {
   font-size: 1.35rem;
 }
 
+.mail-auth-note {
+  color: rgba(255, 248, 248, 0.74);
+  line-height: 1.5;
+  margin: -4px 0 2px;
+}
+
 .mail-verification {
   display: grid;
   gap: 14px;
@@ -2335,7 +2367,52 @@ input:focus {
   display: grid;
   gap: 14px;
   grid-template-columns: 210px minmax(300px, 0.85fr) minmax(360px, 1fr);
+  grid-template-rows: auto minmax(0, 1fr);
   min-height: calc(100vh - 64px);
+}
+
+.mail-client-topbar {
+  align-items: center;
+  display: grid;
+  gap: 14px;
+  grid-column: 1 / -1;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  min-height: 72px;
+  padding: 12px 14px;
+}
+
+.mail-client-topbar div {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  min-width: 0;
+}
+
+.mail-client-topbar img {
+  background: #ffffff;
+  border-radius: 12px;
+  display: block;
+  height: 42px;
+  max-width: 178px;
+  object-fit: contain;
+  padding: 6px;
+}
+
+.mail-client-topbar strong {
+  color: #ffffff;
+  font-size: 1.08rem;
+  white-space: nowrap;
+}
+
+.mail-client-topbar span {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  color: rgba(255, 248, 248, 0.82);
+  font-size: 0.86rem;
+  font-weight: 850;
+  padding: 9px 12px;
+  white-space: nowrap;
 }
 
 .mail-sidebar,
@@ -2927,6 +3004,15 @@ input:focus {
     display: none;
   }
 
+  .mail-client-topbar {
+    grid-template-columns: 1fr;
+  }
+
+  .mail-client-topbar strong,
+  .mail-client-topbar span {
+    white-space: normal;
+  }
+
   .mail-message-list {
     max-height: none;
   }
@@ -3028,10 +3114,16 @@ input:focus {
 
   .mail-login-copy,
   .mail-auth-card,
+  .mail-client-topbar,
   .mail-list-panel,
   .mail-reading-pane {
     border-radius: 16px;
     padding: 18px;
+  }
+
+  .mail-product-bar img,
+  .mail-client-topbar img {
+    max-width: 132px;
   }
 
   .mail-list-row {
