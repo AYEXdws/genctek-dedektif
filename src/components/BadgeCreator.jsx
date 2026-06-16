@@ -2,9 +2,9 @@ import React, { useRef, useState } from "react";
 import { toPng } from "html-to-image";
 import MasterCertificate from "./MasterCertificate";
 
-const CERTIFICATE_WIDTH = 360;
-const CERTIFICATE_HEIGHT = 640;
-const CERTIFICATE_PIXEL_RATIO = 3;
+const CERTIFICATE_WIDTH = 1346;
+const CERTIFICATE_HEIGHT = 898;
+const CERTIFICATE_PIXEL_RATIO = 2;
 const MAX_NAME_LENGTH = 32;
 
 function dataUrlToBlob(dataUrl) {

@@ -13,29 +13,6 @@ export const PRODUCTION_FINAL_URL =
 
 export const hiddenPagePath = "/gorunmeyenyuz.html";
 
-export const missionSteps = [
-  {
-    number: "01",
-    title: "Antik Şifre",
-    text: "Şifreli kelime ikinci kapının adını verir."
-  },
-  {
-    number: "02",
-    title: "Görünmeyen Yüz",
-    text: "Kaynak kodu, kırmızı ipli yaka kartlarına yönlendirir."
-  },
-  {
-    number: "03",
-    title: "Kimlik İzleri",
-    text: "Yaka kartındaki izler görev oturumunu açar."
-  },
-  {
-    number: "04",
-    title: "Dijitalin Cismi",
-    text: "Son iz fiziksel objede saklı QR koduna dönüşür."
-  }
-];
-
 export const identityClues = {
   email: "ahmet.kurulay@gorev.genctek",
   key: "ahmet0406merkur"

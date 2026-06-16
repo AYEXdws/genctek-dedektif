@@ -1960,44 +1960,6 @@ input:focus {
   margin: 0;
 }
 
-.chain-map {
-  display: grid;
-  gap: 10px;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.chain-map div {
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 14px;
-  display: grid;
-  gap: 6px;
-  min-width: 0;
-  padding: 14px;
-}
-
-.chain-map div.active {
-  background: rgba(209, 18, 42, 0.18);
-  border-color: rgba(255, 255, 255, 0.24);
-}
-
-.chain-map b {
-  color: #ffb8c0;
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
-}
-
-.chain-map strong {
-  color: #ffffff;
-}
-
-.chain-map p {
-  color: rgba(255, 248, 248, 0.68);
-  font-size: 0.86rem;
-  line-height: 1.4;
-  margin: 0;
-}
-
 .chain-card {
   display: grid;
   gap: 18px;
@@ -2108,7 +2070,6 @@ input:focus {
 }
 
 .success-panel h2,
-.source-bridge h2,
 .final-arrival h2,
 .inbox-header h2 {
   color: #ffffff;
@@ -2224,7 +2185,7 @@ input:focus {
 }
 
 .master-certificate {
-  aspect-ratio: 9 / 16;
+  aspect-ratio: 1346 / 898;
   background:
     linear-gradient(90deg, rgba(209, 18, 42, 0.05) 0 1px, transparent 1px),
     linear-gradient(180deg, rgba(209, 18, 42, 0.045) 0 1px, transparent 1px),
@@ -2238,21 +2199,21 @@ input:focus {
   display: grid;
   gap: 14px;
   margin: 0 auto;
-  max-width: 360px;
+  max-width: 760px;
   overflow: hidden;
   padding: 22px 20px;
   position: relative;
-  width: min(100%, 360px);
+  width: min(100%, 760px);
 }
 
 .master-certificate.is-exporting {
   aspect-ratio: auto !important;
   box-shadow: none !important;
-  height: 640px !important;
+  height: 898px !important;
   margin: 0 !important;
   max-width: none !important;
   min-height: 0 !important;
-  width: 360px !important;
+  width: 1346px !important;
 }
 
 .master-watermark {
@@ -2455,6 +2416,56 @@ input:focus {
   margin: 0;
 }
 
+.template-certificate {
+  background:
+    url("/assets/usta-dedektif-belgesi-template.png") center / 100% 100% no-repeat,
+    #fffdfb;
+  border: 0;
+  border-radius: 0;
+  display: block;
+  padding: 0;
+}
+
+.template-background-probe {
+  height: 1px;
+  left: -9999px;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  top: -9999px;
+  width: 1px;
+}
+
+.template-recipient-name {
+  color: #f6f0e9;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.82));
+  display: block;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.5rem, 4.3vw, 3.2rem);
+  font-weight: 950;
+  left: 50%;
+  letter-spacing: 0.08em;
+  line-height: 1.08;
+  max-width: 44%;
+  overflow-wrap: anywhere;
+  position: absolute;
+  text-align: center;
+  text-transform: uppercase;
+  top: 54%;
+  transform: translateX(-50%);
+  width: 44%;
+  z-index: 2;
+}
+
+.template-recipient-name.wide-name {
+  font-size: clamp(1.2rem, 3.3vw, 2.44rem);
+}
+
+.template-recipient-name.compact-name {
+  font-size: clamp(0.92rem, 2.6vw, 1.9rem);
+  line-height: 1.12;
+}
+
 @media (min-width: 900px) {
   .chain-home {
     grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.65fr);
@@ -2462,10 +2473,6 @@ input:focus {
 
   .chain-hero {
     grid-row: span 2;
-  }
-
-  .chain-map {
-    grid-template-columns: 1fr;
   }
 
   .mail-page {
@@ -2493,10 +2500,6 @@ input:focus {
   .brand-lockup {
     align-items: flex-start;
     flex-direction: column;
-  }
-
-  .chain-map {
-    grid-template-columns: 1fr;
   }
 
   .inbox-header {

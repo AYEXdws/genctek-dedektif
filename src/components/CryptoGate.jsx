@@ -56,7 +56,7 @@ export default function CryptoGate({ onSolved, solved }) {
               id="gate-word"
               maxLength={32}
               onChange={(event) => setAnswer(event.target.value)}
-              placeholder="gorunmeyenyuz"
+              placeholder="Kapı adı"
               value={answer}
             />
             <button className="primary-button" type="submit">

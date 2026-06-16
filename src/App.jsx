@@ -8,9 +8,7 @@ import {
   CHAIN_STATE_VERSION,
   CHAIN_STORAGE_KEY,
   FINAL_ROUTE,
-  hiddenPagePath,
-  MAIL_ROUTE,
-  missionSteps
+  MAIL_ROUTE
 } from "./data/chain";
 import { createBadgeId, createBadgePayload } from "./utils/badge";
 
@@ -141,27 +139,27 @@ export default function App() {
         Baştan Başla
       </button>
 
-      <section className="chain-home">
-        <div className="chain-hero">
-          <div className="brand-lockup">
-            <img alt="GençTek logosu" src={genctekLogoWide} />
-            <img alt="GençTek Dijital Dedektifler logosu" src={digitalDetectivesLogo} />
-          </div>
+      {state.screen === "intro" && (
+        <section className="chain-home intro-only">
+          <div className="chain-hero">
+            <div className="brand-lockup">
+              <img alt="GençTek logosu" src={genctekLogoWide} />
+              <img alt="GençTek Dijital Dedektifler logosu" src={digitalDetectivesLogo} />
+            </div>
 
-          <div className="hero-copy">
-            <span>GENÇTEK DİJİTAL DEDEKTİFLER</span>
-            <h1>KIRMIZI MÜHÜR OPERASYONU</h1>
-            <p>
-              Kırmızı Mühür dört iz halinde saklandı. Her iz, bir sonraki
-              kapının yolunu gösterecek.
-            </p>
-            <p>
-              Görevin basit: gördüğünle yetinme, satır aralarını oku, doğru
-              kartı bul ve son izi fiziksel dünyada keşfet.
-            </p>
-          </div>
+            <div className="hero-copy">
+              <span>GENÇTEK DİJİTAL DEDEKTİFLER</span>
+              <h1>KIRMIZI MÜHÜR OPERASYONU</h1>
+              <p>
+                Kırmızı Mühür izler halinde saklandı. Her iz, bir sonraki
+                kapının yolunu gösterecek.
+              </p>
+              <p>
+                Gördüğünle yetinme; satır aralarını oku, doğru kartı bul ve
+                son izi fiziksel dünyada keşfet.
+              </p>
+            </div>
 
-          {state.screen === "intro" && (
             <button
               className="primary-button"
               onClick={() => updateState({ screen: "mission" })}
@@ -169,53 +167,18 @@ export default function App() {
             >
               OPERASYONU BAŞLAT
             </button>
-          )}
-        </div>
+          </div>
+        </section>
+      )}
 
-        <aside className="chain-map" aria-label="Operasyon izleri">
-          {missionSteps.map((step, index) => (
-            <div
-              className={index === 0 || state.cryptoSolved ? "active" : ""}
-              key={step.number}
-            >
-              <b>{step.number}</b>
-              <strong>{step.title}</strong>
-              <p>{step.text}</p>
-            </div>
-          ))}
-        </aside>
-
-        {state.screen === "mission" && (
+      {state.screen === "mission" && (
+        <section className="chain-home mission-only">
           <CryptoGate
             onSolved={() => updateState({ cryptoSolved: true })}
             solved={state.cryptoSolved}
           />
-        )}
-
-        {state.cryptoSolved && state.screen !== "mission" && (
-          <section className="chain-card source-bridge">
-            <span>GÖREV 2 / Görünmeyen Yüz</span>
-            <h2>İkinci kapı artık bu ekranda değil.</h2>
-            <p>
-              Antik Şifre'den bulduğun sayfa adına git. Bir dedektif yalnızca
-              ekranda yazanı değil, ekranı oluşturan satırları da okur.
-            </p>
-            <p>
-              Bilgisayarda kaynak kodu için Windows/Linux: Ctrl + U, Mac:
-              ⌘ + Option + U. Alternatif olarak sağ tıkla ve Sayfa Kaynağını
-              Görüntüle seçeneğini kullan.
-            </p>
-            <a
-              className="primary-button link-button"
-              href={hiddenPagePath}
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              GÖRÜNMEYEN YÜZ SAYFASINI AÇ
-            </a>
-          </section>
-        )}
-      </section>
+        </section>
+      )}
     </main>
   );
 }
