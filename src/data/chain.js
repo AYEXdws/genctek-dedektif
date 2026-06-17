@@ -1,6 +1,6 @@
 export const CHAIN_STORAGE_KEY = "genctek-zincirleme-ctf";
 
-export const CHAIN_STATE_VERSION = 4;
+export const CHAIN_STATE_VERSION = 5;
 
 export const GATE_WORD = "gorunmeyenyuz";
 
@@ -10,6 +10,10 @@ export const FINAL_ROUTE = "/usta-dedektif";
 
 export const PRODUCTION_FINAL_URL =
   "https://genctek-dedektif.vercel.app/usta-dedektif";
+
+export const SOURCE_TRACE_PHRASE = "Kırmızı ip doğru dosyayı işaret eder";
+
+export const MAIL_TRACE_PHRASE = "Son iz üç boyutluya taşındı";
 
 export const missionFiles = {
   crypto: {
@@ -27,16 +31,16 @@ export const missionFiles = {
     field: "Kaynak Kodu",
     lines: [
       "İlk iz seni ekranda görünen yüzün sınırına kadar getirir.",
-      "Bir sonraki ipucu, sayfanın söylediğinde değil; sayfayı oluşturan satırların sessizliğindedir."
+      "Sayfanın anlattığı kadarına güvenme; bazen gerçek işaret, satırların içinde sessiz kalır."
     ]
   },
   identity: {
     code: "GÖREV DOSYASI 03",
     title: "Kimlik İzleri",
-    field: "Fiziksel Kart",
+    field: "Kırmızı İpli Kart",
     lines: [
       "Görünmeyen yüz, dedektifi ekrandan ayırıp standa taşır.",
-      "Kırmızı ipli kartlardan doğru olanı bul; kartın üzerindeki resmi izler iç posta kapısının eşiğini oluşturur."
+      "Doğru kart, iç posta kapısına yaklaşmak için gereken izleri üzerinde taşır."
     ]
   },
   physical: {
@@ -45,7 +49,7 @@ export const missionFiles = {
     field: "Üç Boyutlu İz",
     lines: [
       "İç postadaki son kayıt, verinin artık ekranda kalmadığını söyler.",
-      "Son iz fiziksel dünyadadır; doğru nesne, doğru açı ve dikkatli bakış Usta Dedektif kapısını açar."
+      "Son kapı, dijital olanın cisme dönüştüğü yerde saklıdır."
     ]
   }
 };
@@ -59,12 +63,16 @@ export const mailboxMessage = {
   id: "muhur-final-aktarim",
   from: "kirmizi.muhur@genctek.gov.tr",
   subject: "Son Veri Aktarıldı",
+  time: "10:52",
+  tag: "Kırmızı Mühür",
   status: "Okunmamış",
+  preview: "Son iz ekranda değil; üç boyutluya taşınmış görünüyor.",
   body: [
     "Ekrandaki izleri susturdum.",
     "Kırmızı Mühür'ün son parçası artık satırların arasında değil.",
-    "Veri, kendi gölgesinden çıkıp üç boyutlu bir cisme dönüştü.",
-    "Son izi arıyorsan üretim masasındaki Amasya parçasına yaklaş.",
+    `${MAIL_TRACE_PHRASE}.`,
+    "Bu cümleyi görev ekranına geri taşı; son dosya ancak o zaman açılır.",
+    "Sonrasında üretim masasındaki Amasya parçasına yaklaş.",
     "Dijital olanın cisme dönüştüğü yerde, ışığın dokunduğu ayrıntıyı ara."
   ],
   note: "Görev oturumu kapandı. Son iz artık fiziksel dünyada."

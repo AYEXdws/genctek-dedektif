@@ -5,319 +5,296 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
     <title>GençTek Görünmeyen Yüz</title>
-    <!-- sistem notu: görsel katman temiz. mühür izi burada değil. -->
-    <!-- kayıt: kırmızı mühür dosyası görünür alanda doğrulanamadı. -->
-    <!-- arşiv: ekrandaki metin yalnızca kapının boyasıdır. menteşe başka yerde. -->
-    <!--
-      DEDEKTİF NOTU / KAYNAK SATIRI 42:
-      Görünen yüz seni eşiğe kadar getirdi; fakat eşik kapının kendisi değildir.
-      Satırların arasından başını kaldır ve bu kez ekrandan uzaklaş.
-      Üçüncü iz, camın arkasında değil; insanın üzerinde taşınan küçük bir görev
-      parçasında bekler.
-      Kalabalıkta aynı görünen kartlar olacak. Kırmızı ip, sessizce doğru dosyayı
-      işaret eder. O kartın arka yüzünde iç iletişim kapısına yaklaşmanı sağlayan
-      iki iz saklıdır.
-      Unutma Dedektif: bazı anahtarlar yazılmaz, önce bulunur.
-    -->
-    <!-- yanıltıcı kayıt: /arsiv-kapi.html kapalı. -->
+    <!-- sistem notu: görünen katman yalnızca yüzeydir. -->
+    <!-- arşiv: kırmızı mühür izi ekranda görünmez. -->
+    <!-- Kırmızı ip doğru dosyayı işaret eder. -->
     <!-- yanıltıcı kayıt: mühür parçası önbellekte değil. -->
     <style>
       :root {
         color-scheme: dark;
         --red: #d1122a;
-        --red-light: #ff5668;
-        --deep: #08070d;
-        --panel: rgba(255, 255, 255, 0.08);
-        --white: #fff8f8;
-        --muted: rgba(255, 248, 248, 0.74);
+        --red-hot: #ff334c;
+        --red-soft: rgba(209, 18, 42, 0.42);
+        --ink: #05070c;
+        --white: #fff7f7;
+        --muted: rgba(255, 247, 247, 0.74);
       }
 
       * {
         box-sizing: border-box;
       }
 
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+        overflow-x: hidden;
+      }
+
       body {
         align-items: center;
         background:
-          radial-gradient(circle at 18% 14%, rgba(209, 18, 42, 0.36), transparent 34%),
-          radial-gradient(circle at 80% 2%, rgba(255, 255, 255, 0.12), transparent 25%),
-          linear-gradient(135deg, #2a0610 0%, #0c0912 52%, #050914 100%);
+          radial-gradient(circle at 18% 28%, rgba(255, 35, 64, 0.28), transparent 25%),
+          radial-gradient(circle at 82% 18%, rgba(255, 35, 64, 0.18), transparent 28%),
+          radial-gradient(circle at 52% 66%, rgba(255, 255, 255, 0.08), transparent 24%),
+          linear-gradient(135deg, #060910 0%, #09070c 42%, #22030b 100%);
         color: var(--white);
         display: grid;
         font-family:
           Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
           "Segoe UI", sans-serif;
-        margin: 0;
         min-height: 100vh;
-        overflow-x: hidden;
-        padding: 28px 16px;
+        padding: clamp(16px, 4vw, 44px);
+        position: relative;
       }
 
-      body::before {
-        background-image:
-          linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-        background-size: 34px 34px;
+      body::before,
+      body::after {
         content: "";
         inset: 0;
-        mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.95), transparent);
         pointer-events: none;
         position: fixed;
       }
 
-      main {
+      body::before {
         background:
-          linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.035)),
-          rgba(8, 7, 13, 0.8);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 28px;
-        box-shadow: 0 28px 80px rgba(0, 0, 0, 0.44);
+          linear-gradient(90deg, rgba(255, 35, 64, 0.16) 1px, transparent 1px),
+          linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+        background-size: 44px 44px;
+        mask-image: radial-gradient(circle at 50% 50%, #000 0%, transparent 78%);
+        opacity: 0.8;
+      }
+
+      body::after {
+        background:
+          linear-gradient(90deg, transparent 0 8%, rgba(255, 35, 64, 0.52) 8% 8.2%, transparent 8.2% 91.8%, rgba(255, 35, 64, 0.52) 91.8% 92%, transparent 92%),
+          linear-gradient(180deg, transparent 0 7%, rgba(255, 35, 64, 0.55) 7% 7.2%, transparent 7.2% 92.8%, rgba(255, 35, 64, 0.55) 92.8% 93%, transparent 93%),
+          radial-gradient(circle at 22% 30%, rgba(255, 35, 64, 0.28), transparent 17%),
+          radial-gradient(circle at 79% 68%, rgba(255, 35, 64, 0.2), transparent 18%);
+        filter: drop-shadow(0 0 16px rgba(255, 35, 64, 0.32));
+      }
+
+      main {
+        align-items: center;
+        aspect-ratio: 16 / 9;
+        background:
+          linear-gradient(90deg, rgba(255, 35, 64, 0.28), transparent 17% 83%, rgba(255, 35, 64, 0.28)),
+          radial-gradient(circle at 18% 42%, rgba(255, 35, 64, 0.26), transparent 17%),
+          radial-gradient(circle at 80% 48%, rgba(255, 255, 255, 0.07), transparent 18%),
+          linear-gradient(145deg, rgba(8, 14, 22, 0.94), rgba(9, 6, 10, 0.95));
+        border: 1px solid rgba(255, 78, 98, 0.5);
+        box-shadow:
+          0 0 0 1px rgba(255, 255, 255, 0.08) inset,
+          0 0 38px rgba(255, 35, 64, 0.36),
+          0 28px 110px rgba(0, 0, 0, 0.72);
         display: grid;
-        gap: 26px;
+        isolation: isolate;
         justify-self: center;
-        max-width: 860px;
+        max-height: min(76vh, 820px);
+        max-width: 1280px;
         overflow: hidden;
-        padding: clamp(22px, 5vw, 42px);
+        padding: clamp(28px, 6vw, 84px);
         position: relative;
-        width: min(100%, 860px);
+        width: min(100%, 1280px);
+      }
+
+      main::before,
+      main::after {
+        content: "";
+        pointer-events: none;
+        position: absolute;
+        z-index: -1;
+      }
+
+      main::before {
+        background:
+          repeating-linear-gradient(
+            90deg,
+            rgba(255, 35, 64, 0.3) 0 2px,
+            transparent 2px 24px
+          ),
+          repeating-linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.05) 0 1px,
+            transparent 1px 18px
+          );
+        inset: 0;
+        opacity: 0.22;
       }
 
       main::after {
-        border: 1px solid rgba(255, 255, 255, 0.16);
-        border-radius: 24px;
+        border: 1px solid rgba(255, 78, 98, 0.72);
+        box-shadow:
+          0 0 0 10px rgba(209, 18, 42, 0.06),
+          0 0 28px rgba(255, 35, 64, 0.38) inset;
+        inset: clamp(10px, 1.8vw, 24px);
+      }
+
+      .corner {
+        border-color: var(--red-hot);
+        border-style: solid;
+        height: clamp(46px, 8vw, 96px);
+        opacity: 0.94;
+        position: absolute;
+        width: clamp(46px, 8vw, 96px);
+      }
+
+      .corner:nth-child(1) {
+        border-width: 2px 0 0 2px;
+        left: 18px;
+        top: 18px;
+      }
+
+      .corner:nth-child(2) {
+        border-width: 2px 2px 0 0;
+        right: 18px;
+        top: 18px;
+      }
+
+      .corner:nth-child(3) {
+        border-width: 0 0 2px 2px;
+        bottom: 18px;
+        left: 18px;
+      }
+
+      .corner:nth-child(4) {
+        border-width: 0 2px 2px 0;
+        bottom: 18px;
+        right: 18px;
+      }
+
+      .orb {
+        aspect-ratio: 1;
+        border: 1px solid rgba(255, 51, 76, 0.5);
+        border-radius: 50%;
+        box-shadow:
+          0 0 36px rgba(255, 35, 64, 0.28),
+          0 0 0 22px rgba(255, 35, 64, 0.035);
+        left: clamp(30px, 8vw, 110px);
+        opacity: 0.7;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: clamp(130px, 22vw, 280px);
+      }
+
+      .orb::before,
+      .orb::after {
+        border: 1px solid rgba(255, 51, 76, 0.38);
+        border-radius: inherit;
         content: "";
-        inset: 10px;
-        pointer-events: none;
+        inset: 18%;
         position: absolute;
       }
 
-      .brand {
+      .orb::after {
+        inset: 36%;
+      }
+
+      .trace {
         align-items: center;
-        display: flex;
-        gap: 14px;
-        position: relative;
-        z-index: 1;
-      }
-
-      .mark {
-        background: #ffffff;
-        border-radius: 18px;
         display: grid;
-        min-height: 58px;
-        padding: 8px;
-        place-items: center;
-        width: 106px;
+        gap: clamp(16px, 2.4vw, 28px);
+        justify-self: center;
+        max-width: 880px;
+        text-align: center;
       }
 
-      .mark img {
-        display: block;
-        max-height: 100%;
-        max-width: 100%;
-        object-fit: contain;
-      }
-
-      .brand span {
-        color: var(--muted);
-        display: block;
-        font-size: 0.78rem;
-        font-weight: 900;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-      }
-
-      .brand strong {
-        display: block;
-        font-size: clamp(1rem, 2.8vw, 1.25rem);
-      }
-
-      .hero {
-        display: grid;
-        gap: 16px;
-        max-width: 720px;
-        position: relative;
-        z-index: 1;
-      }
-
-      h1 {
-        font-size: clamp(2.4rem, 9vw, 5.2rem);
-        line-height: 0.92;
+      .trace p {
+        color: var(--white);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(1.58rem, 4.1vw, 4.05rem);
+        font-weight: 800;
+        letter-spacing: 0.01em;
+        line-height: 1.16;
         margin: 0;
-        text-transform: uppercase;
+        text-shadow:
+          0 2px 0 rgba(255, 255, 255, 0.1),
+          0 0 24px rgba(255, 35, 64, 0.34),
+          0 16px 48px rgba(0, 0, 0, 0.72);
       }
 
-      h2 {
-        font-size: clamp(1.2rem, 3.4vw, 1.9rem);
-        line-height: 1.15;
-        margin: 0;
-      }
-
-      p {
+      .trace p + p {
         color: var(--muted);
-        font-size: clamp(1rem, 2.4vw, 1.12rem);
-        line-height: 1.62;
-        margin: 0;
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        font-size: clamp(1rem, 2vw, 1.58rem);
+        font-weight: 800;
+        letter-spacing: 0.02em;
       }
 
-      .info-grid {
-        display: grid;
-        gap: 12px;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        position: relative;
-        z-index: 1;
-      }
-
-      .mission-file {
-        background:
-          linear-gradient(135deg, rgba(255, 255, 255, 0.095), rgba(209, 18, 42, 0.12)),
-          rgba(255, 255, 255, 0.035);
-        border: 1px solid rgba(255, 255, 255, 0.16);
-        border-left: 4px solid rgba(255, 48, 72, 0.82);
-        border-radius: 18px;
-        display: grid;
-        gap: 9px;
-        padding: 16px 18px;
-        position: relative;
-        z-index: 1;
-      }
-
-      .mission-file div {
-        align-items: end;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px 12px;
-        justify-content: space-between;
-      }
-
-      .mission-file span,
-      .mission-file small {
-        color: #ffd8dd;
-        font-size: 0.72rem;
-        font-weight: 950;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-      }
-
-      .mission-file strong {
-        color: #ffffff;
-        font-size: clamp(1.05rem, 2.5vw, 1.35rem);
-        line-height: 1.08;
-      }
-
-      .mission-file p {
-        color: var(--muted);
-        font-size: 0.96rem;
-        line-height: 1.5;
-      }
-
-      .info-card {
-        background: var(--panel);
-        border: 1px solid rgba(255, 255, 255, 0.18);
-        border-radius: 18px;
-        min-height: 120px;
-        padding: 18px;
-      }
-
-      .info-card span {
-        color: #ffd8dd;
-        display: block;
-        font-size: 0.78rem;
-        font-weight: 900;
-        letter-spacing: 0.1em;
-        margin-bottom: 10px;
-        text-transform: uppercase;
-      }
-
-      .signal {
-        align-items: center;
-        background: rgba(209, 18, 42, 0.17);
-        border: 1px solid rgba(255, 255, 255, 0.18);
-        border-radius: 999px;
-        color: #ffe8eb;
-        display: inline-flex;
-        font-size: 0.85rem;
-        font-weight: 900;
-        gap: 10px;
-        padding: 10px 14px;
-        position: relative;
-        width: fit-content;
-        z-index: 1;
-      }
-
-      .signal::before {
-        background: var(--red-light);
-        border-radius: 50%;
-        box-shadow: 0 0 20px var(--red-light);
-        content: "";
-        height: 9px;
-        width: 9px;
-      }
-
-      @media (max-width: 640px) {
+      @media (max-width: 720px) {
         body {
           align-items: start;
           padding: 14px;
         }
 
         main {
-          border-radius: 22px;
-          gap: 20px;
-          padding: 22px;
+          aspect-ratio: auto;
+          min-height: calc(100vh - 28px);
+          padding: 32px 22px;
         }
 
-        .brand {
-          align-items: flex-start;
-          flex-direction: column;
+        .orb {
+          left: 50%;
+          top: 26%;
+          transform: translate(-50%, -50%);
+          width: 210px;
         }
 
-        .info-grid {
-          grid-template-columns: 1fr;
+        .trace {
+          align-self: center;
+          text-align: left;
+        }
+      }
+
+      @media (prefers-reduced-motion: no-preference) {
+        main {
+          animation: panelEnter 820ms ease both;
+        }
+
+        .orb {
+          animation: slowPulse 3.4s ease-in-out infinite;
+        }
+      }
+
+      @keyframes panelEnter {
+        from {
+          opacity: 0;
+          transform: translateY(10px) scale(0.985);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      @keyframes slowPulse {
+        0%,
+        100% {
+          opacity: 0.56;
+        }
+
+        50% {
+          opacity: 0.88;
         }
       }
     </style>
   </head>
   <body>
-    <main>
-      <div class="brand" aria-label="GençTek Dijital Dedektifler">
-        <div class="mark">
-          <img src="/genctek-logo-wide.png" alt="" />
-        </div>
-        <div>
-          <span>GençTek Dijital Dedektifler</span>
-          <strong>Kırmızı Mühür Operasyonu</strong>
-        </div>
-      </div>
+    <main aria-label="Görünmeyen Yüz">
+      <span class="corner" aria-hidden="true"></span>
+      <span class="corner" aria-hidden="true"></span>
+      <span class="corner" aria-hidden="true"></span>
+      <span class="corner" aria-hidden="true"></span>
+      <span class="orb" aria-hidden="true"></span>
 
-      <section class="hero">
-        <h1>GENÇTEK GÖRÜNMEYEN YÜZ</h1>
-        <h2>Görünen şey, her zaman aradığın şey değildir.</h2>
-        <p>
-          Bir web sayfasının ekranda gördüğün yüzü yalnızca başlangıçtır.
-          Gerçek iz bazen tasarımda değil, onu oluşturan satırların arasında saklanır.
-        </p>
-      </section>
-
-      <aside class="mission-file" aria-label="Görünmeyen Yüz görev dosyası">
-        <div>
-          <span>GÖREV DOSYASI 02</span>
-          <strong>Görünmeyen Yüz</strong>
-        </div>
-        <small>Kaynak Kodu</small>
+      <section class="trace">
         <p>İlk iz seni bu yüze getirdi; fakat yüzey tek başına konuşmaz.</p>
         <p>Dedektif, ekranda duran metni değil, metni taşıyan satırları da dinler.</p>
-      </aside>
-
-      <section class="info-grid" aria-label="Görev bilgileri">
-        <div class="info-card">
-          <span>Dosya Notu</span>
-          <p>Bu yüzde cevap yok. İz, yüzü oluşturan satırların gölgesinde saklı.</p>
-        </div>
-        <div class="info-card">
-          <span>Dedektif Notu</span>
-          <p>Görünen metin yalnızca başlangıçtır; dedektif, satır aralarını da dinler.</p>
-        </div>
       </section>
-
-      <div class="signal">Görünmeyen yüz aktif</div>
     </main>
   </body>
 </html>

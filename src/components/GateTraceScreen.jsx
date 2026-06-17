@@ -1,14 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import MissionFile from "./MissionFile";
-import { missionFiles } from "../data/chain";
+import { SOURCE_TRACE_PHRASE, missionFiles } from "../data/chain";
+import { isCorrectTracePhrase } from "../utils/normalize";
 
-export default function GateTraceScreen({ onBack }) {
+export default function GateTraceScreen({ onBack, onSolved }) {
+  const [trace, setTrace] = useState("");
+  const [feedback, setFeedback] = useState("");
+
+  const submitTrace = (event) => {
+    event.preventDefault();
+
+    if (!isCorrectTracePhrase(trace, SOURCE_TRACE_PHRASE)) {
+      setFeedback("İz doğrulanamadı. Görünmeyen yüzün satırlarını tekrar incele.");
+      return;
+    }
+
+    setFeedback("");
+    onSolved();
+  };
+
   return (
-    <section className="chain-home trace-only">
+    <section className="chain-home task-chain-stage">
       <div className="chain-card trace-card">
         <div className="chain-card-heading">
-          <span>İLK İZ / DOĞRULANDI</span>
-          <h1>Kapı adını buldun.</h1>
+          <span>GÖREV 2 / Kaynak Kodu</span>
+          <h1>GÖRÜNMEYEN YÜZ</h1>
         </div>
 
         <MissionFile file={missionFiles.source} />
@@ -16,22 +32,39 @@ export default function GateTraceScreen({ onBack }) {
         <div className="trace-copy">
           <p>
             Harflerin arasından çıkan kelime artık sadece bir cevap değil,
-            Dedektif. O kelime, bu sitenin görünür yüzünde henüz açılmamış
-            sessiz bir oda gibi duruyor.
+            Dedektif. O kelime, bu sitenin görünür yüzüne eklenmeyi bekleyen
+            sessiz bir oda adı gibi davranır.
           </p>
           <p>
-            Bazı kapılar butonla açılmaz. Adres satırı, doğru iz bırakıldığında
-            yeni bir yüz gösterir. Bulduğun kelimeyi yanında tut; onu yolun
-            sonuna taşımanın zamanı geldi.
+            Doğru odaya ulaştığında ekranda çok şey görmeyeceksin. Çünkü bu
+            defa aradığın işaret sayfanın vitrininde değil, onu ayakta tutan
+            satırların arasında bekler.
           </p>
           <p className="subtle-clue">
-            Sıradaki yüz bilgisayarda daha rahat okunur. Çünkü orada ekranda
-            görünen değil, ekranı oluşturan satırlar konuşur.
+            Bulduğun küçük cümleyi aynen geri getir. Kırmızı Mühür, yalnızca
+            kaynaktan gelen izi tanır.
           </p>
         </div>
 
+        <form className="chain-form" onSubmit={submitTrace}>
+          <label htmlFor="source-trace">Kaynakta bulduğun izi yaz:</label>
+          <input
+            autoComplete="off"
+            id="source-trace"
+            maxLength={96}
+            onChange={(event) => setTrace(event.target.value)}
+            placeholder="Kaynak kodundaki kısa cümle"
+            value={trace}
+          />
+          <button className="primary-button" type="submit">
+            İZİ DOĞRULA
+          </button>
+        </form>
+
+        {feedback && <p className="form-error">{feedback}</p>}
+
         <button className="secondary-button" onClick={onBack} type="button">
-          Şifreye Geri Dön
+          Antik Şifreye Dön
         </button>
       </div>
     </section>

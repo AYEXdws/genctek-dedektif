@@ -3,8 +3,10 @@ import "./App.css";
 import AppHeader from "./components/AppHeader";
 import CryptoGate from "./components/CryptoGate";
 import GateTraceScreen from "./components/GateTraceScreen";
+import IdentityTraceTask from "./components/IdentityTraceTask";
 import MailPortal from "./components/MailPortal";
 import MasterDetectivePage from "./components/MasterDetectivePage";
+import PhysicalTraceScreen from "./components/PhysicalTraceScreen";
 import {
   CHAIN_STATE_VERSION,
   CHAIN_STORAGE_KEY,
@@ -17,6 +19,8 @@ const initialState = {
   version: CHAIN_STATE_VERSION,
   screen: "intro",
   cryptoSolved: false,
+  sourceSolved: false,
+  mailTraceSolved: false,
   mailAuthenticated: false,
   mailOpened: false,
   userName: "",
@@ -31,7 +35,11 @@ function getPathname() {
 }
 
 function normalizeScreen(value) {
-  return value === "mission" || value === "trace" || value === "intro"
+  return value === "mission" ||
+    value === "source" ||
+    value === "identity" ||
+    value === "physical" ||
+    value === "intro"
     ? value
     : "intro";
 }
@@ -50,6 +58,8 @@ function sanitizeState(value) {
     ...initialState,
     screen: normalizeScreen(value.screen),
     cryptoSolved: value.cryptoSolved === true,
+    sourceSolved: value.sourceSolved === true,
+    mailTraceSolved: value.mailTraceSolved === true,
     mailAuthenticated: value.mailAuthenticated === true,
     mailOpened: value.mailOpened === true,
     userName,
@@ -170,13 +180,27 @@ export default function App() {
       {state.screen === "mission" && (
         <section className="chain-home mission-only">
           <CryptoGate
-            onSolved={() => updateState({ cryptoSolved: true, screen: "trace" })}
+            onSolved={() => updateState({ cryptoSolved: true, screen: "source" })}
           />
         </section>
       )}
 
-      {state.screen === "trace" && (
-        <GateTraceScreen onBack={() => updateState({ screen: "mission" })} />
+      {state.screen === "source" && (
+        <GateTraceScreen
+          onBack={() => updateState({ screen: "mission" })}
+          onSolved={() => updateState({ sourceSolved: true, screen: "identity" })}
+        />
+      )}
+
+      {state.screen === "identity" && (
+        <IdentityTraceTask
+          onBack={() => updateState({ screen: "source" })}
+          onSolved={() => updateState({ mailTraceSolved: true, screen: "physical" })}
+        />
+      )}
+
+      {state.screen === "physical" && (
+        <PhysicalTraceScreen onBack={() => updateState({ screen: "identity" })} />
       )}
     </main>
   );

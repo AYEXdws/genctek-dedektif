@@ -26,6 +26,17 @@ export function normalizeLoose(value = "") {
   return normalizeInput(value).replace(/[{}_.-]/g, "");
 }
 
+export function normalizeTracePhrase(value = "") {
+  return String(value)
+    .trim()
+    .toLocaleLowerCase("tr-TR")
+    .replace(/[çğıöşü]/g, (char) => turkishMap[char] || char)
+    .replace(/['’`´]/g, "")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim()
+    .replace(/\s+/g, " ");
+}
+
 export function normalizeFlag(value = "") {
   return normalizeInput(value)
     .replace(/^genctek/, "")
@@ -73,4 +84,8 @@ export function isCorrectMailCredentials({ email = "", key = "" }) {
     normalizeEmail(email) === "ahmet.kurulay@genctek.gov.tr" &&
     normalizeLoose(key) === "gct202417ahk"
   );
+}
+
+export function isCorrectTracePhrase(value, expected) {
+  return normalizeTracePhrase(value) === normalizeTracePhrase(expected);
 }
