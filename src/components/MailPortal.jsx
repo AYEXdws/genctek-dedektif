@@ -211,7 +211,7 @@ export default function MailPortal({
               {selectedMessage.body.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
-              <small>{selectedMessage.note}</small>
+              {selectedMessage.note && <small>{selectedMessage.note}</small>}
             </div>
           </article>
         </section>

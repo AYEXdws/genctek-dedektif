@@ -13,7 +13,7 @@ export const PRODUCTION_FINAL_URL =
 
 export const SOURCE_TRACE_PHRASE = "Kırmızı ip doğru dosyayı işaret eder";
 
-export const MAIL_TRACE_PHRASE = "Son iz üç boyutluya taşındı";
+export const MAIL_TRACE_PHRASE = "son mühür parçası artık dijitalde değil";
 
 export const missionFiles = {
   crypto: {
@@ -66,16 +66,9 @@ export const mailboxMessage = {
   time: "10:52",
   tag: "Kırmızı Mühür",
   status: "Okunmamış",
-  preview: "Son iz ekranda değil; üç boyutluya taşınmış görünüyor.",
-  body: [
-    "Ekrandaki izleri susturdum.",
-    "Kırmızı Mühür'ün son parçası artık satırların arasında değil.",
-    `${MAIL_TRACE_PHRASE}.`,
-    "Bu cümleyi görev ekranına geri taşı; son dosya ancak o zaman açılır.",
-    "Sonrasında üretim masasındaki Amasya parçasına yaklaş.",
-    "Dijital olanın cisme dönüştüğü yerde, ışığın dokunduğu ayrıntıyı ara."
-  ],
-  note: "Görev oturumu kapandı. Son iz artık fiziksel dünyada."
+  preview: "Kırmızı Mühür dosyasından kısa bir kayıt.",
+  body: [`${MAIL_TRACE_PHRASE}.`],
+  note: ""
 };
 
 export const inboxMessages = [
