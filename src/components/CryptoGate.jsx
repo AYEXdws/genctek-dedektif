@@ -5,7 +5,7 @@ import { isCorrectGateWord } from "../utils/normalize";
 
 const encryptedGateWord = caesarEncrypt(GATE_WORD, 3);
 
-export default function CryptoGate({ onSolved, solved }) {
+export default function CryptoGate({ onSolved }) {
   const [answer, setAnswer] = useState("");
   const [feedback, setFeedback] = useState("");
   const [hintOpen, setHintOpen] = useState(false);
@@ -38,8 +38,8 @@ export default function CryptoGate({ onSolved, solved }) {
         </p>
         <p>
           Bu kilidi açtığında bir bayrak değil, sonraki kapının adını bulacaksın.
-          Kapı ekranda belirmez; doğru kelimeyi bulan dedektif, onu adresin
-          sonundaki boşluğa nasıl taşıyacağını da fark eder.
+          Kapı ekranda belirmez; doğru kelimeyi bulan dedektif, izini nereye
+          taşıyacağını da zamanla fark eder.
         </p>
       </div>
 
@@ -55,57 +55,37 @@ export default function CryptoGate({ onSolved, solved }) {
         ))}
       </div>
 
-      {!solved && (
-        <>
-          <form className="chain-form" onSubmit={submitAnswer}>
-            <label htmlFor="gate-word">Çözdüğün kapı adını yaz:</label>
-            <input
-              autoComplete="off"
-              id="gate-word"
-              maxLength={32}
-              onChange={(event) => setAnswer(event.target.value)}
-              placeholder="Kapı adı"
-              value={answer}
-            />
-            <button className="primary-button" type="submit">
-              İZİ DOĞRULA
-            </button>
-          </form>
+      <form className="chain-form" onSubmit={submitAnswer}>
+        <label htmlFor="gate-word">Çözdüğün kapı adını yaz:</label>
+        <input
+          autoComplete="off"
+          id="gate-word"
+          maxLength={32}
+          onChange={(event) => setAnswer(event.target.value)}
+          placeholder="Kapı adı"
+          value={answer}
+        />
+        <button className="primary-button" type="submit">
+          İZİ DOĞRULA
+        </button>
+      </form>
 
-          <button
-            className="note-button"
-            onClick={() => setHintOpen((current) => !current)}
-            type="button"
-          >
-            Dedektif Notu Aç
-          </button>
+      <button
+        className="note-button"
+        onClick={() => setHintOpen((current) => !current)}
+        type="button"
+      >
+        Dedektif Notu Aç
+      </button>
 
-          {hintOpen && (
-            <p className="detective-note">
-              Harfler kaybolmadı Dedektif. Sadece sandığından üç adım daha
-              geride duruyorlar.
-            </p>
-          )}
-
-          {feedback && <p className="form-error">{feedback}</p>}
-        </>
+      {hintOpen && (
+        <p className="detective-note">
+          Harfler kaybolmadı Dedektif. Sadece sandığından üç adım daha
+          geride duruyorlar.
+        </p>
       )}
 
-      {solved && (
-        <div className="success-panel">
-          <span>İZ DOĞRULANDI</span>
-          <h2>İlk kilit açıldı. Kapının adı artık sende.</h2>
-          <p>
-            Bulduğun kelime, bu sitenin görünen yoluna eklenmeyi bekleyen sessiz
-            bir oda adı gibi davranır. Dedektif, bazen yeni kapıyı butonda değil,
-            adres satırının sonunda arar.
-          </p>
-          <p className="subtle-clue">
-            Bu iz bilgisayarda daha rahat okunur; çünkü sıradaki yüz, ekranda
-            görünenden fazlasını saklar.
-          </p>
-        </div>
-      )}
+      {feedback && <p className="form-error">{feedback}</p>}
     </section>
   );
 }

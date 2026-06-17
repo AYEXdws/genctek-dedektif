@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import AppHeader from "./components/AppHeader";
 import CryptoGate from "./components/CryptoGate";
+import GateTraceScreen from "./components/GateTraceScreen";
 import MailPortal from "./components/MailPortal";
 import MasterDetectivePage from "./components/MasterDetectivePage";
 import {
@@ -30,7 +31,9 @@ function getPathname() {
 }
 
 function normalizeScreen(value) {
-  return value === "mission" || value === "intro" ? value : "intro";
+  return value === "mission" || value === "trace" || value === "intro"
+    ? value
+    : "intro";
 }
 
 function sanitizeState(value) {
@@ -167,10 +170,13 @@ export default function App() {
       {state.screen === "mission" && (
         <section className="chain-home mission-only">
           <CryptoGate
-            onSolved={() => updateState({ cryptoSolved: true })}
-            solved={state.cryptoSolved}
+            onSolved={() => updateState({ cryptoSolved: true, screen: "trace" })}
           />
         </section>
+      )}
+
+      {state.screen === "trace" && (
+        <GateTraceScreen onBack={() => updateState({ screen: "mission" })} />
       )}
     </main>
   );
