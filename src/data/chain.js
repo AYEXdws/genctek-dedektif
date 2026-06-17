@@ -11,6 +11,45 @@ export const FINAL_ROUTE = "/usta-dedektif";
 export const PRODUCTION_FINAL_URL =
   "https://genctek-dedektif.vercel.app/usta-dedektif";
 
+export const missionFiles = {
+  crypto: {
+    code: "GÖREV DOSYASI 01",
+    title: "Antik Şifre",
+    field: "Kriptografi",
+    lines: [
+      "Kırmızı Mühür'den kopan ilk iz, harflerin arasına saklanmış sessiz bir kapı adıdır.",
+      "Bu dosyada amaç bayrak toplamak değil; kelimenin arkasındaki yolu fark etmektir."
+    ]
+  },
+  source: {
+    code: "GÖREV DOSYASI 02",
+    title: "Görünmeyen Yüz",
+    field: "Kaynak Kodu",
+    lines: [
+      "İlk iz seni ekranda görünen yüzün sınırına kadar getirir.",
+      "Bir sonraki ipucu, sayfanın söylediğinde değil; sayfayı oluşturan satırların sessizliğindedir."
+    ]
+  },
+  identity: {
+    code: "GÖREV DOSYASI 03",
+    title: "Kimlik İzleri",
+    field: "Fiziksel Kart",
+    lines: [
+      "Görünmeyen yüz, dedektifi ekrandan ayırıp standa taşır.",
+      "Kırmızı ipli kartlardan doğru olanı bul; kartın üzerindeki resmi izler iç posta kapısının eşiğini oluşturur."
+    ]
+  },
+  physical: {
+    code: "GÖREV DOSYASI 04",
+    title: "Dijitalin Cismi",
+    field: "Üç Boyutlu İz",
+    lines: [
+      "İç postadaki son kayıt, verinin artık ekranda kalmadığını söyler.",
+      "Son iz fiziksel dünyadadır; doğru nesne, doğru açı ve dikkatli bakış Usta Dedektif kapısını açar."
+    ]
+  }
+};
+
 export const identityClues = {
   email: "ahmet.kurulay@genctek.gov.tr",
   key: "GCT202417AHK"

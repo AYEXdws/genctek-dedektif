@@ -166,6 +166,49 @@
         z-index: 1;
       }
 
+      .mission-file {
+        background:
+          linear-gradient(135deg, rgba(255, 255, 255, 0.095), rgba(209, 18, 42, 0.12)),
+          rgba(255, 255, 255, 0.035);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-left: 4px solid rgba(255, 48, 72, 0.82);
+        border-radius: 18px;
+        display: grid;
+        gap: 9px;
+        padding: 16px 18px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .mission-file div {
+        align-items: end;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 12px;
+        justify-content: space-between;
+      }
+
+      .mission-file span,
+      .mission-file small {
+        color: #ffd8dd;
+        font-size: 0.72rem;
+        font-weight: 950;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .mission-file strong {
+        color: #ffffff;
+        font-size: clamp(1.05rem, 2.5vw, 1.35rem);
+        line-height: 1.08;
+      }
+
+      .mission-file p {
+        color: var(--muted);
+        font-size: 0.96rem;
+        line-height: 1.5;
+      }
+
       .info-card {
         background: var(--panel);
         border: 1px solid rgba(255, 255, 255, 0.18);
@@ -252,6 +295,16 @@
           Gerçek iz bazen tasarımda değil, onu oluşturan satırların arasında saklanır.
         </p>
       </section>
+
+      <aside class="mission-file" aria-label="Görünmeyen Yüz görev dosyası">
+        <div>
+          <span>GÖREV DOSYASI 02</span>
+          <strong>Görünmeyen Yüz</strong>
+        </div>
+        <small>Kaynak Kodu</small>
+        <p>İlk iz seni bu yüze getirdi; fakat yüzey tek başına konuşmaz.</p>
+        <p>Dedektif, ekranda duran metni değil, metni taşıyan satırları da dinler.</p>
+      </aside>
 
       <section class="info-grid" aria-label="Görev bilgileri">
         <div class="info-card">

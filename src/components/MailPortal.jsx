@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import AppHeader from "./AppHeader";
-import { inboxMessages, mailboxMessage } from "../data/chain";
+import MissionFile from "./MissionFile";
+import { inboxMessages, mailboxMessage, missionFiles } from "../data/chain";
 import { digitalDetectivesLogo, genctekLogoWide } from "../assets/logos";
 import { isCorrectMailCredentials } from "../utils/normalize";
 
@@ -76,6 +77,7 @@ export default function MailPortal({
             </div>
             <span>GENÇTEK İÇ İLETİŞİM</span>
             <h1>Görev Postası</h1>
+            <MissionFile file={missionFiles.identity} />
             <p>
               Bazı kapılar kodla değil, izlerle açılır Dedektif. Kırmızı ipli
               karttan topladığın bilgileri burada dene; doğru izler birleşirse

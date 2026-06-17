@@ -1985,6 +1985,7 @@ input:focus {
 .hero-copy,
 .chain-copy,
 .chain-card-heading,
+.mission-file,
 .chain-form,
 .cipher-panel,
 .success-panel,
@@ -2052,6 +2053,48 @@ input:focus {
 .chain-copy {
   display: grid;
   gap: 10px;
+}
+
+.mission-file {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.095), rgba(209, 18, 42, 0.12)),
+    rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-left: 4px solid rgba(255, 48, 72, 0.82);
+  border-radius: 16px;
+  display: grid;
+  gap: 8px;
+  padding: 14px 16px;
+}
+
+.mission-file div {
+  align-items: end;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  justify-content: space-between;
+}
+
+.mission-file span,
+.mission-file small {
+  color: #ffd9de;
+  font-size: 0.72rem;
+  font-weight: 950;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.mission-file strong {
+  color: #ffffff;
+  font-size: clamp(1.05rem, 2.5vw, 1.35rem);
+  line-height: 1.08;
+}
+
+.mission-file p {
+  color: rgba(255, 248, 248, 0.78);
+  font-size: 0.95rem;
+  line-height: 1.48;
+  margin: 0;
 }
 
 .cipher-panel {

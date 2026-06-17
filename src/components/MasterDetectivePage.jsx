@@ -1,6 +1,8 @@
 import React from "react";
 import AppHeader from "./AppHeader";
 import BadgeCreator from "./BadgeCreator";
+import MissionFile from "./MissionFile";
+import { missionFiles } from "../data/chain";
 
 export default function MasterDetectivePage({
   badge,
@@ -17,6 +19,7 @@ export default function MasterDetectivePage({
           <span>SON KAPI / Usta Dedektif</span>
           <h1>TEBRİKLER</h1>
           <h2>Kırmızı Mühür Operasyonu tamamlandı.</h2>
+          <MissionFile file={missionFiles.physical} />
           <div className="chain-copy">
             <p>Tüm izleri takip ettin.</p>
             <p>Şifreli kapıyı açtın.</p>

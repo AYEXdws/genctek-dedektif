@@ -1,4 +1,6 @@
 import React from "react";
+import MissionFile from "./MissionFile";
+import { missionFiles } from "../data/chain";
 
 export default function GateTraceScreen({ onBack }) {
   return (
@@ -8,6 +10,8 @@ export default function GateTraceScreen({ onBack }) {
           <span>İLK İZ / DOĞRULANDI</span>
           <h1>Kapı adını buldun.</h1>
         </div>
+
+        <MissionFile file={missionFiles.source} />
 
         <div className="trace-copy">
           <p>
