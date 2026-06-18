@@ -3045,38 +3045,22 @@ input:focus {
   z-index: 1;
 }
 
-.template-recipient-name {
-  color: #f6f0e9;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.82));
+.certificate-name-layer {
   display: block;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(1.05rem, 2.8vw, 2.05rem);
-  font-weight: 950;
-  left: 50%;
-  letter-spacing: 0.045em;
-  line-height: 1.08;
-  max-width: 46%;
-  overflow-wrap: anywhere;
+  height: 100%;
+  inset: 0;
+  pointer-events: none;
   position: absolute;
-  text-align: center;
-  text-transform: uppercase;
-  top: 54.7%;
-  transform: translate(-50%, -50%);
-  width: 46%;
+  width: 100%;
   z-index: 2;
 }
 
-.template-recipient-name.wide-name {
-  font-size: clamp(0.86rem, 1.85vw, 1.32rem);
-}
-
-.template-recipient-name.compact-name {
-  font-size: clamp(0.66rem, 1.4vw, 0.98rem);
-  line-height: 1.12;
-}
-
-.template-recipient-name span {
-  display: block;
+.template-recipient-name {
+  fill: #f7f0e9;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 900;
+  text-anchor: middle;
+  text-transform: uppercase;
 }
 
 @media (min-width: 900px) {

@@ -10,30 +10,18 @@ export const CERTIFICATE_TEMPLATE_SRC =
 
 const NAME_BOX = {
   centerX: 673,
-  centerY: 494,
-  maxWidth: 540,
-  maxHeight: 58
+  centerY: 500,
+  maxWidth: 520,
+  maxHeight: 46
 };
 
 function normalizeDisplayName(value = "") {
   return String(value).trim().replace(/\s+/g, " ").toLocaleUpperCase("tr-TR");
 }
 
-function measureSpacedText(context, text, letterSpacing) {
+function measureText(context, text) {
   if (!text) return 0;
-  return (
-    context.measureText(text).width + Math.max(0, text.length - 1) * letterSpacing
-  );
-}
-
-function drawSpacedText(context, text, centerX, y, letterSpacing) {
-  const width = measureSpacedText(context, text, letterSpacing);
-  let x = centerX - width / 2;
-
-  for (const char of text) {
-    context.fillText(char, x, y);
-    x += context.measureText(char).width + letterSpacing;
-  }
+  return context.measureText(text).width;
 }
 
 function getLineCandidates(words) {
@@ -51,15 +39,13 @@ function getLineCandidates(words) {
   return candidates;
 }
 
-function chooseBestLayout(context, candidates, fontSize, lineHeight, letterSpacing, maxWidth) {
+function chooseBestLayout(context, candidates, fontSize, lineHeight, maxWidth) {
   let best = null;
 
   for (const lines of candidates) {
     if (lines.length > 2) continue;
 
-    const lineWidths = lines.map((line) =>
-      measureSpacedText(context, line, letterSpacing)
-    );
+    const lineWidths = lines.map((line) => measureText(context, line));
     const fitsWidth = lineWidths.every((width) => width <= maxWidth);
 
     if (!fitsWidth) continue;
@@ -76,7 +62,6 @@ function chooseBestLayout(context, candidates, fontSize, lineHeight, letterSpaci
     if (!best || score < best.score) {
       best = {
         fontSize,
-        letterSpacing,
         lineHeight,
         lines,
         score
@@ -97,15 +82,13 @@ export function getCertificateNameLayout(name, scale = 1) {
   const maxHeight = NAME_BOX.maxHeight * scale;
 
   let bestLayout = {
-    fontSize: 18 * scale,
-    letterSpacing: 1.2 * scale,
-    lineHeight: 22 * scale,
+    fontSize: 15 * scale,
+    lineHeight: 18 * scale,
     lines: [displayName]
   };
 
-  for (let fontSize = 36 * scale; fontSize >= 18 * scale; fontSize -= scale) {
-    const lineHeight = fontSize * 1.14;
-    const letterSpacing = Math.max(0.7 * scale, fontSize * 0.055);
+  for (let fontSize = 30 * scale; fontSize >= 15 * scale; fontSize -= scale) {
+    const lineHeight = fontSize * 1.08;
 
     context.font = `900 ${fontSize}px Georgia, "Times New Roman", serif`;
 
@@ -119,7 +102,6 @@ export function getCertificateNameLayout(name, scale = 1) {
       heightAllowedCandidates,
       fontSize,
       lineHeight,
-      letterSpacing,
       maxWidth
     );
 
@@ -130,6 +112,22 @@ export function getCertificateNameLayout(name, scale = 1) {
   }
 
   return bestLayout;
+}
+
+export function getCertificateNamePosition(layout, scale = 1) {
+  const centerX = NAME_BOX.centerX * scale;
+  const centerY = NAME_BOX.centerY * scale;
+  const totalHeight =
+    layout.lines.length === 1
+      ? layout.fontSize
+      : layout.lineHeight * (layout.lines.length - 1) + layout.fontSize;
+  const firstY = centerY - totalHeight / 2 + layout.fontSize / 2;
+
+  return {
+    centerX,
+    firstY,
+    lineHeight: layout.lineHeight
+  };
 }
 
 function loadImage(src) {
@@ -187,14 +185,7 @@ export async function renderCertificateImage(name) {
   context.drawImage(template, 0, 0, canvas.width, canvas.height);
 
   const layout = getCertificateNameLayout(name, scale);
-  const centerX = NAME_BOX.centerX * scale;
-  const centerY = NAME_BOX.centerY * scale;
-  const totalHeight =
-    layout.lines.length === 1
-      ? layout.fontSize
-      : layout.lineHeight * (layout.lines.length - 1) + layout.fontSize;
-  const firstY =
-    centerY - totalHeight / 2 + layout.fontSize / 2 + (layout.lines.length > 1 ? 2 * scale : 0);
+  const position = getCertificateNamePosition(layout, scale);
 
   context.save();
   context.font = `900 ${layout.fontSize}px Georgia, "Times New Roman", serif`;
@@ -207,12 +198,10 @@ export async function renderCertificateImage(name) {
   context.shadowOffsetY = 3 * scale;
 
   layout.lines.forEach((line, index) => {
-    drawSpacedText(
-      context,
+    context.fillText(
       line,
-      centerX,
-      firstY + index * layout.lineHeight,
-      layout.letterSpacing
+      position.centerX,
+      position.firstY + index * position.lineHeight
     );
   });
 
