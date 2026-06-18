@@ -50,10 +50,8 @@ export default function IdentityTraceTask({ onBack, onSolved }) {
           </p>
           <p>
             Şimdi elindeki kimlik kartını dikkatlice incele. Karttaki verilerden
-            yola çıkarak yöneticinin e-posta parolasını tahmin et.
-          </p>
-          <p>
-            Zayıf halkayı bul ve sisteme sız. Zaman işliyor.
+            yola çıkarak yöneticinin e-posta parolasını tahmin et, e-postalarında
+            gizlenmiş notu bul ve sisteme sız. Zaman işliyor.
           </p>
         </div>
 
@@ -62,13 +60,13 @@ export default function IdentityTraceTask({ onBack, onSolved }) {
         </button>
 
         <form className="chain-form" onSubmit={submitTrace}>
-          <label htmlFor="mail-trace">Bulduğun kapı adını yaz:</label>
+          <label htmlFor="mail-trace">E-postada bulduğun notu yaz:</label>
           <input
             autoComplete="off"
             id="mail-trace"
             maxLength={96}
             onChange={(event) => setMailTrace(event.target.value)}
-            placeholder="Kapı adı"
+            placeholder="E-postada gizlenmiş not"
             value={mailTrace}
           />
           <button className="primary-button" type="submit">
