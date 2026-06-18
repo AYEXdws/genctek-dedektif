@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import MissionFile from "./MissionFile";
-import { GATE_WORD, missionFiles } from "../data/chain";
+import { GATE_WORD } from "../data/chain";
 import { caesarEncrypt, turkishAlphabet } from "../utils/crypto";
 import { isCorrectGateWord } from "../utils/normalize";
 
@@ -29,8 +28,6 @@ export default function CryptoGate({ onSolved }) {
         <span>GÖREV 1 / Kriptografi</span>
         <h1>ANTİK ŞİFRE</h1>
       </div>
-
-      <MissionFile file={missionFiles.crypto} />
 
       <div className="chain-copy">
         <p>Güvenli iletişim, bilginin en büyük kalkanıdır Dedektif.</p>

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import MissionFile from "./MissionFile";
-import { SOURCE_TRACE_PHRASE, missionFiles } from "../data/chain";
+import { SOURCE_TRACE_PHRASE } from "../data/chain";
 import { isCorrectTracePhrase } from "../utils/normalize";
 
 export default function GateTraceScreen({ onBack, onSolved }) {
@@ -23,11 +22,9 @@ export default function GateTraceScreen({ onBack, onSolved }) {
     <section className="chain-home task-chain-stage">
       <div className="chain-card trace-card">
         <div className="chain-card-heading">
-          <span>GÖREV 2 / Kaynak Kodu</span>
+          <span>GÖREV 2 / Görünmeyen Yüz</span>
           <h1>GÖRÜNMEYEN YÜZ</h1>
         </div>
-
-        <MissionFile file={missionFiles.source} />
 
         <div className="trace-copy">
           <p>
@@ -42,18 +39,18 @@ export default function GateTraceScreen({ onBack, onSolved }) {
           </p>
           <p className="subtle-clue">
             Bulduğun küçük cümleyi aynen geri getir. Kırmızı Mühür, yalnızca
-            kaynaktan gelen izi tanır.
+            geri getirdiğin izi tanır.
           </p>
         </div>
 
         <form className="chain-form" onSubmit={submitTrace}>
-          <label htmlFor="source-trace">Kaynakta bulduğun izi yaz:</label>
+          <label htmlFor="source-trace">Bulduğun cümleyi yaz:</label>
           <input
             autoComplete="off"
             id="source-trace"
             maxLength={96}
             onChange={(event) => setTrace(event.target.value)}
-            placeholder="Kaynak kodundaki kısa cümle"
+            placeholder="Bulduğun cümle"
             value={trace}
           />
           <button className="primary-button" type="submit">

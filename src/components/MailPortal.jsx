@@ -1,14 +1,13 @@
 import React, { useEffect, useMemo, useState } from "react";
 import AppHeader from "./AppHeader";
-import MissionFile from "./MissionFile";
-import { inboxMessages, mailboxMessage, missionFiles } from "../data/chain";
+import { inboxMessages, mailboxMessage } from "../data/chain";
 import { digitalDetectivesLogo, genctekLogoWide } from "../assets/logos";
 import { isCorrectMailCredentials } from "../utils/normalize";
 
 const verificationLines = [
   "Kimlik izleri doğrulanıyor...",
   "Görev şifresi kontrol ediliyor...",
-  "İç iletişim paneli açılıyor..."
+  "Posta paneli açılıyor..."
 ];
 
 export default function MailPortal({
@@ -73,19 +72,24 @@ export default function MailPortal({
           <div className="mail-login-copy">
             <div className="mail-product-bar">
               <img alt="GençTek logosu" src={genctekLogoWide} />
-              <span>İÇ POSTA SİSTEMİ</span>
+              <span>POSTA SİSTEMİ</span>
             </div>
-            <span>GENÇTEK İÇ İLETİŞİM</span>
+            <span>GENÇTEK POSTA</span>
             <h1>Görev Postası</h1>
-            <MissionFile file={missionFiles.identity} />
+            <p>Tebrikler Dedektif!</p>
             <p>
-              Bazı kapılar kodla değil, izlerle açılır Dedektif. Kırmızı ipli
-              karttan topladığın bilgileri burada dene; doğru izler birleşirse
-              iç posta odası sessizce açılır.
+              Yaptığın araştırmalar sonucunda sistem yöneticisine ait personel
+              kimlik kartına ulaştın. Ancak görev henüz tamamlanmadı...
             </p>
             <p>
-              Her bilgi anahtar değildir. Bazıları yalnızca seni yavaşlatmak için
-              kartın üzerinde durur.
+              Dijital güvenlik ekibinin hazırladığı raporlara göre bu personel,
+              güvenlik eğitimlerini yeterince ciddiye almamış ve kişisel
+              bilgilerini parola oluştururken kullanmış olabilir.
+            </p>
+            <p>Önündeki kimlik kartını dikkatlice incele.</p>
+            <p>
+              Kimlik kartındaki bilgilerden yararlanarak sistem yöneticisinin
+              e-posta hesabında kullandığı parolayı tahmin et.
             </p>
           </div>
 
@@ -123,7 +127,7 @@ export default function MailPortal({
             {error && <p className="form-error">{error}</p>}
 
             <button className="primary-button" type="submit">
-              İÇ POSTAYA GİR
+              POSTAYA GİR
             </button>
           </form>
         </section>
@@ -139,7 +143,7 @@ export default function MailPortal({
       )}
 
       {authenticated && (
-        <section className="mail-client" aria-label="GençTek iç iletişim paneli">
+        <section className="mail-client" aria-label="GençTek posta paneli">
           <header className="mail-client-topbar">
             <div>
               <img alt="GençTek logosu" src={genctekLogoWide} />
@@ -148,13 +152,13 @@ export default function MailPortal({
                 src={digitalDetectivesLogo}
               />
             </div>
-            <strong>GençTek İç Posta</strong>
+            <strong>GençTek Posta</strong>
             <span>ahmet.kurulay@genctek.gov.tr</span>
           </header>
 
           <aside className="mail-sidebar">
             <img alt="GençTek logosu" src={genctekLogoWide} />
-            <strong>İç İletişim</strong>
+            <strong>Posta</strong>
             <nav aria-label="Posta klasörleri">
               <button className="active" type="button">
                 Gelen Kutusu <span>{inboxMessages.length}</span>

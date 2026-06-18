@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import MissionFile from "./MissionFile";
-import { MAIL_ROUTE, MAIL_TRACE_PHRASE, missionFiles } from "../data/chain";
+import { MAIL_ROUTE, MAIL_TRACE_PHRASE } from "../data/chain";
 import { isCorrectTracePhrase } from "../utils/normalize";
 
 export default function IdentityTraceTask({ onBack, onSolved }) {
@@ -15,7 +14,7 @@ export default function IdentityTraceTask({ onBack, onSolved }) {
     event.preventDefault();
 
     if (!isCorrectTracePhrase(mailTrace, MAIL_TRACE_PHRASE)) {
-      setFeedback("İz doğrulanamadı. İç postadaki doğru mesajı tekrar incele.");
+      setFeedback("İz doğrulanamadı. Postadaki doğru mesajı tekrar incele.");
       return;
     }
 
@@ -28,41 +27,38 @@ export default function IdentityTraceTask({ onBack, onSolved }) {
       <div className="chain-card identity-trace-card">
         <div className="chain-card-heading">
           <span>GÖREV 3 / Kimlik İzleri</span>
-          <h1>KIRMIZI İPLİ KART</h1>
+          <h1>KİMLİK İZLERİ</h1>
         </div>
 
-        <MissionFile file={missionFiles.identity} />
-
         <div className="trace-copy">
-          <p>Tebrikler Dedektif!</p>
           <p>
-            Yaptığın araştırmalar sonucunda sistem yöneticisine ait personel
-            kimlik kartına ulaştın. Ancak görev henüz tamamlanmadı...
+            Satırların arasından gelen cümle artık ekrandan dışarı bakmanı
+            istiyor, Dedektif.
           </p>
           <p>
-            Dijital güvenlik ekibinin hazırladığı raporlara göre bu personel,
-            güvenlik eğitimlerini yeterince ciddiye almamış ve kişisel
-            bilgilerini parola oluştururken kullanmış olabilir.
+            Kalabalıkta birbirine benzeyen kartlar olacak. İp yalnızca bir
+            ayrıntı gibi durur; ama doğru dosya bazen en sessiz işaretle kendini
+            belli eder.
           </p>
-          <p>Önündeki kimlik kartını dikkatlice incele.</p>
           <p>
-            Kimlik kartındaki bilgilerden yararlanarak sistem yöneticisinin
-            e-posta hesabında kullandığı parolayı tahmin et.
+            Doğru kimliği bulduğunda acele etme. Üzerindeki her bilgi kapıyı
+            açmaz; bazıları sadece dikkatini ölçer. Gerekli izleri bir araya
+            getir ve posta kapısında dene.
           </p>
         </div>
 
         <button className="secondary-button trace-action-button" onClick={openMail} type="button">
-          İç Posta Kapısını Aç
+          Posta Kapısını Aç
         </button>
 
         <form className="chain-form" onSubmit={submitTrace}>
-          <label htmlFor="mail-trace">İç postada bulduğun son izi yaz:</label>
+          <label htmlFor="mail-trace">Postada bulduğun son cümleyi yaz:</label>
           <input
             autoComplete="off"
             id="mail-trace"
             maxLength={96}
             onChange={(event) => setMailTrace(event.target.value)}
-            placeholder="Maildeki kısa iz cümlesi"
+            placeholder="Bulduğun cümle"
             value={mailTrace}
           />
           <button className="primary-button" type="submit">

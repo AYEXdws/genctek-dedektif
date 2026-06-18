@@ -15,45 +15,6 @@ export const SOURCE_TRACE_PHRASE = "Kırmızı ip doğru dosyayı işaret eder";
 
 export const MAIL_TRACE_PHRASE = "son mühür parçası artık dijitalde değil";
 
-export const missionFiles = {
-  crypto: {
-    code: "GÖREV DOSYASI 01",
-    title: "Antik Şifre",
-    field: "Kriptografi",
-    lines: [
-      "Kırmızı Mühür'den kopan ilk iz, harflerin arasına saklanmış sessiz bir kapı adıdır.",
-      "Bu dosyada amaç bayrak toplamak değil; kelimenin arkasındaki yolu fark etmektir."
-    ]
-  },
-  source: {
-    code: "GÖREV DOSYASI 02",
-    title: "Görünmeyen Yüz",
-    field: "Kaynak Kodu",
-    lines: [
-      "İlk iz seni ekranda görünen yüzün sınırına kadar getirir.",
-      "Sayfanın anlattığı kadarına güvenme; bazen gerçek işaret, satırların içinde sessiz kalır."
-    ]
-  },
-  identity: {
-    code: "GÖREV DOSYASI 03",
-    title: "Kimlik İzleri",
-    field: "Kırmızı İpli Kart",
-    lines: [
-      "Görünmeyen yüz, dedektifi ekrandan ayırıp standa taşır.",
-      "Doğru kart, iç posta kapısına yaklaşmak için gereken izleri üzerinde taşır."
-    ]
-  },
-  physical: {
-    code: "GÖREV DOSYASI 04",
-    title: "Dijitalin Cismi",
-    field: "Üç Boyutlu İz",
-    lines: [
-      "İç postadaki son kayıt, verinin artık ekranda kalmadığını söyler.",
-      "Son kapı, dijital olanın cisme dönüştüğü yerde saklıdır."
-    ]
-  }
-};
-
 export const identityClues = {
   email: "ahmet.kurulay@genctek.gov.tr",
   key: "GCT202417AHK"
@@ -125,7 +86,7 @@ export const inboxMessages = [
     preview: "Kırmızı ipli görev kartları standa yerleştirildi.",
     body: [
       "Görev kartları aynı panoda duracak.",
-      "Doğru kartın arka yüzü, iç iletişim paneli için gerekli izleri taşır."
+      "Doğru kartın arka yüzü, posta paneli için gerekli izleri taşır."
     ],
     note: "Kart düzeni notu."
   },

@@ -1,6 +1,4 @@
 import React from "react";
-import MissionFile from "./MissionFile";
-import { missionFiles } from "../data/chain";
 
 export default function PhysicalTraceScreen({ onBack }) {
   return (
@@ -10,8 +8,6 @@ export default function PhysicalTraceScreen({ onBack }) {
           <span>GÖREV 4 / Üç Boyutlu İz</span>
           <h1>DİJİTALİN CİSMİ</h1>
         </div>
-
-        <MissionFile file={missionFiles.physical} />
 
         <div className="trace-copy physical-final-copy">
           <p>Tebrikler Dedektif!</p>
