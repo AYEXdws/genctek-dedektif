@@ -36,9 +36,9 @@ export default function IdentityTraceTask({ onBack, onSolved }) {
             istiyor, Dedektif.
           </p>
           <p>
-            Kalabalıkta birbirine benzeyen kartlar olacak. İp yalnızca bir
-            ayrıntı gibi durur; ama doğru dosya bazen en sessiz işaretle kendini
-            belli eder.
+            Kalabalıkta birbirine benzeyen kartlar olacak. Kırmızı ip yalnızca
+            bir ayrıntı gibi durur; ama doğru dosya bazen en sessiz işaretle
+            kendini belli eder.
           </p>
           <p>
             Doğru kimliği bulduğunda acele etme. Üzerindeki her bilgi kapıyı
