@@ -44,13 +44,13 @@ export default function GateTraceScreen({ onBack, onSolved }) {
         </div>
 
         <form className="chain-form" onSubmit={submitTrace}>
-          <label htmlFor="source-trace">Bulduğun cümleyi yaz:</label>
+          <label htmlFor="source-trace">Bulduğun kapı adını yaz:</label>
           <input
             autoComplete="off"
             id="source-trace"
             maxLength={96}
             onChange={(event) => setTrace(event.target.value)}
-            placeholder="Bulduğun cümle"
+            placeholder="Kapı adı"
             value={trace}
           />
           <button className="primary-button" type="submit">

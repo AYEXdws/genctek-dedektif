@@ -17,7 +17,7 @@ export const MAIL_TRACE_PHRASE = "son mühür parçası artık dijitalde değil"
 
 export const identityClues = {
   email: "ahmet.kurulay@genctek.gov.tr",
-  key: "GCT202417AHK"
+  key: "ahmet1994"
 };
 
 export const mailboxMessage = {
@@ -28,7 +28,7 @@ export const mailboxMessage = {
   tag: "Kırmızı Mühür",
   status: "Okunmamış",
   preview: "Kırmızı Mühür dosyasından kısa bir kayıt.",
-  body: [`${MAIL_TRACE_PHRASE}.`],
+  body: [MAIL_TRACE_PHRASE],
   note: ""
 };
 

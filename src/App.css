@@ -2153,6 +2153,20 @@ input:focus {
   padding: 18px;
 }
 
+.alphabet-block {
+  display: grid;
+  gap: 9px;
+}
+
+.alphabet-block > span {
+  color: rgba(255, 248, 248, 0.72);
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 950;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
 .alphabet-panel {
   display: flex;
   flex-wrap: wrap;
@@ -2418,6 +2432,12 @@ input:focus {
   outline: 0;
 }
 
+.mail-auth-card input[readonly] {
+  background: rgba(255, 248, 248, 0.86);
+  color: rgba(34, 9, 18, 0.76);
+  cursor: default;
+}
+
 .mail-auth-card strong {
   color: #ffffff;
   font-size: 1.35rem;
@@ -2465,7 +2485,7 @@ input:focus {
   display: grid;
   gap: 14px;
   grid-column: 1 / -1;
-  grid-template-columns: minmax(0, 1fr) auto auto;
+  grid-template-columns: minmax(0, 1fr) auto;
   min-height: 72px;
   padding: 12px 14px;
 }
@@ -3053,6 +3073,10 @@ input:focus {
 .template-recipient-name.compact-name {
   font-size: clamp(0.66rem, 1.4vw, 0.98rem);
   line-height: 1.12;
+}
+
+.template-recipient-name span {
+  display: block;
 }
 
 @media (min-width: 900px) {

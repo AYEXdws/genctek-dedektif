@@ -59,7 +59,7 @@ function isCorrectIdentity(value) {
 
   return (
     email === "ahmet.kurulay@genctek.gov.tr" &&
-    taskKey === "gct202417ahk"
+    taskKey === "ahmet1994"
   );
 }
 
@@ -82,7 +82,7 @@ export function isCorrectGateWord(value) {
 export function isCorrectMailCredentials({ email = "", key = "" }) {
   return (
     normalizeEmail(email) === "ahmet.kurulay@genctek.gov.tr" &&
-    normalizeLoose(key) === "gct202417ahk"
+    normalizeLoose(key) === "ahmet1994"
   );
 }
 

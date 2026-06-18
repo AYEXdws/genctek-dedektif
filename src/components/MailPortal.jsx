@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import AppHeader from "./AppHeader";
-import { inboxMessages, mailboxMessage } from "../data/chain";
-import { digitalDetectivesLogo, genctekLogoWide } from "../assets/logos";
+import { identityClues, inboxMessages, mailboxMessage } from "../data/chain";
 import { isCorrectMailCredentials } from "../utils/normalize";
 
 const verificationLines = [
@@ -17,7 +16,7 @@ export default function MailPortal({
   onMailOpened,
   onReset
 }) {
-  const [email, setEmail] = useState("");
+  const [email] = useState(identityClues.email);
   const [key, setKey] = useState("");
   const [error, setError] = useState("");
   const [isVerifying, setIsVerifying] = useState(false);
@@ -71,7 +70,6 @@ export default function MailPortal({
         <section className="mail-login-page">
           <div className="mail-login-copy">
             <div className="mail-product-bar">
-              <img alt="GençTek logosu" src={genctekLogoWide} />
               <span>POSTA SİSTEMİ</span>
             </div>
             <span>GENÇTEK POSTA</span>
@@ -99,8 +97,8 @@ export default function MailPortal({
               <strong>genctek.gov.tr</strong>
             </div>
             <p className="mail-auth-note">
-              Fiziksel karttaki kurumsal e-posta ve kartın taşıdığı görev
-              şifresi bu oturumu açar.
+              E-posta hazır. Oturumu açmak için karttan çıkardığın şifreyi
+              kullan.
             </p>
 
             <label htmlFor="mail-email">E-postası</label>
@@ -108,8 +106,8 @@ export default function MailPortal({
               autoComplete="off"
               id="mail-email"
               maxLength={80}
-              onChange={(event) => setEmail(event.target.value)}
-              placeholder="karttaki e-posta"
+              readOnly
+              placeholder="E-posta hazır"
               value={email}
             />
 
@@ -119,7 +117,7 @@ export default function MailPortal({
               id="mail-key"
               maxLength={80}
               onChange={(event) => setKey(event.target.value)}
-              placeholder="Karttan çıkardığın görev şifresi"
+              placeholder="Şifre"
               type="password"
               value={key}
             />
@@ -135,7 +133,6 @@ export default function MailPortal({
 
       {isVerifying && (
         <section className="mail-verification" aria-live="polite">
-          <img alt="" src={digitalDetectivesLogo} />
           {verificationLines.map((line) => (
             <p key={line}>{line}</p>
           ))}
@@ -145,19 +142,11 @@ export default function MailPortal({
       {authenticated && (
         <section className="mail-client" aria-label="GençTek posta paneli">
           <header className="mail-client-topbar">
-            <div>
-              <img alt="GençTek logosu" src={genctekLogoWide} />
-              <img
-                alt="GençTek Dijital Dedektifler logosu"
-                src={digitalDetectivesLogo}
-              />
-            </div>
             <strong>GençTek Posta</strong>
             <span>ahmet.kurulay@genctek.gov.tr</span>
           </header>
 
           <aside className="mail-sidebar">
-            <img alt="GençTek logosu" src={genctekLogoWide} />
             <strong>Posta</strong>
             <nav aria-label="Posta klasörleri">
               <button className="active" type="button">

@@ -52,13 +52,13 @@ export default function IdentityTraceTask({ onBack, onSolved }) {
         </button>
 
         <form className="chain-form" onSubmit={submitTrace}>
-          <label htmlFor="mail-trace">Postada bulduğun son cümleyi yaz:</label>
+          <label htmlFor="mail-trace">Bulduğun kapı adını yaz:</label>
           <input
             autoComplete="off"
             id="mail-trace"
             maxLength={96}
             onChange={(event) => setMailTrace(event.target.value)}
-            placeholder="Bulduğun cümle"
+            placeholder="Kapı adı"
             value={mailTrace}
           />
           <button className="primary-button" type="submit">

@@ -49,10 +49,13 @@ export default function CryptoGate({ onSolved }) {
         <small>Türk alfabesi düzeni kullanıldı.</small>
       </div>
 
-      <div className="alphabet-panel" aria-label="Türk alfabesi">
-        {turkishAlphabet.map((letter) => (
-          <span key={letter}>{letter}</span>
-        ))}
+      <div className="alphabet-block">
+        <span>Türk alfabesi</span>
+        <div className="alphabet-panel" aria-label="Türk alfabesi">
+          {turkishAlphabet.map((letter) => (
+            <span key={letter}>{letter}</span>
+          ))}
+        </div>
       </div>
 
       <form className="chain-form" onSubmit={submitAnswer}>

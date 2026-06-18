@@ -1,43 +1,8 @@
 import React, { useRef, useState } from "react";
-import { toPng } from "html-to-image";
 import MasterCertificate from "./MasterCertificate";
+import { renderCertificateImage } from "../utils/certificate";
 
-const CERTIFICATE_WIDTH = 1346;
-const CERTIFICATE_HEIGHT = 898;
-const CERTIFICATE_PIXEL_RATIO = 2;
 const MAX_NAME_LENGTH = 32;
-
-function dataUrlToBlob(dataUrl) {
-  const [header, data] = dataUrl.split(",");
-  const mimeType = header.match(/:(.*?);/)?.[1] || "image/png";
-  const binary = window.atob(data);
-  const bytes = new Uint8Array(binary.length);
-
-  for (let index = 0; index < binary.length; index += 1) {
-    bytes[index] = binary.charCodeAt(index);
-  }
-
-  return new Blob([bytes], { type: mimeType });
-}
-
-async function waitForCertificateAssets(node) {
-  await document.fonts?.ready;
-
-  const images = Array.from(node.querySelectorAll("img"));
-  await Promise.all(
-    images.map((image) => {
-      if (image.complete) return Promise.resolve();
-
-      return new Promise((resolve) => {
-        image.addEventListener("load", resolve, { once: true });
-        image.addEventListener("error", resolve, { once: true });
-      });
-    })
-  );
-
-  await Promise.all(images.map((image) => image.decode?.().catch(() => {})));
-  await new Promise((resolve) => window.requestAnimationFrame(resolve));
-}
 
 function isIOSLikeBrowser() {
   const platform = navigator.platform || "";
@@ -101,43 +66,16 @@ export default function BadgeCreator({ savedName = "", badge, onCreateBadge }) {
     return `genctek-usta-dijital-dedektif-belgesi-${safeId}.png`;
   };
 
-  const getCaptureOptions = () => {
-    return {
-      cacheBust: true,
-      height: CERTIFICATE_HEIGHT,
-      pixelRatio: CERTIFICATE_PIXEL_RATIO,
-      skipAutoScale: true,
-      backgroundColor: "#fffdfb",
-      style: {
-        aspectRatio: "auto",
-        boxShadow: "none",
-        height: `${CERTIFICATE_HEIGHT}px`,
-        maxWidth: "none",
-        minHeight: "0",
-        transform: "none",
-        width: `${CERTIFICATE_WIDTH}px`
-      },
-      width: CERTIFICATE_WIDTH
-    };
-  };
-
   const createCertificateImage = async () => {
-    if (!cardRef.current || !badge) return null;
+    if (!badge) return null;
 
     setIsPreparing(true);
     setError("");
     setDownloadMessage("");
 
     try {
-      const card = cardRef.current;
-      await waitForCertificateAssets(card);
-
-      card.classList.add("is-exporting");
-      await new Promise((resolve) => window.requestAnimationFrame(resolve));
-
-      const options = getCaptureOptions(card);
-      const dataUrl = await toPng(card, options);
-      const blob = dataUrlToBlob(dataUrl);
+      await document.fonts?.ready;
+      const { blob, dataUrl } = await renderCertificateImage(badge.name);
 
       setImageBlob(blob);
       setImageUrl(dataUrl);
@@ -148,7 +86,6 @@ export default function BadgeCreator({ savedName = "", badge, onCreateBadge }) {
       );
       return null;
     } finally {
-      cardRef.current?.classList.remove("is-exporting");
       setIsPreparing(false);
     }
   };
