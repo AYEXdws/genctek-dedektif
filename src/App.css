@@ -2438,6 +2438,35 @@ input:focus {
   cursor: default;
 }
 
+.mail-password-field {
+  position: relative;
+}
+
+.mail-password-field input {
+  padding-right: 96px;
+}
+
+.mail-password-field button {
+  background: rgba(209, 18, 42, 0.12);
+  border: 1px solid rgba(209, 18, 42, 0.22);
+  border-radius: 999px;
+  color: #5c0716;
+  cursor: pointer;
+  font-size: 0.86rem;
+  font-weight: 950;
+  min-height: 38px;
+  padding: 8px 13px;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.mail-password-field button:focus-visible {
+  outline: 3px solid rgba(209, 18, 42, 0.28);
+  outline-offset: 2px;
+}
+
 .mail-auth-card strong {
   color: #ffffff;
   font-size: 1.35rem;

@@ -20,6 +20,7 @@ export default function MailPortal({
   const [key, setKey] = useState("");
   const [error, setError] = useState("");
   const [isVerifying, setIsVerifying] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [selectedMessageId, setSelectedMessageId] = useState(
     mailOpened ? mailboxMessage.id : inboxMessages[0]?.id
   );
@@ -112,15 +113,26 @@ export default function MailPortal({
             />
 
             <label htmlFor="mail-key">Görev Şifresi</label>
-            <input
-              autoComplete="off"
-              id="mail-key"
-              maxLength={80}
-              onChange={(event) => setKey(event.target.value)}
-              placeholder="Şifre"
-              type="password"
-              value={key}
-            />
+            <div className="mail-password-field">
+              <input
+                autoComplete="off"
+                id="mail-key"
+                maxLength={80}
+                onChange={(event) => setKey(event.target.value)}
+                placeholder="Şifre"
+                type={showPassword ? "text" : "password"}
+                value={key}
+              />
+              <button
+                aria-controls="mail-key"
+                aria-label={showPassword ? "Parolayı gizle" : "Parolayı göster"}
+                aria-pressed={showPassword}
+                onClick={() => setShowPassword((current) => !current)}
+                type="button"
+              >
+                {showPassword ? "Gizle" : "Göster"}
+              </button>
+            </div>
 
             {error && <p className="form-error">{error}</p>}
 
