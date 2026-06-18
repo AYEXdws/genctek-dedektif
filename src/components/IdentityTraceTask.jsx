@@ -32,23 +32,33 @@ export default function IdentityTraceTask({ onBack, onSolved }) {
 
         <div className="trace-copy">
           <p>
-            Satırların arasından gelen cümle artık ekrandan dışarı bakmanı
+            Satırların arasından süzülen mesaj, artık ekrandan dışarı bakmanı
             istiyor, Dedektif.
           </p>
           <p>
-            Kalabalıkta birbirine benzeyen kartlar olacak. Kırmızı ip yalnızca
-            bir ayrıntı gibi durur; ama doğru dosya bazen en sessiz işaretle
-            kendini belli eder.
+            Sıradaki hedefin, sistem yöneticisine ait personel kimlik kartını
+            bulmak. Kalabalığın içinde birbirine benzeyen pek çok kart var.
+            Sadece 'kırmızı ipi' hatırla; doğru olana giden rehberin o olacak.
           </p>
           <p>
-            Doğru kimliği bulduğunda acele etme. Üzerindeki her bilgi kapıyı
-            açmaz; bazıları sadece dikkatini ölçer. Gerekli izleri bir araya
-            getir ve posta kapısında dene.
+            Kartı bulduğunda asıl görev başlıyor.
+          </p>
+          <p>
+            Güvenlik raporlarına göre, bu yönetici parola oluştururken
+            'kolaylık' tuzağına düşmüş ve doğrudan kişisel bilgilerini
+            kullanmış.
+          </p>
+          <p>
+            Şimdi elindeki kimlik kartını dikkatlice incele. Karttaki verilerden
+            yola çıkarak yöneticinin e-posta parolasını tahmin et.
+          </p>
+          <p>
+            Zayıf halkayı bul ve sisteme sız. Zaman işliyor.
           </p>
         </div>
 
         <button className="secondary-button trace-action-button" onClick={openMail} type="button">
-          Posta Kapısını Aç
+          E-postaya Git
         </button>
 
         <form className="chain-form" onSubmit={submitTrace}>
